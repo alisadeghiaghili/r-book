@@ -22,164 +22,231 @@ dir: rtl
 **کد: ساخت بردار با c() (r1)**
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 c(1, 2, 3, 4, 5)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 1 2 3 4 5
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 vec1 <- c(1, 2, 3, 4, 5)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 1 2 3 4 5
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 vec1
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 1 2 3 4 5
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 vec2 <- c("ali", "sadeghi")
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] "ali"     "sadeghi"
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 vec3 <- c(TRUE, FALSE)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1]  TRUE FALSE
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 vec2
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] "ali"     "sadeghi"
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 vec3
 ```
+
 </div>
+
 
 
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1]  TRUE FALSE
 ```
+
 </div>
+
 
 
 **کد: coercion در بردار (r1)**
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 c(1, 2, 3, TRUE, FALSE)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 1 2 3 1 0
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 c(1, 2, 3, 3.14)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 1.00 2.00 3.00 3.14
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 c(1, 2, 3, 3.14, TRUE)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 1.00 2.00 3.00 3.14 1.00
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 c(1, 2, 3, 3.14, TRUE, "ali")
 ```
+
 </div>
+
 
 
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] "1"    "2"    "3"    "3.14" "TRUE" "ali"
 ```
+
 </div>
+
 
 
 **کد: تمرین دلار/یورو (r1)**
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 days <- c("Mon", "Tue", "Wed", "Thu", "Fri")
 dollars <- c(140, -50, 20, -120, 240)
@@ -194,10 +261,13 @@ sum(euros)
 sum(dollars + euros)
 sum(dollars) + sum(euros)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
  Mon  Tue  Wed  Thu  Fri 
  140  -50   20 -120  240 
@@ -211,300 +281,425 @@ Mon Tue Wed Thu Fri
 [1] 616
 [1] 616
 ```
+
 </div>
+
 
 
 **کد: اندیس‌گذاری و names() (r1)**
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 nums <- c(12, 13, 14, 15, 16)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 12 13 14 15 16
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 nums
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 12 13 14 15 16
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 nums[1]
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 12
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 nums[3]
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 14
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 nums[-1]
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 13 14 15 16
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 nums[-c(1, 2)]
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 14 15 16
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 nums[-(1:3)]
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 15 16
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 info <- c("ali", "sadeghi")
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] "ali"     "sadeghi"
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 names(info)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 names(info) <- c("firstName", "lastName")
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] "firstName" "lastName"
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 info
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 firstName  lastName 
     "ali" "sadeghi"
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 info["firstName"]
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 firstName 
     "ali"
 ```
+
 </div>
+
 
 
 **کد: sequence و شرط روی بردار (r1)**
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 (12:364)[8]
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 19
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 nums2 <- 12:364
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 length(nums2) = 353
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 nums2[9]
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 20
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 nums > 14
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] FALSE FALSE FALSE  TRUE  TRUE
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 nums[nums > 14]
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 15 16
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 nums[nums < 13 | nums > 16]
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 12
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 nums[nums >= 13 & nums <= 16]
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 13 14 15 16
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 c(1, 2, 3) * c(10, 100)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1]  10 200  30
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 length(nums2)
 ```
+
 </div>
+
 
 
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 353
 ```
+
 </div>
+
 
 
 می‌خواهیم ببینیم چه کارایی می‌شود با بردارها کرد.
@@ -574,13 +769,17 @@ length(nums2)
 **کد: ساخت ماتریس و dim (r1)**
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 matrix(data = 1:12)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [,1]
  [1,]    1
@@ -596,169 +795,232 @@ matrix(data = 1:12)
 [11,]   11
 [12,]   12
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 matrix(data = 1:12, nrow = 3)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 matrix(data = 1:12, ncol = 4)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 matrix(data = 1:12, nrow = 3, ncol = 4)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 mat1 <- matrix(data = 1:12, nrow = 3, ncol = 4)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 mat1
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 length(mat1)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 12
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 nrow(mat1)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 3
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 ncol(mat1)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 4
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 dim(mat1)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 3 4
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 matrix(data = 1:12, nrow = 2, ncol = 3, byrow = TRUE)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [,1] [,2] [,3]
 [1,]    1    2    3
 [2,]    4    5    6
 ```
+
 </div>
+
 
 
 **کد: آدرس‌دهی ماتریس (r1)**
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 mat1 <- matrix(data = 1:12, nrow = 3, ncol = 4)
 mat1[2, 2]
@@ -775,10 +1037,13 @@ sum(mat1)
 colSums(mat1)
 rowSums(mat1)
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 5
 [1] 10
@@ -802,12 +1067,15 @@ C 30 60 90 120
  A  B  C 
 22 26 30 
 ```
+
 </div>
+
 
 
 **کد: rbind / cbind (r1)**
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 mat2 <- matrix(data = 1:4, nrow = 2, ncol = 2)
 mat3 <- matrix(data = 5:8, nrow = 2, ncol = 2)
@@ -818,10 +1086,13 @@ cbind(mat2, mat3)
 result <- cbind(mat2, mat3)
 result
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
      [,1] [,2]
 [1,]    1    3
@@ -844,7 +1115,9 @@ result
 [1,]    1    3    5    7
 [2,]    2    4    6    8
 ```
+
 </div>
+
 
 
 ماتریس چیه ؟

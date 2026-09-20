@@ -21,6 +21,7 @@ dir: rtl
 **کد: summarize / group_by (4)**
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 iris |>
   group_by(Species) |>
@@ -28,10 +29,13 @@ iris |>
             stdtl = sd(Sepal.Length),
             count = n())
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 # A tibble: 3 × 4
   Species      msl stdtl count
@@ -46,44 +50,61 @@ iris |>
 2 versicolor  5.94 0.516    50
 3 virginica   6.59 0.636    50
 ```
+
 </div>
+
 
 
 پیوست: منابع کد
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 r1.Rhistory      -> مبانی، متغیر، بردار، ماتریس
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 r2.Rhistory      -> factor, data.frame, list, ggplot2
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 3.Rhistory       -> if / while / for / paste
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```r
 3-2.Rhistory     -> function, package, regex, date/time
 ```
+
 </div>
+
 
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 4.Rhistory       -> import, Excel, DB, dplyr pipe
 ```
+
 </div>
+
 
 
 ---

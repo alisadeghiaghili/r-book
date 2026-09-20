@@ -57,6 +57,7 @@ dir: rtl
 **کد: pipe و dplyr verbs (4)**
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 library(dplyr)
 1:10 %>% sum()
@@ -67,10 +68,13 @@ mtcars |>
   arrange(mpg, desc(disp)) |>
   head()
 ```
+
 </div>
 
 
+
 <div dir="ltr" class="ltr-block">
+
 ```text
 [1] 55
                mpg cyl  disp  hp vs am       user mpg10
@@ -88,7 +92,9 @@ Fiat X1-9     27.3   4  79.0  66  1  1 alisadeghi   273
 Lotus Europa  30.4   4  95.1 113  1  1 alisadeghi   304
 Honda Civic   30.4   4  75.7  52  1  1 alisadeghi   304
 ```
+
 </div>
+
 
 
 انتخاب میکنه کدام ستونها در نتیجه حضور داشته باشند.
@@ -182,11 +188,14 @@ Honda Civic   30.4   4  75.7  52  1  1 alisadeghi   304
 می‌گوید در هر سطرها مقدار خالی داریم یا نداریم.
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 > complete.cases(NAData)
 [1] TRUE FALSE TRUE FALSE
 ```
+
 </div>
+
 
 
 ## تابع na.omit
@@ -194,10 +203,13 @@ Honda Civic   30.4   4  75.7  52  1  1 alisadeghi   304
 سطرهای دارای NA را از داده حذف می‌کند.
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 > na.omit(NAData)
 ```
+
 </div>
+
 
 
 A B C
@@ -211,13 +223,16 @@ A B C
 می‌تواند با یک شرط به کار گرفته بشه و در صورت اولین وقوع TRUE برگرداند.
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 > any(is.na(NAData))
 [1] TRUE
 > all(!is.na(NAData))
 [1] FALSE
 ```
+
 </div>
+
 
 
 > **تمرین:** داده های دیتاست Coal رو پس از آشنا شدن با دیتاست به صورت تمیز در بیارین.
@@ -227,12 +242,15 @@ A B C
 > **تمرین:** در دیتاست hflights یک متغیر جدید اضافه کنید که اختلاف بین زمان ورود و خروج تاکسی ها را نشان دهد. پس بدست آورید.
 
 <div dir="ltr" class="ltr-block">
+
 ```r
 >library(hflights)
 >library(dplyrr)
 > hflights %>% mutate(diff = TaxiOut - TaxiIn) %>% select(diff) %>% filter(!is.na(diff)) %>% summarize(avg = mean(diff))
 ```
+
 </div>
+
 
 
 avg
