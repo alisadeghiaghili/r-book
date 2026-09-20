@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>فصل 13 فصل 13 — رشته‌ها و Regular Expression | کتاب R — مقدماتی</title>
+<meta name="author" content="Ali Sadeghi Aghili">
+<meta name="description" content="بخش: پاکسازی و داده‌کاوی ← فصل قبل: 12. دادهٔ تمیز و tidyverse · فهرست کلی · فصل بعد: 14. دستکاری داده با dplyr →  13.1 در این فصل Stringr کاراکتر1 تمرین IT تابع writeLines کاراکتر n فرمت دسی به...">
+<meta name="generator" content="bookdown 0.48 with bs4_book()">
+<meta property="og:title" content="فصل 13 فصل 13 — رشته‌ها و Regular Expression | کتاب R — مقدماتی">
+<meta property="og:type" content="book">
+<meta property="og:description" content="بخش: پاکسازی و داده‌کاوی ← فصل قبل: 12. دادهٔ تمیز و tidyverse · فهرست کلی · فصل بعد: 14. دستکاری داده با dplyr →  13.1 در این فصل Stringr کاراکتر1 تمرین IT تابع writeLines کاراکتر n فرمت دسی به...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="فصل 13 فصل 13 — رشته‌ها و Regular Expression | کتاب R — مقدماتی">
+<meta name="twitter:description" content="بخش: پاکسازی و داده‌کاوی ← فصل قبل: 12. دادهٔ تمیز و tidyverse · فهرست کلی · فصل بعد: 14. دستکاری داده با dplyr →  13.1 در این فصل Stringr کاراکتر1 تمرین IT تابع writeLines کاراکتر n فرمت دسی به...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script>
+      (function () {
+        var r = document.documentElement;
+        r.setAttribute("dir", "rtl");
+        r.setAttribute("lang", "fa");
+      })();
+    </script><style>
+      /* critical RTL + LTR-code before CSS file loads */
+      html, body { direction: rtl; text-align: right; }
+      pre, code, div.sourceCode,
+      pre *, code *,
+      .ltr-block, .ltr-block pre, .ltr-block code {
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+        text-align: left !important;
+      }
+    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS">کتاب R — مقدماتی</a>:
+        <small class="text-muted">آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">پیشگفتار</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-1-%D9%85%D9%82%D8%AF%D9%85%D9%87.html"><span class="header-section-number">1</span> فصل 1 — مقدمه</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-2-%D8%A2%D8%B4%D9%86%D8%A7%DB%8C%DB%8C-%D8%A8%D8%A7-rstudio.html"><span class="header-section-number">2</span> فصل 2 — آشنایی با RStudio</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-3-%D8%B9%D9%85%D9%84%DB%8C%D8%A7%D8%AA-%D8%B1%DB%8C%D8%A7%D8%B6%DB%8C-%D9%88-%D9%85%D8%AA%D8%BA%DB%8C%D8%B1%D9%87%D8%A7.html"><span class="header-section-number">3</span> فصل 3 — عملیات ریاضی و متغیرها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-4-%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%D9%87%D8%A7-%D9%88-%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3%D9%87%D8%A7.html"><span class="header-section-number">4</span> فصل 4 — بردارها و ماتریس‌ها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-5-%D9%81%D8%A7%DA%A9%D8%AA%D9%88%D8%B1-data.frame-%D9%88-list.html"><span class="header-section-number">5</span> فصل 5 — فاکتور، data.frame و list</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-6-%D8%B3%D8%A7%D8%AE%D8%AA%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%DA%A9%D9%86%D8%AA%D8%B1%D9%84%DB%8C.html"><span class="header-section-number">6</span> فصل 6 — ساختارهای کنترلی</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7.html"><span class="header-section-number">7</span> فصل 7 — توابع و پکیج‌ها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-8-importing-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-flat.html"><span class="header-section-number">8</span> فصل 8 — Importing: فایل‌های flat</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-9-excel-%D9%88-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-%D8%AC%D8%AF%D9%88%D9%84%DB%8C.html"><span class="header-section-number">9</span> فصل 9 — Excel و فایل‌های جدولی</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-10-%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%BE%D8%A7%DB%8C%DA%AF%D8%A7%D9%87%D8%AF%D8%A7%D8%AF%D9%87.html"><span class="header-section-number">10</span> فصل 10 — ورود داده از پایگاه‌داده</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-11-%D8%AE%D9%88%D8%A7%D9%86%D8%AF%D9%86-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%88%D8%A8-%D9%88-api.html"><span class="header-section-number">11</span> فصل 11 — خواندن داده از وب و API</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-12-%D8%AF%D8%A7%D8%AF%D9%87-%D8%AA%D9%85%DB%8C%D8%B2-%D9%88-tidyverse.html"><span class="header-section-number">12</span> فصل 12 — دادهٔ تمیز و tidyverse</a></li>
+<li><a class="active" href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html"><span class="header-section-number">13</span> فصل 13 — رشته‌ها و Regular Expression</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-14-%D8%AF%D8%B3%D8%AA%DA%A9%D8%A7%D8%B1%DB%8C-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A8%D8%A7-dplyr.html"><span class="header-section-number">14</span> فصل 14 — دستکاری داده با dplyr</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html"><span class="header-section-number">15</span> فصل 15 — ترکیب داده (Join)</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html"><span class="header-section-number">16</span> فصل 16 — تاریخ و زمان</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-17-data.table-%D9%88-%D8%AF%D8%A7%D8%AF%D9%87%D9%87%D8%A7%DB%8C-%D8%AD%D8%AC%DB%8C%D9%85.html"><span class="header-section-number">17</span> فصل 17 — data.table و داده‌های حجیم</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-18-%D8%AF%D8%A7%D8%AF%D9%87-%D9%BE%D8%B1%D8%AA-%D9%88-%D9%86%D9%85%D9%88%D8%AF%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%D9%BE%D8%A7%DB%8C%D9%87.html"><span class="header-section-number">18</span> فصل 18 — داده پرت و نمودارهای پایه</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-19-%D9%BE%DB%8C%D9%88%D8%B3%D8%AA-%DA%A9%D8%AF%D9%87%D8%A7%DB%8C-%D8%AA%DA%A9%D9%85%DB%8C%D9%84%DB%8C.html"><span class="header-section-number">19</span> فصل 19 — پیوست: کدهای تکمیلی</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/alisadeghiaghili/r-book">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="فصل-13-رشتهها-و-regular-expression" class="section level1" number="13">
+<h1>
+<span class="header-section-number">فصل 13</span> فصل 13 — رشته‌ها و Regular Expression<a class="anchor" aria-label="anchor" href="#%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>بخش:</strong> پاکسازی و داده‌کاوی</p>
+<p><a href="tidy-data.md">← فصل قبل: 12. دادهٔ تمیز و tidyverse</a> · <a href="../README.md">فهرست کلی</a> · <a href="dplyr.md">فصل بعد: 14. دستکاری داده با dplyr →</a></p>
+<div id="در-این-فصل-12" class="section level2" number="13.1">
+<h2>
+<span class="header-section-number">13.1</span> در این فصل<a class="anchor" aria-label="anchor" href="#%D8%AF%D8%B1-%D8%A7%DB%8C%D9%86-%D9%81%D8%B5%D9%84-12"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><a href="#Stringr">Stringr</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%DA%A9%D8%A7%D8%B1%D8%A7%DA%A9%D8%AA%D8%B11">کاراکتر1</a></li>
+<li><a href="#%D8%AA%D9%85%D8%B1%DB%8C%D9%86-IT">تمرین IT</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-writeLines">تابع writeLines</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%DA%A9%D8%A7%D8%B1%D8%A7%DA%A9%D8%AA%D8%B1-n">کاراکتر n</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%D9%81%D8%B1%D9%85%D8%AA-%D8%AF%D8%B3%DB%8C-%D8%A8%D9%87-%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF-%D8%AA%D8%A8%D8%AF%DB%8C%D9%84-%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF-%D8%A8%D9%87-string">فرمت دسی به اعداد (تبدیل اعداد به string )</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%D8%AA%D8%A7%D8%A8%D8%B9-format">تابع format</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-formatC">تابع formatC</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%D8%AA%D8%A7%D8%A8%D8%B9-paste">تابع paste</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#str_trim">str_trim</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%D8%AA%D8%A7%D8%A8%D8%B9-str_c">تابع str_c</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#str_length">str_length</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%D9%BE%DA%A9%DB%8C%D8%AC-babynames">پکیج babynames</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%D8%AA%D8%A7%D8%A8%D8%B9-str-sub">تابع str-sub</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%D8%AA%D8%A7%D8%A8%D8%B9-table">تابع table</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%D8%B4%D9%86%D8%A7%D8%B3%D8%A7%DB%8C%DB%8C-%D8%A7%D9%84%DA%AF%D9%88">شناسایی الگو</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#str_view">str_view</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%D8%AA%D8%A7%D8%A8%D8%B9-fixed">تابع fixed</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#str_detect">str_detect</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%D8%AA%D8%A7%D8%A8%D8%B9-str_subset">تابع str_subset</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#str_extract">str_extract</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#str_count">str_count</a></li>
+<li><a href="#Str-split">Str-split</a></li>
+<li><a href="#Str-Replace">Str-Replace</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#str_pad">str_pad</a></li>
+<li><a href="#Regular-expression">Regular expression</a></li>
+<li><a href="#Grep-grepl">Grep, grepl</a></li>
+<li><a href="#Sub-gsub">Sub, gsub</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%D9%BE%DA%A9%DB%8C%D8%AC-rebus">پکیج rebus</a></li>
+<li><a href="#R">%R %</a></li>
+<li><a href="#%DA%A9%D9%84%D9%85%D8%A7%D8%AA-%DA%A9%D9%84%DB%8C%D8%AF%DB%8C-Rebas">کلمات کلیدی Rebas</a></li>
+<li><a href="#Alternata-ON">Alternata ON</a></li>
+<li><a href="#Char-class">Char-class</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%D8%AA%D8%A7%D8%A8%D8%B9-kiegatecl-char-elass">تابع kiegatecl-char-elass</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html#%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D8%AA%D8%B9%D8%AF%D8%A7%D8%AF">توابع تعداد</a></li>
+<li><a href="#%DA%A9%D8%A7%D8%B1%D8%A7%DA%A9%D8%AA%D8%B1%D9%87%D8%A7%DB%8C-%D8%AE%D8%A7%D8%B5-%D8%AF%D8%B1-Rebus">کاراکترهای خاص در Rebus</a></li>
+<li><a href="#Shortcut-%D9%87%D8%A7-%D8%AF%D8%B1-Retus">Shortcut ها در Retus</a></li>
+<li><a href="#Capturing">Capturing</a></li>
+<li><a href="#Back-Referencing">Back Referencing</a></li>
+</ul>
+</div>
+<div id="stringr" class="section level2" number="13.2">
+<h2>
+<span class="header-section-number">13.2</span> Stringr<a class="anchor" aria-label="anchor" href="#stringr"><i class="fas fa-link"></i></a>
+</h2>
+<p>برای تغییر رشته ها به کاری می رود. بسیار سریع و کامل است.</p>
+<p>نزدیک به 24 تابع دارد و مشتق شده از package ای به نام string با 234 تابع است.</p>
+</div>
+<div id="کاراکتر1" class="section level2" number="13.3">
+<h2>
+<span class="header-section-number">13.3</span> کاراکتر1<a class="anchor" aria-label="anchor" href="#%DA%A9%D8%A7%D8%B1%D8%A7%DA%A9%D8%AA%D8%B11"><i class="fas fa-link"></i></a>
+</h2>
+<p>کاراکتر 1 برای R معنای خاصی دارد. آن هم این است که کمک کن تا سایر کارکترهای خاص را نمایش داده شوند.</p>
+</div>
+<div id="تمرین-it" class="section level2" number="13.4">
+<h2>
+<span class="header-section-number">13.4</span> تمرین IT<a class="anchor" aria-label="anchor" href="#%D8%AA%D9%85%D8%B1%DB%8C%D9%86-it"><i class="fas fa-link"></i></a>
+</h2>
+<p>پس برای استفاده از خود آن نیاز به استفاده از 2 تای آن است.</p>
+</div>
+<div id="تابع-writelines" class="section level2" number="13.5">
+<h2>
+<span class="header-section-number">13.5</span> تابع writeLines<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-writelines"><i class="fas fa-link"></i></a>
+</h2>
+<p>از توابع package پایه baes هست. Regea و کاراکترهای خاص را پردازش کرده و نمایش می‌دهد.</p>
+<p>بین هر دو داده در بردار یک Enter می زند.</p>
+<p>می تونید که تمام کاراکترهای Unicode رو از سایت Unicode. Org ldarts ببینید.</p>
+<p>-چند جمله و کاراکتر با استفاده از uprtimes بنویسید.</p>
+</div>
+<div id="کاراکتر-n" class="section level2" number="13.6">
+<h2>
+<span class="header-section-number">13.6</span> کاراکتر n<a class="anchor" aria-label="anchor" href="#%DA%A9%D8%A7%D8%B1%D8%A7%DA%A9%D8%AA%D8%B1-n"><i class="fas fa-link"></i></a>
+</h2>
+<p>بهتر است از n استفاده شود. اگر n در متن استفاده شده بود از او اگر هر دو استفاده شده بودند از —- استفاده شود.</p>
+</div>
+<div id="فرمت-دسی-به-اعداد-تبدیل-اعداد-به-string" class="section level2" number="13.7">
+<h2>
+<span class="header-section-number">13.7</span> فرمت دسی به اعداد (تبدیل اعداد به string )<a class="anchor" aria-label="anchor" href="#%D9%81%D8%B1%D9%85%D8%AA-%D8%AF%D8%B3%DB%8C-%D8%A8%D9%87-%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF-%D8%AA%D8%A8%D8%AF%DB%8C%D9%84-%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF-%D8%A8%D9%87-string"><i class="fas fa-link"></i></a>
+</h2>
+<p>برای اینکار دو تابع formatC, format وجود دارند.</p>
+</div>
+<div id="تابع-format" class="section level2" number="13.8">
+<h2>
+<span class="header-section-number">13.8</span> تابع format<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-format"><i class="fas fa-link"></i></a>
+</h2>
+<p>یکم تابع سخت درکیه. 3 آرگومان اپی داره –</p>
+<blockquote>
+<p><strong>تمرین:</strong> 1,352,95,1,0017,395,00004 را تا 2 رقم موثر دار نشان دهید.</p>
+</blockquote>
+<p>یک آرگومان trim هم داره. اصولاٌ نحوه نمایش به درد نمایش در یک ستون می خوره ولی برای نمایش دو بردار بهتره از trim استفاده شود.</p>
+<p>اگر اعداد بزرگ داشته باشیم می‌توان از 2 آرگومان —- و —– استفاده کنیم.</p>
+</div>
+<div id="تابع-formatc" class="section level2" number="13.9">
+<h2>
+<span class="header-section-number">13.9</span> تابع formatC<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-formatc"><i class="fas fa-link"></i></a>
+</h2>
+<p>مشابه c فرمت دهی میکنه به اعداد.</p>
+<p>3 آرگومان –</p>
+<p>Digits در امداد ملی تعداد اعداد بعد از ممیز را نشان می‌دهد.</p>
+<blockquote>
+<p><strong>تمرین:</strong> مثال قبل را با formatC امتحان کنید.</p>
+</blockquote>
+</div>
+<div id="تابع-paste" class="section level2" number="13.10">
+<h2>
+<span class="header-section-number">13.10</span> تابع paste<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-paste"><i class="fas fa-link"></i></a>
+</h2>
+<p>کار آرگومانهای callapes scp</p>
+</div>
+<div id="str_trim" class="section level2" number="13.11">
+<h2>
+<span class="header-section-number">13.11</span> str_trim<a class="anchor" aria-label="anchor" href="#str_trim"><i class="fas fa-link"></i></a>
+</h2>
+<p>کاراکترها از اول و آخر string یا یکی از دو طرف حذف می‌کند.</p>
+<p>یک رشته یا برداری از رشته ها را می‌گیرد.</p>
+</div>
+<div id="تابع-str_c" class="section level2" number="13.12">
+<h2>
+<span class="header-section-number">13.12</span> تابع str_c<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-str_c"><i class="fas fa-link"></i></a>
+</h2>
+<p>دو یا چند رشته را به هم می چسباند.</p>
+</div>
+<div id="str_length" class="section level2" number="13.13">
+<h2>
+<span class="header-section-number">13.13</span> str_length<a class="anchor" aria-label="anchor" href="#str_length"><i class="fas fa-link"></i></a>
+</h2>
+<p>سال رشته رو می‌گوید</p>
+</div>
+<div id="پکیج-babynames" class="section level2" number="13.14">
+<h2>
+<span class="header-section-number">13.14</span> پکیج babynames<a class="anchor" aria-label="anchor" href="#%D9%BE%DA%A9%DB%8C%D8%AC-babynames"><i class="fas fa-link"></i></a>
+</h2>
+<p>اسامی کودکان متولد آمریکا از سال 2015 تا 1880</p>
+<blockquote>
+<p><strong>تمرین:</strong> از دیتاست babynames داده های مرتبط با سال 2014 را در یک متغیر، داده های پسران را در یک متغیر و داده های دختران را در یک متغیر ذخیره کنید. پس 2 بردار طول اسامی دختران و طول اسامی پسران را تشکیل دهید. بعد بگویید که به صورت میانگین طول نام کدامیک بلندتر است.</p>
+</blockquote>
+</div>
+<div id="تابع-str-sub" class="section level2" number="13.15">
+<h2>
+<span class="header-section-number">13.15</span> تابع str-sub<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-str-sub"><i class="fas fa-link"></i></a>
+</h2>
+<p>بخشی از یک رشته را بر می گرداند.</p>
+<p>می‌تواند عدد منفی هم بگیره به معنی از آخر رشته</p>
+<blockquote>
+<p><strong>تمرین:</strong> با استفاده از دو تابع str-c, str-sub را به صورت حرف اول نام . فامیلی در بیارید. چون در دیتاست فامیلی موجود نیست مجدداٌ از نام استفاده کند.</p>
+</blockquote>
+</div>
+<div id="تابع-table" class="section level2" number="13.16">
+<h2>
+<span class="header-section-number">13.16</span> تابع table<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-table"><i class="fas fa-link"></i></a>
+</h2>
+<p>یک جدول از فراوانی مقادیر غیر عددی می سازد.</p>
+</div>
+<div id="شناسایی-الگو" class="section level2" number="13.17">
+<h2>
+<span class="header-section-number">13.17</span> شناسایی الگو<a class="anchor" aria-label="anchor" href="#%D8%B4%D9%86%D8%A7%D8%B3%D8%A7%DB%8C%DB%8C-%D8%A7%D9%84%DA%AF%D9%88"><i class="fas fa-link"></i></a>
+</h2>
+<p>قبلاٌ راجع به شناسایی الگو صحبت کردیم. توی بخش regex . حالا می‌خواهیم بیشتر هم ازش استفاده کنیم هم باهاش آشناشیم.</p>
+</div>
+<div id="str_view" class="section level2" number="13.18">
+<h2>
+<span class="header-section-number">13.18</span> str_view<a class="anchor" aria-label="anchor" href="#str_view"><i class="fas fa-link"></i></a>
+</h2>
+<p>یک الگو را در تعدادی رشته در بخش viewer به ما نشان می‌دهد.</p>
+</div>
+<div id="تابع-fixed" class="section level2" number="13.19">
+<h2>
+<span class="header-section-number">13.19</span> تابع fixed<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-fixed"><i class="fas fa-link"></i></a>
+</h2>
+<p>مشخص می‌کند که pahem داده شده دقیقاٌ رشته است و نه یک regex . بهتر است هر می‌خواهیم دقیقاٌ یک کلمه رو استفاده کنیم اون رو داخل fined بگذارید مخصوصاٌ گاهی می‌خواهیم یک رشته استفاده کنیم که مثلاٌ توش نقطه داره.</p>
+</div>
+<div id="str_detect" class="section level2" number="13.20">
+<h2>
+<span class="header-section-number">13.20</span> str_detect<a class="anchor" aria-label="anchor" href="#str_detect"><i class="fas fa-link"></i></a>
+</h2>
+<p>یک true یا false بر می گرداند و به ازای هر رشته یک مقدار بر می گرداند. مثال قبل strdtect</p>
+<blockquote>
+<p><strong>تمرین:</strong> اطلاعات پسران و دخترانی که اسمشان شامل z هست رو نمایش بدید و بگید تعداد اونها چقدر است؟</p>
+</blockquote>
+</div>
+<div id="تابع-str_subset" class="section level2" number="13.21">
+<h2>
+<span class="header-section-number">13.21</span> تابع str_subset<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-str_subset"><i class="fas fa-link"></i></a>
+</h2>
+<p>بخشی از داده ها را که با الگو همخوانی دارند باز می گردانه اسامی پسران و دخترانی که اسم اونها داره رو با sulset به c بیارید و پس بگید کدوم اونها بالا هم شروع میشده؟</p>
+</div>
+<div id="str_extract" class="section level2" number="13.22">
+<h2>
+<span class="header-section-number">13.22</span> str_extract<a class="anchor" aria-label="anchor" href="#str_extract"><i class="fas fa-link"></i></a>
+</h2>
+<p>یک رشته به طول رشته ورودی ولی با مقادیر که در الگو بوده اند بر می گرداند.</p>
+<blockquote>
+<p><strong>تمرین:</strong> مثال قبل</p>
+</blockquote>
+</div>
+<div id="str_count" class="section level2" number="13.23">
+<h2>
+<span class="header-section-number">13.23</span> str_count<a class="anchor" aria-label="anchor" href="#str_count"><i class="fas fa-link"></i></a>
+</h2>
+<p>می‌گوید به چه تعداد الگو در رشته ها تکرار شده</p>
+<p>تعداد داده ها به کار رفته دو اسامی دخترا رو بگویید</p>
+</div>
+<div id="str-split" class="section level2" number="13.24">
+<h2>
+<span class="header-section-number">13.24</span> Str-split<a class="anchor" aria-label="anchor" href="#str-split"><i class="fas fa-link"></i></a>
+</h2>
+<p>لیست باز می‌گرداند</p>
+<p>می‌توانید مجبورش کنید ماتریس برگردونه. در اون صورت اندازتون می‌شود به اندازه بزرگترین تقسیم و رشته های کوتاه تر بخشهایشون باقی میمونه simplify =TRUE</p>
+<blockquote>
+<p><strong>تمرین:</strong> داده های Date Ramyes رو به صورت شروع و پایان هستن. داده های شروع و پایان رو ازهم جدا کنید، بعد داده های روز ، ماه و سال مربوط به شروع و پایان رو از هم جدا و در متغیرهای مربوط به شروع و پایان ذخیره کنید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> میانگین طول datasat مربوط به words از stniyr را بدست آورید.</p>
+</blockquote>
+</div>
+<div id="str-replace" class="section level2" number="13.25">
+<h2>
+<span class="header-section-number">13.25</span> Str-Replace<a class="anchor" aria-label="anchor" href="#str-replace"><i class="fas fa-link"></i></a>
+</h2>
+<p>یک عبارت رو با عبارت دیگه جایگزین می‌کند</p>
+<blockquote>
+<p><strong>تمرین:</strong> هر ژن تشکیل شده از تعدادی از 4 نوکلئوتویید ATGC هست. در دیتای gene 3 gen موجود است. تعداد کل نوکلئوتوییدهای هر ژن و تعداد هر یک از نوکلئوتویید ها را بدست آورید. و ژنی که شامل شش T پشت سر هم است را خارج کنید .</p>
+</blockquote>
+</div>
+<div id="str_pad" class="section level2" number="13.26">
+<h2>
+<span class="header-section-number">13.26</span> str_pad<a class="anchor" aria-label="anchor" href="#str_pad"><i class="fas fa-link"></i></a>
+</h2>
+<p>یک کاراکتر را یکی یا هر دو تحت رشته اضافه می‌کند.</p>
+<blockquote>
+<p><strong>تمرین:</strong> توی سایت regex crossword تا می تونین تمرین حل کنید.</p>
+</blockquote>
+</div>
+<div id="regular-expression" class="section level2" number="13.27">
+<h2>
+<span class="header-section-number">13.27</span> Regular expression<a class="anchor" aria-label="anchor" href="#regular-expression"><i class="fas fa-link"></i></a>
+</h2>
+<p>می‌خواهیم ببینیم یه فرم خاصی از داده بین داده های ما وجود داره یا نه .</p>
+</div>
+<div id="grep-grepl" class="section level2" number="13.28">
+<h2>
+<span class="header-section-number">13.28</span> Grep, grepl<a class="anchor" aria-label="anchor" href="#grep-grepl"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>کد: grep / grepl (3-2)</strong></p>
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">words</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"book"</span>, <span class="st">"nook"</span>, <span class="st">"back"</span>, <span class="st">"black"</span>, <span class="st">"pick"</span>, <span class="st">"peak"</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] 14</code></pre>
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"b"</span>, x <span class="op">=</span> <span class="va">words</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1]  1  3  4 10 12</code></pre>
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">words</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"b"</span>, x <span class="op">=</span> <span class="va">words</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre class="text"><code>[1] "book"  "back"  "black" "bomb"  "amber"</code></pre>
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"b"</span>, x <span class="op">=</span> <span class="va">words</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1]  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+[13] FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">words</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"^b"</span>, x <span class="op">=</span> <span class="va">words</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre class="text"><code>[1] "book"  "back"  "black" "bomb"</code></pre>
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">words</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"b$"</span>, x <span class="op">=</span> <span class="va">words</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre class="text"><code>[1] "bomb"</code></pre>
+<p><strong>کد: تمرین email با grepl (3-2)</strong></p>
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">emails</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"javad.rasooli@bpmn.edu"</span>, <span class="st">"education@world.gov"</span>,</span>
+<span>            <span class="st">"babak.pirooz@peace.org"</span>, <span class="st">"@invalid.edu"</span>,</span>
+<span>            <span class="st">"sadeghi@apbarez.edu"</span>, <span class="st">"hassaneskandari@codeman.ir"</span><span class="op">)</span></span>
+<span><span class="va">emails</span></span>
+<span><span class="va">emails</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"@"</span>, x <span class="op">=</span> <span class="va">emails</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">emails</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"\\.edu$"</span>, x <span class="op">=</span> <span class="va">emails</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre class="text"><code>Error: '\.' is an unrecognized escape in character string (&lt;input&gt;:7:32) </code></pre>
+<p>از دو تا تابع grepl( ) که مقدار منطقی باز می‌گرداند و grep() که اندیس باز می‌گرداند استفاده می‌کنیم هر دو دنبال یک pattern توی داده های گردن. e.g</p>
+<blockquote>
+<p><strong>تمرین:</strong> با استفاده از تابع grepl( ) و دیتاست email, emails هایی که در آنها .edu وجود دارد را نمایش دهید. (اندیس هانه ! خود mail</p>
+</blockquote>
+<p>توی regex از ^ برای نمایش ابتدای رشته و $ برای انتهای رشته استفاده می‌شود، از ٌ .*ٌ هم برای هر چی استفاده می‌شود. از ٌ 11 ٌ هم برای گذشتن از یک کاراکتر مثلاٌ – برای اینکه نقطه باقی بمونه.</p>
+<blockquote>
+<p><strong>تمرین:</strong> مثال قبل کامل نبود چون بعضی از email ها @ نداشتن و بعضی به .edu ختم نمی شدن در حالی که ما اونها رو می‌خواهیم. پس می تونیم اینجوری تغییر بدیم.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> مثال تبلتون رو اصلاح کنید</p>
+</blockquote>
+</div>
+<div id="sub-gsub" class="section level2" number="13.29">
+<h2>
+<span class="header-section-number">13.29</span> Sub, gsub<a class="anchor" aria-label="anchor" href="#sub-gsub"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>کد: sub / gsub (3-2)</strong></p>
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">sub</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"oo"</span>, replacement <span class="op">=</span> <span class="st">"*"</span>, x <span class="op">=</span> <span class="va">words</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] "b*k"   "n*k"   "back"  "black"</code></pre>
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"o"</span>, replacement <span class="op">=</span> <span class="st">"*"</span>, x <span class="op">=</span> <span class="va">words</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] "b**k"  "n**k"  "back"  "black"</code></pre>
+<p>تابع grepl,grep برامون جای یک فرمت رو پیدا می کردن و توابع gsub, sub می تونن اون بخش از داده رو جایگزین کنن.</p>
+<p>Sub اولین match رو جایگزین می کنه و gsub همه رو 3 تا آرگومان میگیره (فرمت، مقدار جدید و داده ) .</p>
+<blockquote>
+<p><strong>تمرین:</strong> مثال قبل رو gsub( ) حل کنید و مقدار رو با daelesayan.ir @ جایگزین کنید.</p>
+</blockquote>
+<p>ٌ11 ٌ یک کاراکتر خاص رو مشخص می کنه مثل ٌut ٌ و ٌ us ٌ و ٌ nm ٌ</p>
+<p>[0-9]+ حداقل یک عدد وجود داشته باشه</p>
+<p>1تا 0</p>
+<p>Groupig( )</p>
+</div>
+<div id="پکیج-rebus" class="section level2" number="13.30">
+<h2>
+<span class="header-section-number">13.30</span> پکیج rebus<a class="anchor" aria-label="anchor" href="#%D9%BE%DA%A9%DB%8C%D8%AC-rebus"><i class="fas fa-link"></i></a>
+</h2>
+<p>Regea نویسی را بسیار ساده می‌کند.</p>
+</div>
+<div id="r" class="section level2" number="13.31">
+<h2>
+<span class="header-section-number">13.31</span> %R %<a class="anchor" aria-label="anchor" href="#r"><i class="fas fa-link"></i></a>
+</h2>
+<p>کاراکتر مخصوص rebus برای به هم چسباندن بخش های مختلف یک regex است.</p>
+</div>
+<div id="کلمات-کلیدی-rebas" class="section level2" number="13.32">
+<h2>
+<span class="header-section-number">13.32</span> کلمات کلیدی Rebas<a class="anchor" aria-label="anchor" href="#%DA%A9%D9%84%D9%85%D8%A7%D8%AA-%DA%A9%D9%84%DB%8C%D8%AF%DB%8C-rebas"><i class="fas fa-link"></i></a>
+</h2>
+<p>شروع و پایان Start</p>
+<p>می‌شود این %R % رو بعدش خوند.</p>
+<p>برای مشخص کردن یک کلمه می‌بایست آنرا بین Start و End قرار داد یا از تابع exactly( ) استفاده کرد.</p>
+<p>هر کاراکتری Au-clas</p>
+<blockquote>
+<p><strong>تمرین:</strong> با استفاده از دیتای rebus naes عملیات زیر را انجام دهید.</p>
+</blockquote>
+<p>عبارتی بنویسید که تمام اسامی که یک z و بعد از ان یک حرف دارند را شناسایی کند.</p>
+<blockquote>
+<p><strong>تمرین:</strong> از پکیج babynames اسامی کودکان پسر را جدا کنید. پس از آن اسامی را که در انها z و بعد از آن یک حرف دیگر آمده در متغیری ذخیره کنید. و تعداد این اسامی را بگویید پس بخشی از اسامی را که با الگو همخوان است را جدا کنید و به صورت جدول گزارش دهید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> بررسی کنید آیا در هیچ یک از اسامی بیش از یکبار الگو رعایت شده.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> بررسی کنید چه کسری از اسامی از الگو تبعیت کرده اند؟</p>
+</blockquote>
+</div>
+<div id="alternata-on" class="section level2" number="13.33">
+<h2>
+<span class="header-section-number">13.33</span> Alternata ON<a class="anchor" aria-label="anchor" href="#alternata-on"><i class="fas fa-link"></i></a>
+</h2>
+<p>هر regex با استفاده از ( ) یک گروه ایجاد می‌شود.</p>
+<p>هر regex با استفاده از 1 می‌توان از چند عبارت جایگزین استفاده کرد.</p>
+<p>در rebas برای اعلام الگوهای جایگزین از عبارت or استفاده می‌شود که می‌تواند هر چند جایگزین بپذیرد.</p>
+</div>
+<div id="char-class" class="section level2" number="13.34">
+<h2>
+<span class="header-section-number">13.34</span> Char-class<a class="anchor" aria-label="anchor" href="#char-class"><i class="fas fa-link"></i></a>
+</h2>
+<p>برای مشخص کردن کاراکترهای مجاز به صورت یکجا استفاده می‌شود.</p>
+<blockquote>
+<p><strong>تمرین:</strong> تعداد حروف صدا دار را در اسامی پسران بدست آورید پس بگویید به طور متوسط هر اسم چند حرف صدا دار دارد و بگویید چه کسر از اسامی پسران حرف صدا دار است.</p>
+</blockquote>
+</div>
+<div id="تابع-kiegatecl-char-elass" class="section level2" number="13.35">
+<h2>
+<span class="header-section-number">13.35</span> تابع kiegatecl-char-elass<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-kiegatecl-char-elass"><i class="fas fa-link"></i></a>
+</h2>
+<p>برای مشخص کردن کاراکترهای غیر مجاز به کار می رود.</p>
+</div>
+<div id="توابع-تعداد" class="section level2" number="13.36">
+<h2>
+<span class="header-section-number">13.36</span> توابع تعداد<a class="anchor" aria-label="anchor" href="#%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D8%AA%D8%B9%D8%AF%D8%A7%D8%AF"><i class="fas fa-link"></i></a>
+</h2>
+<p>توابع تعداد در Rebws عبارتند از</p>
+<blockquote>
+<p><strong>تمرین:</strong> اسامی پسرانی که تنها از حروف صدا دار تشکیل شده اند را نشان دهید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> اسامی پسرانی که تنها از حروف بی صدا تشکیل شده اند را نشان دهید.</p>
+</blockquote>
+</div>
+<div id="کاراکترهای-خاص-در-rebus" class="section level2" number="13.37">
+<h2>
+<span class="header-section-number">13.37</span> کاراکترهای خاص در Rebus<a class="anchor" aria-label="anchor" href="#%DA%A9%D8%A7%D8%B1%D8%A7%DA%A9%D8%AA%D8%B1%D9%87%D8%A7%DB%8C-%D8%AE%D8%A7%D8%B5-%D8%AF%D8%B1-rebus"><i class="fas fa-link"></i></a>
+</h2>
+<p>عبارتند از</p>
+</div>
+<div id="shortcut-ها-در-retus" class="section level2" number="13.38">
+<h2>
+<span class="header-section-number">13.38</span> Shortcut ها در Retus<a class="anchor" aria-label="anchor" href="#shortcut-%D9%87%D8%A7-%D8%AF%D8%B1-retus"><i class="fas fa-link"></i></a>
+</h2>
+<blockquote>
+<p><strong>تمرین:</strong> contacts می‌خواهیم شماره تلفن ها را از روی متن استخراج کنیم.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> در شرح های ذکر شده در دیتا ست narratives می‌خواهیم بخش متن را به همراه واحد اندازه گیری سن که در دیتاست با مخفف های Ye, YO برای سال و MO برای ماه مشخص شده و جنسیت بیمار را استخراج کنیم. الگوی مناسب را بنویسید و اطلاعات مذکور را استخراج کنید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> اکنون بخشهای مختلف عبارت استخراج شده در بخش قبل را به فهرست مناسب بهت پردازش تبدیل کنید.( اعداد به صورت عدد و جنسیت مشخص) دقت شود که برخی از اعداد بر حسب ماه هستند که می‌بایست به سال تبدیل شوند.</p>
+</blockquote>
+</div>
+<div id="capturing" class="section level2" number="13.39">
+<h2>
+<span class="header-section-number">13.39</span> Capturing<a class="anchor" aria-label="anchor" href="#capturing"><i class="fas fa-link"></i></a>
+</h2>
+<p>بعضی وقتها می‌خواهیم یک الگو رو ذخیره کنیم تا بعداٌ بتوانیم از اون استفاده کنیم. در اینجا تابع capture یا در regex از ( ) استفاده می‌کنیم.</p>
+<p>تابع str_match با capture بسیار همخوان است.</p>
+<blockquote>
+<p><strong>تمرین:</strong> بر روی دیتاست emails می‌خواهم بخشهای مختلف ایمیل رو به همراه ایمیل ذخیره کنیم.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> مثال شماره تلفن ها رو که من حل کردم با استفاده از capturing حل کنید و شماره تلفن های استخراج شده رو به فهرست یکسان تبدیل کنید.</p>
+</blockquote>
+</div>
+<div id="back-referencing" class="section level2" number="13.40">
+<h2>
+<span class="header-section-number">13.40</span> Back Referencing<a class="anchor" aria-label="anchor" href="#back-referencing"><i class="fas fa-link"></i></a>
+</h2>
+<p>با استفاده از Back Referencing می‌توان از الگوهای ذخیره شده برای شناسایی و پاکسازی متن ها و داده ها استفاده نمود.</p>
+<blockquote>
+<p><strong>تمرین:</strong> با استفاده از دیتاست babynames اسامی پسران با 3 حرف تکراری را پیدا کنید و سپس گزارش از تعداد آنها ارائه دهید.</p>
+</blockquote>
+<hr>
+<div id="پیمایش-12" class="section level3" number="13.40.1">
+<h3>
+<span class="header-section-number">13.40.1</span> پیمایش<a class="anchor" aria-label="anchor" href="#%D9%BE%DB%8C%D9%85%D8%A7%DB%8C%D8%B4-12"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>قبلی: <a href="tidy-data.md">12. دادهٔ تمیز و tidyverse</a>
+</li>
+<li>فهرست: <a href="../README.md">README</a>
+</li>
+<li>بعدی: <a href="dplyr.md">14. دستکاری داده با dplyr</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="%D9%81%D8%B5%D9%84-12-%D8%AF%D8%A7%D8%AF%D9%87-%D8%AA%D9%85%DB%8C%D8%B2-%D9%88-tidyverse.html"><span class="header-section-number">12</span> فصل 12 — دادهٔ تمیز و tidyverse</a></div>
+<div class="next"><a href="%D9%81%D8%B5%D9%84-14-%D8%AF%D8%B3%D8%AA%DA%A9%D8%A7%D8%B1%DB%8C-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A8%D8%A7-dplyr.html"><span class="header-section-number">14</span> فصل 14 — دستکاری داده با dplyr</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression"><span class="header-section-number">13</span> فصل 13 — رشته‌ها و Regular Expression</a></li>
+<li><a class="nav-link" href="#%D8%AF%D8%B1-%D8%A7%DB%8C%D9%86-%D9%81%D8%B5%D9%84-12"><span class="header-section-number">13.1</span> در این فصل</a></li>
+<li><a class="nav-link" href="#stringr"><span class="header-section-number">13.2</span> Stringr</a></li>
+<li><a class="nav-link" href="#%DA%A9%D8%A7%D8%B1%D8%A7%DA%A9%D8%AA%D8%B11"><span class="header-section-number">13.3</span> کاراکتر1</a></li>
+<li><a class="nav-link" href="#%D8%AA%D9%85%D8%B1%DB%8C%D9%86-it"><span class="header-section-number">13.4</span> تمرین IT</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-writelines"><span class="header-section-number">13.5</span> تابع writeLines</a></li>
+<li><a class="nav-link" href="#%DA%A9%D8%A7%D8%B1%D8%A7%DA%A9%D8%AA%D8%B1-n"><span class="header-section-number">13.6</span> کاراکتر n</a></li>
+<li><a class="nav-link" href="#%D9%81%D8%B1%D9%85%D8%AA-%D8%AF%D8%B3%DB%8C-%D8%A8%D9%87-%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF-%D8%AA%D8%A8%D8%AF%DB%8C%D9%84-%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF-%D8%A8%D9%87-string"><span class="header-section-number">13.7</span> فرمت دسی به اعداد (تبدیل اعداد به string )</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-format"><span class="header-section-number">13.8</span> تابع format</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-formatc"><span class="header-section-number">13.9</span> تابع formatC</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-paste"><span class="header-section-number">13.10</span> تابع paste</a></li>
+<li><a class="nav-link" href="#str_trim"><span class="header-section-number">13.11</span> str_trim</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-str_c"><span class="header-section-number">13.12</span> تابع str_c</a></li>
+<li><a class="nav-link" href="#str_length"><span class="header-section-number">13.13</span> str_length</a></li>
+<li><a class="nav-link" href="#%D9%BE%DA%A9%DB%8C%D8%AC-babynames"><span class="header-section-number">13.14</span> پکیج babynames</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-str-sub"><span class="header-section-number">13.15</span> تابع str-sub</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-table"><span class="header-section-number">13.16</span> تابع table</a></li>
+<li><a class="nav-link" href="#%D8%B4%D9%86%D8%A7%D8%B3%D8%A7%DB%8C%DB%8C-%D8%A7%D9%84%DA%AF%D9%88"><span class="header-section-number">13.17</span> شناسایی الگو</a></li>
+<li><a class="nav-link" href="#str_view"><span class="header-section-number">13.18</span> str_view</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-fixed"><span class="header-section-number">13.19</span> تابع fixed</a></li>
+<li><a class="nav-link" href="#str_detect"><span class="header-section-number">13.20</span> str_detect</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-str_subset"><span class="header-section-number">13.21</span> تابع str_subset</a></li>
+<li><a class="nav-link" href="#str_extract"><span class="header-section-number">13.22</span> str_extract</a></li>
+<li><a class="nav-link" href="#str_count"><span class="header-section-number">13.23</span> str_count</a></li>
+<li><a class="nav-link" href="#str-split"><span class="header-section-number">13.24</span> Str-split</a></li>
+<li><a class="nav-link" href="#str-replace"><span class="header-section-number">13.25</span> Str-Replace</a></li>
+<li><a class="nav-link" href="#str_pad"><span class="header-section-number">13.26</span> str_pad</a></li>
+<li><a class="nav-link" href="#regular-expression"><span class="header-section-number">13.27</span> Regular expression</a></li>
+<li><a class="nav-link" href="#grep-grepl"><span class="header-section-number">13.28</span> Grep, grepl</a></li>
+<li><a class="nav-link" href="#sub-gsub"><span class="header-section-number">13.29</span> Sub, gsub</a></li>
+<li><a class="nav-link" href="#%D9%BE%DA%A9%DB%8C%D8%AC-rebus"><span class="header-section-number">13.30</span> پکیج rebus</a></li>
+<li><a class="nav-link" href="#r"><span class="header-section-number">13.31</span> %R %</a></li>
+<li><a class="nav-link" href="#%DA%A9%D9%84%D9%85%D8%A7%D8%AA-%DA%A9%D9%84%DB%8C%D8%AF%DB%8C-rebas"><span class="header-section-number">13.32</span> کلمات کلیدی Rebas</a></li>
+<li><a class="nav-link" href="#alternata-on"><span class="header-section-number">13.33</span> Alternata ON</a></li>
+<li><a class="nav-link" href="#char-class"><span class="header-section-number">13.34</span> Char-class</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-kiegatecl-char-elass"><span class="header-section-number">13.35</span> تابع kiegatecl-char-elass</a></li>
+<li><a class="nav-link" href="#%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D8%AA%D8%B9%D8%AF%D8%A7%D8%AF"><span class="header-section-number">13.36</span> توابع تعداد</a></li>
+<li><a class="nav-link" href="#%DA%A9%D8%A7%D8%B1%D8%A7%DA%A9%D8%AA%D8%B1%D9%87%D8%A7%DB%8C-%D8%AE%D8%A7%D8%B5-%D8%AF%D8%B1-rebus"><span class="header-section-number">13.37</span> کاراکترهای خاص در Rebus</a></li>
+<li><a class="nav-link" href="#shortcut-%D9%87%D8%A7-%D8%AF%D8%B1-retus"><span class="header-section-number">13.38</span> Shortcut ها در Retus</a></li>
+<li><a class="nav-link" href="#capturing"><span class="header-section-number">13.39</span> Capturing</a></li>
+<li>
+<a class="nav-link" href="#back-referencing"><span class="header-section-number">13.40</span> Back Referencing</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#%D9%BE%DB%8C%D9%85%D8%A7%DB%8C%D8%B4-12"><span class="header-section-number">13.40.1</span> پیمایش</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/alisadeghiaghili/r-book/blob/master/13-strings-regex.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/alisadeghiaghili/r-book/edit/master/13-strings-regex.md">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>کتاب R — مقدماتی</strong>: آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS" was written by Ali Sadeghi Aghili. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

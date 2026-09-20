@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>فصل 15 فصل 15 — ترکیب داده (Join) | کتاب R — مقدماتی</title>
+<meta name="author" content="Ali Sadeghi Aghili">
+<meta name="description" content="بخش: پاکسازی و داده‌کاوی ← فصل قبل: 14. دستکاری داده با dplyr · فهرست کلی · فصل بعد: 16. تاریخ و زمان →  15.1 در این فصل Joining Data Mutating joins تابع setequal Filtering joins Semi- join تابع...">
+<meta name="generator" content="bookdown 0.48 with bs4_book()">
+<meta property="og:title" content="فصل 15 فصل 15 — ترکیب داده (Join) | کتاب R — مقدماتی">
+<meta property="og:type" content="book">
+<meta property="og:description" content="بخش: پاکسازی و داده‌کاوی ← فصل قبل: 14. دستکاری داده با dplyr · فهرست کلی · فصل بعد: 16. تاریخ و زمان →  15.1 در این فصل Joining Data Mutating joins تابع setequal Filtering joins Semi- join تابع...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="فصل 15 فصل 15 — ترکیب داده (Join) | کتاب R — مقدماتی">
+<meta name="twitter:description" content="بخش: پاکسازی و داده‌کاوی ← فصل قبل: 14. دستکاری داده با dplyr · فهرست کلی · فصل بعد: 16. تاریخ و زمان →  15.1 در این فصل Joining Data Mutating joins تابع setequal Filtering joins Semi- join تابع...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script>
+      (function () {
+        var r = document.documentElement;
+        r.setAttribute("dir", "rtl");
+        r.setAttribute("lang", "fa");
+      })();
+    </script><style>
+      /* critical RTL + LTR-code before CSS file loads */
+      html, body { direction: rtl; text-align: right; }
+      pre, code, div.sourceCode,
+      pre *, code *,
+      .ltr-block, .ltr-block pre, .ltr-block code {
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+        text-align: left !important;
+      }
+    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS">کتاب R — مقدماتی</a>:
+        <small class="text-muted">آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">پیشگفتار</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-1-%D9%85%D9%82%D8%AF%D9%85%D9%87.html"><span class="header-section-number">1</span> فصل 1 — مقدمه</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-2-%D8%A2%D8%B4%D9%86%D8%A7%DB%8C%DB%8C-%D8%A8%D8%A7-rstudio.html"><span class="header-section-number">2</span> فصل 2 — آشنایی با RStudio</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-3-%D8%B9%D9%85%D9%84%DB%8C%D8%A7%D8%AA-%D8%B1%DB%8C%D8%A7%D8%B6%DB%8C-%D9%88-%D9%85%D8%AA%D8%BA%DB%8C%D8%B1%D9%87%D8%A7.html"><span class="header-section-number">3</span> فصل 3 — عملیات ریاضی و متغیرها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-4-%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%D9%87%D8%A7-%D9%88-%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3%D9%87%D8%A7.html"><span class="header-section-number">4</span> فصل 4 — بردارها و ماتریس‌ها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-5-%D9%81%D8%A7%DA%A9%D8%AA%D9%88%D8%B1-data.frame-%D9%88-list.html"><span class="header-section-number">5</span> فصل 5 — فاکتور، data.frame و list</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-6-%D8%B3%D8%A7%D8%AE%D8%AA%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%DA%A9%D9%86%D8%AA%D8%B1%D9%84%DB%8C.html"><span class="header-section-number">6</span> فصل 6 — ساختارهای کنترلی</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7.html"><span class="header-section-number">7</span> فصل 7 — توابع و پکیج‌ها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-8-importing-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-flat.html"><span class="header-section-number">8</span> فصل 8 — Importing: فایل‌های flat</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-9-excel-%D9%88-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-%D8%AC%D8%AF%D9%88%D9%84%DB%8C.html"><span class="header-section-number">9</span> فصل 9 — Excel و فایل‌های جدولی</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-10-%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%BE%D8%A7%DB%8C%DA%AF%D8%A7%D9%87%D8%AF%D8%A7%D8%AF%D9%87.html"><span class="header-section-number">10</span> فصل 10 — ورود داده از پایگاه‌داده</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-11-%D8%AE%D9%88%D8%A7%D9%86%D8%AF%D9%86-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%88%D8%A8-%D9%88-api.html"><span class="header-section-number">11</span> فصل 11 — خواندن داده از وب و API</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-12-%D8%AF%D8%A7%D8%AF%D9%87-%D8%AA%D9%85%DB%8C%D8%B2-%D9%88-tidyverse.html"><span class="header-section-number">12</span> فصل 12 — دادهٔ تمیز و tidyverse</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html"><span class="header-section-number">13</span> فصل 13 — رشته‌ها و Regular Expression</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-14-%D8%AF%D8%B3%D8%AA%DA%A9%D8%A7%D8%B1%DB%8C-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A8%D8%A7-dplyr.html"><span class="header-section-number">14</span> فصل 14 — دستکاری داده با dplyr</a></li>
+<li><a class="active" href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html"><span class="header-section-number">15</span> فصل 15 — ترکیب داده (Join)</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html"><span class="header-section-number">16</span> فصل 16 — تاریخ و زمان</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-17-data.table-%D9%88-%D8%AF%D8%A7%D8%AF%D9%87%D9%87%D8%A7%DB%8C-%D8%AD%D8%AC%DB%8C%D9%85.html"><span class="header-section-number">17</span> فصل 17 — data.table و داده‌های حجیم</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-18-%D8%AF%D8%A7%D8%AF%D9%87-%D9%BE%D8%B1%D8%AA-%D9%88-%D9%86%D9%85%D9%88%D8%AF%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%D9%BE%D8%A7%DB%8C%D9%87.html"><span class="header-section-number">18</span> فصل 18 — داده پرت و نمودارهای پایه</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-19-%D9%BE%DB%8C%D9%88%D8%B3%D8%AA-%DA%A9%D8%AF%D9%87%D8%A7%DB%8C-%D8%AA%DA%A9%D9%85%DB%8C%D9%84%DB%8C.html"><span class="header-section-number">19</span> فصل 19 — پیوست: کدهای تکمیلی</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/alisadeghiaghili/r-book">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="فصل-15-ترکیب-داده-join" class="section level1" number="15">
+<h1>
+<span class="header-section-number">فصل 15</span> فصل 15 — ترکیب داده (Join)<a class="anchor" aria-label="anchor" href="#%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>بخش:</strong> پاکسازی و داده‌کاوی</p>
+<p><a href="dplyr.md">← فصل قبل: 14. دستکاری داده با dplyr</a> · <a href="../README.md">فهرست کلی</a> · <a href="datetime.md">فصل بعد: 16. تاریخ و زمان →</a></p>
+<div id="در-این-فصل-14" class="section level2" number="15.1">
+<h2>
+<span class="header-section-number">15.1</span> در این فصل<a class="anchor" aria-label="anchor" href="#%D8%AF%D8%B1-%D8%A7%DB%8C%D9%86-%D9%81%D8%B5%D9%84-14"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><a href="#Joining-Data">Joining Data</a></li>
+<li><a href="#Mutating-joins">Mutating joins</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#%D8%AA%D8%A7%D8%A8%D8%B9-setequal">تابع setequal</a></li>
+<li><a href="#Filtering-joins">Filtering joins</a></li>
+<li><a href="#Semi--join">Semi- join</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#%D8%AA%D8%A7%D8%A8%D8%B9-nrow">تابع nrow( )</a></li>
+<li><a href="#Anti--join">Anti- join</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#%D8%A7%D9%BE%D8%B1%D8%A7%D8%AA%D9%88%D8%B1%D9%87%D8%A7%DB%8C-%D9%85%D8%AC%D9%85%D9%88%D8%B9%D9%87-%D9%87%D8%A7">اپراتورهای مجموعه ها</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#%D8%AA%D8%A7%D8%A8%D8%B9-union">تابع union</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#%D8%AA%D8%A7%D8%A8%D8%B9-intersect">تابع intersect</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#%D8%AA%D8%A7%D8%A8%D8%B9-setdiff">تابع setdiff</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#bind-%D8%AF%D8%B1-dplyrr">bind در dplyrr</a></li>
+<li><a href="#Bind-cols">Bind-cols</a></li>
+<li><a href="#Bind-rows">Bind-rows</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#data_-frame">data_ frame</a></li>
+<li><a href="#Coercion-rules">Coercion rules</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#%D8%AA%D8%A7%D8%A8%D8%B9-rowmas--to--colam">تابع rowmas- to- colam</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#%D8%AA%D8%A7%D8%A8%D8%B9-has-rowamas">تابع has-rowamas</a></li>
+<li><a href="#%D9%85%D8%B4%DA%A9%D9%84%D8%A7%D8%AA%DB%8C-%DA%A9%D9%87-%D8%AF%D8%B1-join-%D9%87%D8%A7-%D8%A8%D9%87-%D9%88%D8%AC%D9%88%D8%AF-%D9%85%DB%8C-%D8%A2%DB%8C%D9%86%D8%AF">مشکلاتی که در join ها به وجود می آیند.</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#%D8%B3%D8%AA%D9%88%D9%86-%D8%BA%DB%8C%D8%B1-%DA%A9%D9%84%DB%8C%D8%AF-%D8%AA%DA%A9%D8%B1%D8%A7%D8%B1%DB%8C">ستون غیر کلید تکراری</a></li>
+<li><a href="#Join-%DA%A9%D8%B1%D8%AF%D9%86-%D8%A8%DB%8C%D8%B4-%D8%A7%D8%B22-dataset">Join کردن بیش از2 dataset</a></li>
+<li><a href="#Reduce">Reduce</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#%D8%AA%D8%A7%D8%A8%D8%B9-merge">تابع merge</a></li>
+</ul>
+</div>
+<div id="joining-data" class="section level2" number="15.2">
+<h2>
+<span class="header-section-number">15.2</span> Joining Data<a class="anchor" aria-label="anchor" href="#joining-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>مثل همون چیزی که در SQL داشتیم join ها برای اتصال داده های مرتبط به هم بر اساس یک کلید یا فیلتر کردن داده به کار می رن. Join ها بخشی از دستورات پکیج dplyrr هستن.</p>
+<p>دستور مشابه با join در پکیج base با نام merge وجود دارد ولی مزایای join نسبت به merge این است که ترتیب داده ها به هم غریزه، دستور join بصری تر و قابل فهم تره و بر خلاف merge روی DB ها یا حتی SPARK هم قابل استفاده است.</p>
+<p>مثل JOIN SQL بر روی فیلدها با مقدار یکسان برقرار می‌شود که ممکنه لازم باشه از کلیدهای ترکیبی استفاده بشه و همانند قبل به کلید جدول اصلی کلید اصلی و به کلیه جدول دیگر کلید فرعی ، ثانویه یا خارجی گفته می‌شود.</p>
+<p>در صورت مشخص نشدن ستونهای کلید، join فیلدهای هم نام را به‌عنوان کلید در نظر می گیره.</p>
+<p>با data.frame و tibblele کار می‌کند.</p>
+</div>
+<div id="mutating-joins" class="section level2" number="15.3">
+<h2>
+<span class="header-section-number">15.3</span> Mutating joins<a class="anchor" aria-label="anchor" href="#mutating-joins"><i class="fas fa-link"></i></a>
+</h2>
+<p>یک متغیر از یک مجموعه داده دیگه رو به مجموعه داده فعلی اضافه می‌کند.</p>
+<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">inner_join</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, by <span class="op">=</span> <span class="cn">NULL</span>, copy <span class="op">=</span> <span class="cn">FALSE</span>, suffix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">".x"</span>, <span class="st">".y"</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">left_join</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, by <span class="op">=</span> <span class="cn">NULL</span>, copy <span class="op">=</span> <span class="cn">FALSE</span>, suffix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">".x"</span>, <span class="st">".y"</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<p>right_join(x, y, by = NULL, copy = FALSE, suffix = c(“.x”, “.y”), …)</p>
+<p>full_join(x, y, by = NULL, copy = FALSE, suffix = c(“.x”, “.y”), …)</p>
+<p>اگر اسامی ستونها دقیقاٌ یکی هستند نیازس به نوشتن اسامی ستونها در دو جدول نیست و تنها یکبار ذکر نام ستون کافی است در غیر این صورت می‌بایست مشخص کنیم کدام ستون ها با هم برابر اند.</p>
+<p>به‌عنوان مثال می‌خواهیم داده های bands و artists را به هم متصل نماییم.</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb260-1" tabindex="-1"></a><span class="sc">&gt;</span> bands <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/bands.rds"</span>)</span>
+<span id="cb260-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb260-2" tabindex="-1"></a><span class="sc">&gt;</span> artists <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/artists.rds"</span>)</span>
+<span id="cb260-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb260-3" tabindex="-1"></a><span class="sc">&gt;</span> bands</span>
+<span id="cb260-4"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb260-4" tabindex="-1"></a><span class="co"># A tibblele: 13 x 3</span></span></code></pre></div>
+<p>first last band</p>
+<p><chr><chr><chr></chr></chr></chr></p>
+<p>1 John Bonham Led Zeppelin</p>
+<p>2 John Paul Jones Led Zeppelin</p>
+<p>3 Jimmy Page Led Zeppelin</p>
+<p>4 Robert Plant Led Zeppelin</p>
+<p>5 George Harrison The Beatles</p>
+<p>6 John Lennon The Beatles</p>
+<p>7 Paul McCartney The Beatles</p>
+<p>8 Ringo Starr The Beatles</p>
+<p>9 Jimmy Buffett The Coral Reefers</p>
+<p>10 Mick Jagger The Rolling Stones</p>
+<p>11 Keith Richards The Rolling Stones</p>
+<p>12 Charlie Watts The Rolling Stones</p>
+<p>13 Ronnie Wood The Rolling Stones</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb261-1" tabindex="-1"></a><span class="sc">&gt;</span> artists</span>
+<span id="cb261-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb261-2" tabindex="-1"></a><span class="co"># A tibblele: 16 x 3</span></span></code></pre></div>
+<p>first last instrument</p>
+<p><chr><chr><chr></chr></chr></chr></p>
+<p>1 Jimmy Buffett Guitar</p>
+<p>2 George Harrison Guitar</p>
+<p>3 Mick Jagger Vocals</p>
+<p>4 Tom Jones Vocals</p>
+<p>5 Davy Jones Vocals</p>
+<p>6 John Lennon Guitar</p>
+<p>7 Paul McCartney Bass</p>
+<p>8 Jimmy Page Guitar</p>
+<p>9 Joe Perry Guitar</p>
+<p>10 Elvis Presley Vocals</p>
+<p>11 Keith Richards Guitar</p>
+<p>12 Paul Simon Guitar</p>
+<p>13 Ringo Starr Drums</p>
+<p>14 Joe Walsh Guitar</p>
+<p>15 Brian Wilson Vocals</p>
+<p>16 Nancy Wilson Vocals</p>
+<p>همانطور که ملاحظه می‌شود در این جداول ستون های first و last یکسان هستند. بنابرین نیازی به مشخص کردن ستون ها برای اتصال نیست و در زمان اجرا خود R هم به ما پیغامی مبنی بر انتخاب این ستون ها به منظور اتصال می‌دهد.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb262-1" tabindex="-1"></a><span class="sc">&lt;</span> <span class="fu">left_join</span>(<span class="at">x =</span> bands, <span class="at">y =</span> artists)</span>
+<span id="cb262-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb262-2" tabindex="-1"></a>Joining, by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"first"</span>, <span class="st">"last"</span>)</span>
+<span id="cb262-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb262-3" tabindex="-1"></a><span class="co"># A tibblele: 13 x 4</span></span></code></pre></div>
+<p>first last band instrument</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb263-1" tabindex="-1"></a><span class="sc">&gt;</span> chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span></span></code></pre></div>
+<p>1 John Bonham Led Zeppelin NA</p>
+<p>2 John Paul Jones Led Zeppelin NA</p>
+<p>3 Jimmy Page Led Zeppelin Guitar</p>
+<p>4 Robert Plant Led Zeppelin NA</p>
+<p>5 George Harrison The Beatles Guitar</p>
+<p>6 John Lennon The Beatles Guitar</p>
+<p>7 Paul McCartney The Beatles Bass</p>
+<p>8 Ringo Starr The Beatles Drums</p>
+<p>9 Jimmy Buffett The Coral Reefers Guitar</p>
+<p>10 Mick Jagger The Rolling Stones Vocals</p>
+<p>11 Keith Richards The Rolling Stones Guitar</p>
+<p>12 Charlie Watts The Rolling Stones NA</p>
+<p>13 Ronnie Wood The Rolling Stones NA</p>
+<p>همچنین برای اطمینان می شد که ستون های اتصال را مشخص نمود.</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb264-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">left_join</span>(<span class="at">x =</span> bands, <span class="at">y =</span> artists, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"first"</span>, <span class="st">"last"</span>))</span>
+<span id="cb264-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb264-2" tabindex="-1"></a><span class="co"># A tibblele: 13 x 4</span></span></code></pre></div>
+<p>first last band instrument</p>
+<p><chr><chr><chr><chr></chr></chr></chr></chr></p>
+<p>1 John Bonham Led Zeppelin NA</p>
+<p>2 John Paul Jones Led Zeppelin NA</p>
+<p>3 Jimmy Page Led Zeppelin Guitar</p>
+<p>4 Robert Plant Led Zeppelin NA</p>
+<p>5 George Harrison The Beatles Guitar</p>
+<p>6 John Lennon The Beatles Guitar</p>
+<p>7 Paul McCartney The Beatles Bass</p>
+<p>8 Ringo Starr The Beatles Drums</p>
+<p>9 Jimmy Buffett The Coral Reefers Guitar</p>
+<p>10 Mick Jagger The Rolling Stones Vocals</p>
+<p>11 Keith Richards The Rolling Stones Guitar</p>
+<p>12 Charlie Watts The Rolling Stones NA</p>
+<p>13 Ronnie Wood The Rolling Stones NA</p>
+<p>در صورت نا هم نام بودن نیست می‌بایست ستون ها به صورت زیر نوشته می شدند.</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb265-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">left_join</span>(<span class="at">x =</span> bands, <span class="at">y =</span> artists, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"first"</span> <span class="ot">=</span> <span class="st">"first"</span>, <span class="st">"last"</span> <span class="ot">=</span> <span class="st">"last"</span>))</span>
+<span id="cb265-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb265-2" tabindex="-1"></a><span class="co"># A tibblele: 13 x 4</span></span></code></pre></div>
+<p>first last band instrument</p>
+<p><chr><chr><chr><chr></chr></chr></chr></chr></p>
+<p>1 John Bonham Led Zeppelin NA</p>
+<p>2 John Paul Jones Led Zeppelin NA</p>
+<p>3 Jimmy Page Led Zeppelin Guitar</p>
+<p>4 Robert Plant Led Zeppelin NA</p>
+<p>5 George Harrison The Beatles Guitar</p>
+<p>6 John Lennon The Beatles Guitar</p>
+<p>7 Paul McCartney The Beatles Bass</p>
+<p>8 Ringo Starr The Beatles Drums</p>
+<p>9 Jimmy Buffett The Coral Reefers Guitar</p>
+<p>10 Mick Jagger The Rolling Stones Vocals</p>
+<p>11 Keith Richards The Rolling Stones Guitar</p>
+<p>12 Charlie Watts The Rolling Stones NA</p>
+<p>13 Ronnie Wood The Rolling Stones NA</p>
+<p>اگر چیزی در جدول مرجع باشد که در جدول فرعی نباشد بعد از Join در ستون جدید مقادیر آن برابر NA خواهد بود.</p>
+</div>
+<div id="تابع-setequal" class="section level2" number="15.4">
+<h2>
+<span class="header-section-number">15.4</span> تابع setequal<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-setequal"><i class="fas fa-link"></i></a>
+</h2>
+<p>نام دو مجموعه داده را می‌گیرد و یک logical بر می گردادند که آیا مقادیر این دو مجموعه برابراند یا خیر. و در صورت برابر نبودن دلیل نابرابر نبودن دلیل نا برابری هم می‌گوید</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb266-1" tabindex="-1"></a><span class="sc">&gt;</span> set1 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(<span class="at">x =</span> bands, <span class="at">y =</span> artists)</span>
+<span id="cb266-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb266-2" tabindex="-1"></a>Joining, by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"first"</span>, <span class="st">"last"</span>)</span>
+<span id="cb266-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb266-3" tabindex="-1"></a><span class="sc">&gt;</span> set2 <span class="ot">&lt;-</span> <span class="fu">right_join</span>(<span class="at">x =</span> bands, <span class="at">y =</span> artists)</span>
+<span id="cb266-4"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb266-4" tabindex="-1"></a>Joining, by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"first"</span>, <span class="st">"last"</span>)</span>
+<span id="cb266-5"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb266-5" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setequal</span>(<span class="at">x =</span> set1, <span class="at">y =</span> set2)</span></code></pre></div>
+<p>FALSE: Different number of rows</p>
+<blockquote>
+<p><strong>تمرین:</strong> join ها رو برای دیتاست های albums, stage songs انجام بدهید و بعد با setequal مقایسشون کنید.</p>
+</blockquote>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb267-1" tabindex="-1"></a><span class="sc">&gt;</span> albums <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/albums.rds"</span>)</span>
+<span id="cb267-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb267-2" tabindex="-1"></a><span class="sc">&gt;</span> stage_songs <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/stage_songs.rds"</span>)</span>
+<span id="cb267-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb267-3" tabindex="-1"></a><span class="sc">&gt;</span> set1 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(<span class="at">x =</span> albums, <span class="at">y =</span> stage_songs)</span>
+<span id="cb267-4"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb267-4" tabindex="-1"></a>Joining, by <span class="ot">=</span> <span class="st">"year"</span></span>
+<span id="cb267-5"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb267-5" tabindex="-1"></a><span class="sc">&gt;</span> set2 <span class="ot">&lt;-</span> <span class="fu">right_join</span>(<span class="at">x =</span> albums, <span class="at">y =</span> stage_songs)</span>
+<span id="cb267-6"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb267-6" tabindex="-1"></a>Joining, by <span class="ot">=</span> <span class="st">"year"</span></span>
+<span id="cb267-7"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb267-7" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setequal</span>(<span class="at">x =</span> set1, set2)</span></code></pre></div>
+<p>FALSE: Different number of rows</p>
+<blockquote>
+<p><strong>تمرین:</strong> با استفاده از پایپ (% &lt; %) دیتاست bands را به‌عنوان دیتاست مرجع در نظر بگیرید (left join ) و با دیتاست artists ، join کنید و بعد اسم، فامیل و گروه گیتاریست ها رو نمایش بدید.</p>
+</blockquote>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb268-1" tabindex="-1"></a><span class="sc">&gt;</span> bands <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(<span class="at">y =</span> artists) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(instrument <span class="sc">==</span> <span class="st">"Guitar"</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(first, last, band)</span>
+<span id="cb268-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb268-2" tabindex="-1"></a>Joining, by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"first"</span>, <span class="st">"last"</span>)</span>
+<span id="cb268-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb268-3" tabindex="-1"></a><span class="co"># A tibblele: 5 x 3</span></span></code></pre></div>
+<p>first last band</p>
+<p><chr><chr><chr></chr></chr></chr></p>
+<p>1 Jimmy Page Led Zeppelin</p>
+<p>2 George Harrison The Beatles</p>
+<p>3 John Lennon The Beatles</p>
+<p>4 Jimmy Buffett The Coral Reefers</p>
+<p>5 Keith Richards The Rolling Stones</p>
+<blockquote>
+<p><strong>تمرین:</strong> منزل: با استفاده از join ها و دیتاستهای artists,songs,bands ، دیتاستی مانند goal بسازید.</p>
+</blockquote>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb269-1" tabindex="-1"></a><span class="sc">&gt;</span> goal <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/goal.rds"</span>)</span>
+<span id="cb269-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb269-2" tabindex="-1"></a><span class="sc">&gt;</span> goal</span>
+<span id="cb269-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb269-3" tabindex="-1"></a><span class="co"># A tibblele: 3 x 6</span></span></code></pre></div>
+<p>first last instrument band song album</p>
+<p><chr><chr><chr><chr><chr><chr></chr></chr></chr></chr></chr></chr></p>
+<p>1 Tom Jones Vocals NA It’s Not Unusual Along Came Jones</p>
+<p>2 John Lennon Guitar The Beatles Come Together Abbey Road</p>
+<p>3 Paul McCartney Bass The Beatles Hello, Goodbye Magical Mystery Tour</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb270-1" tabindex="-1"></a><span class="sc">&gt;</span> songs <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/songs.rds"</span>)</span>
+<span id="cb270-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb270-2" tabindex="-1"></a><span class="sc">&gt;</span> songs</span>
+<span id="cb270-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb270-3" tabindex="-1"></a><span class="co"># A tibblele: 4 x 4</span></span></code></pre></div>
+<p>song album first last</p>
+<p><chr><chr><chr><chr></chr></chr></chr></chr></p>
+<p>1 Come Together Abbey Road John Lennon</p>
+<p>2 Dream On Aerosmith STRUEn Tyler</p>
+<p>3 Hello, Goodbye Magical Mystery Tour Paul McCartney</p>
+<p>4 It’s Not Unusual Along Came Jones Tom Jones</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb271-1" tabindex="-1"></a><span class="sc">&gt;</span> bands</span>
+<span id="cb271-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb271-2" tabindex="-1"></a><span class="co"># A tibblele: 13 x 3</span></span></code></pre></div>
+<p>first last band</p>
+<p><chr><chr><chr></chr></chr></chr></p>
+<p>1 John Bonham Led Zeppelin</p>
+<p>2 John Paul Jones Led Zeppelin</p>
+<p>3 Jimmy Page Led Zeppelin</p>
+<p>4 Robert Plant Led Zeppelin</p>
+<p>5 George Harrison The Beatles</p>
+<p>6 John Lennon The Beatles</p>
+<p>7 Paul McCartney The Beatles</p>
+<p>8 Ringo Starr The Beatles</p>
+<p>9 Jimmy Buffett The Coral Reefers</p>
+<p>10 Mick Jagger The Rolling Stones</p>
+<p>11 Keith Richards The Rolling Stones</p>
+<p>12 Charlie Watts The Rolling Stones</p>
+<p>13 Ronnie Wood The Rolling Stones</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb272-1" tabindex="-1"></a><span class="sc">&gt;</span> artists</span>
+<span id="cb272-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb272-2" tabindex="-1"></a><span class="co"># A tibblele: 16 x 3</span></span></code></pre></div>
+<p>first last instrument</p>
+<p><chr><chr><chr></chr></chr></chr></p>
+<p>1 Jimmy Buffett Guitar</p>
+<p>2 George Harrison Guitar</p>
+<p>3 Mick Jagger Vocals</p>
+<p>4 Tom Jones Vocals</p>
+<p>5 Davy Jones Vocals</p>
+<p>6 John Lennon Guitar</p>
+<p>7 Paul McCartney Bass</p>
+<p>8 Jimmy Page Guitar</p>
+<p>9 Joe Perry Guitar</p>
+<p>10 Elvis Presley Vocals</p>
+<p>11 Keith Richards Guitar</p>
+<p>12 Paul Simon Guitar</p>
+<p>13 Ringo Starr Drums</p>
+<p>14 Joe Walsh Guitar</p>
+<p>15 Brian Wilson Vocals</p>
+<p>16 Nancy Wilson Vocals</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb273-1" tabindex="-1"></a><span class="sc">&gt;</span> (goal2 <span class="ot">&lt;-</span> <span class="fu">full_join</span>(<span class="at">x =</span> bands, <span class="at">y =</span> artists) <span class="sc">%&gt;%</span> <span class="fu">inner_join</span>(<span class="at">y =</span> songs))</span>
+<span id="cb273-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb273-2" tabindex="-1"></a>Joining, by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"first"</span>, <span class="st">"last"</span>)</span>
+<span id="cb273-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb273-3" tabindex="-1"></a>Joining, by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"first"</span>, <span class="st">"last"</span>)</span>
+<span id="cb273-4"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb273-4" tabindex="-1"></a><span class="co"># A tibblele: 3 x 6</span></span></code></pre></div>
+<p>first last band instrument song album</p>
+<p><chr><chr><chr><chr><chr><chr></chr></chr></chr></chr></chr></chr></p>
+<p>1 John Lennon The Beatles Guitar Come Together Abbey Road</p>
+<p>2 Paul McCartney The Beatles Bass Hello, Goodbye Magical Mystery Tour</p>
+<p>3 Tom Jones NA Vocals It’s Not Unusual Along Came Jones</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb274-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setequal</span>(<span class="at">x =</span> goal, <span class="at">y =</span> goal2)</span></code></pre></div>
+<p>TRUE</p>
+</div>
+<div id="filtering-joins" class="section level2" number="15.5">
+<h2>
+<span class="header-section-number">15.5</span> Filtering joins<a class="anchor" aria-label="anchor" href="#filtering-joins"><i class="fas fa-link"></i></a>
+</h2>
+<p>در فیلتر کردن داده ها کمک می‌کند و شامل anti-join, semi-join می باشد. بازهم 2 جدول می‌گیرد و براساس دیتای موجود در هر 2 جدول، یکی را فیلتر می‌کند.</p>
+</div>
+<div id="semi--join" class="section level2" number="15.6">
+<h2>
+<span class="header-section-number">15.6</span> Semi- join<a class="anchor" aria-label="anchor" href="#semi--join"><i class="fas fa-link"></i></a>
+</h2>
+<p>دیتا را در جدول اول بر اساس جدول دوم فیلتر می‌کند. مثلا می‌خواهیم از دیتای موجود در جدول artists آن هایی را ببینیم که اطلاعات مرتبطی در جدول songs دارند</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb275-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">semi_join</span>(<span class="at">x =</span> artists, <span class="at">y =</span> songs, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"first"</span>, <span class="st">"last"</span>))</span>
+<span id="cb275-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb275-2" tabindex="-1"></a><span class="co"># A tibblele: 3 x 3</span></span></code></pre></div>
+<p>first last instrument</p>
+<p><chr><chr><chr></chr></chr></chr></p>
+<p>1 Tom Jones Vocals</p>
+<p>2 John Lennon Guitar</p>
+<p>3 Paul McCartney Bass</p>
+<blockquote>
+<p><strong>تمرین:</strong> این مثال رو بدون استفاده از semi- join حل کنید.</p>
+</blockquote>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb276-1" tabindex="-1"></a><span class="sc">&gt;</span> artists <span class="sc">%&gt;%</span> <span class="fu">right_join</span>(<span class="at">y =</span> songs, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"first"</span>, <span class="st">"last"</span>)) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(instrument)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(first, last, instrument)</span>
+<span id="cb276-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb276-2" tabindex="-1"></a><span class="co"># A tibblele: 3 x 3</span></span></code></pre></div>
+<p>first last instrument</p>
+<p><chr><chr><chr></chr></chr></chr></p>
+<p>1 John Lennon Guitar</p>
+<p>2 Paul McCartney Bass</p>
+<p>3 Tom Jones Vocals</p>
+</div>
+<div id="تابع-nrow" class="section level2" number="15.7">
+<h2>
+<span class="header-section-number">15.7</span> تابع nrow( )<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-nrow"><i class="fas fa-link"></i></a>
+</h2>
+<p>این تابع تعداد سطرهای خروجی را به ما می‌دهد.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb277-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">nrow</span>(bands)</span>
+<span id="cb277-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb277-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">13</span></span></code></pre></div>
+<blockquote>
+<p><strong>تمرین:</strong> با استفاده از semi-join بگویید چه تعداد آلبوم توسط بندهای موجود در جدول bands تولید شده اند.</p>
+</blockquote>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb278-1" tabindex="-1"></a><span class="sc">&gt;</span> albums <span class="sc">%&gt;%</span> <span class="fu">semi_join</span>(<span class="at">y =</span> bands) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
+<span id="cb278-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb278-2" tabindex="-1"></a>Joining, by <span class="ot">=</span> <span class="st">"band"</span></span>
+<span id="cb278-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb278-3" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
+</div>
+<div id="anti--join" class="section level2" number="15.8">
+<h2>
+<span class="header-section-number">15.8</span> Anti- join<a class="anchor" aria-label="anchor" href="#anti--join"><i class="fas fa-link"></i></a>
+</h2>
+<p>دیتاهایی که در دیتاست اول هستند ولی دیتای مرتبطی در دیتا ست دوم ندارند را مشخص می‌کند.</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb279-1" tabindex="-1"></a><span class="sc">&gt;</span> artists <span class="sc">%&gt;%</span> <span class="fu">anti_join</span>(<span class="at">y =</span> bands)</span>
+<span id="cb279-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb279-2" tabindex="-1"></a>Joining, by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"first"</span>, <span class="st">"last"</span>)</span>
+<span id="cb279-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb279-3" tabindex="-1"></a><span class="co"># A tibblele: 8 x 3</span></span></code></pre></div>
+<p>first last instrument</p>
+<p><chr><chr><chr></chr></chr></chr></p>
+<p>1 Tom Jones Vocals</p>
+<p>2 Davy Jones Vocals</p>
+<p>3 Joe Perry Guitar</p>
+<p>4 Elvis Presley Vocals</p>
+<p>5 Paul Simon Guitar</p>
+<p>6 Joe Walsh Guitar</p>
+<p>7 Brian Wilson Vocals</p>
+<p>8 Nancy Wilson Vocals</p>
+</div>
+<div id="اپراتورهای-مجموعه-ها" class="section level2" number="15.9">
+<h2>
+<span class="header-section-number">15.9</span> اپراتورهای مجموعه ها<a class="anchor" aria-label="anchor" href="#%D8%A7%D9%BE%D8%B1%D8%A7%D8%AA%D9%88%D8%B1%D9%87%D8%A7%DB%8C-%D9%85%D8%AC%D9%85%D9%88%D8%B9%D9%87-%D9%87%D8%A7"><i class="fas fa-link"></i></a>
+</h2>
+<p>در کنار join ها در پکیج dplyrr توابع interest, setdiff,union هم وجود دارند که برای تلفیق مجموعه ها می‌توان از انها استفاده نمود.</p>
+<p>intersect(x, y, …)</p>
+<p>union(x, y, …)</p>
+<p>union_all(x, y, …)</p>
+<p>setdiff(x, y, …)</p>
+</div>
+<div id="تابع-union" class="section level2" number="15.10">
+<h2>
+<span class="header-section-number">15.10</span> تابع union<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-union"><i class="fas fa-link"></i></a>
+</h2>
+<p>تمام داده های دو مجموعه را بر می گرداند ( اگر تکراری وجود داشته باشد یکبار بر می گرداند).</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb280-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(babynames)</span>
+<span id="cb280-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb280-2" tabindex="-1"></a><span class="sc">&gt;</span> set1 <span class="ot">&lt;-</span> babynames[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, ]</span>
+<span id="cb280-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb280-3" tabindex="-1"></a><span class="sc">&gt;</span> set2 <span class="ot">&lt;-</span> babynames[<span class="dv">51</span><span class="sc">:</span><span class="dv">150</span>, ]</span>
+<span id="cb280-4"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb280-4" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">union</span>(<span class="at">x =</span> set1, <span class="at">y =</span> set2)</span>
+<span id="cb280-5"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb280-5" tabindex="-1"></a><span class="co"># A tibblele: 150 x 5</span></span></code></pre></div>
+<p>year sex name n prop</p>
+<p><dbl><chr><chr><int><dbl></dbl></int></chr></chr></dbl></p>
+<p>1 1880 F Evelyn 122 0.00125</p>
+<p>2 1880 F Sara 165 0.00169</p>
+<p>3 1880 F Luella 111 0.00114</p>
+<p>4 1880 F Lydia 302 0.00309</p>
+<p>5 1880 F Elizabeth 1939 0.0199</p>
+<p>6 1880 F Lola 138 0.00141</p>
+<p>7 1880 F Marion 115 0.00118</p>
+<p>8 1880 F Jessie 635 0.00651</p>
+<p>9 1880 F Flora 365 0.00374</p>
+<p>10 1880 F Mae 344 0.00352</p>
+<div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># ... with 140 more rows</span></span></code></pre></div>
+</div>
+<div id="تابع-intersect" class="section level2" number="15.11">
+<h2>
+<span class="header-section-number">15.11</span> تابع intersect<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-intersect"><i class="fas fa-link"></i></a>
+</h2>
+<p>اشتراک دو مجموعه را بر می گرداند.</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb282-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">intersect</span>(<span class="at">x =</span> set1, <span class="at">y =</span> set2)</span>
+<span id="cb282-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb282-2" tabindex="-1"></a><span class="co"># A tibblele: 50 x 5</span></span></code></pre></div>
+<p>year sex name n prop</p>
+<p><dbl><chr><chr><int><dbl></dbl></int></chr></chr></dbl></p>
+<p>1 1880 F Dora 524 0.00537</p>
+<p>2 1880 F Rosa 507 0.00519</p>
+<p>3 1880 F Katherine 502 0.00514</p>
+<p>4 1880 F Agnes 473 0.00485</p>
+<p>5 1880 F Marie 471 0.00483</p>
+<p>6 1880 F Nora 471 0.00483</p>
+<p>7 1880 F May 462 0.00473</p>
+<p>8 1880 F Mamie 436 0.00447</p>
+<p>9 1880 F Blanche 427 0.00437</p>
+<p>10 1880 F Stella 414 0.00424</p>
+<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># ... with 40 more rows</span></span></code></pre></div>
+</div>
+<div id="تابع-setdiff" class="section level2" number="15.12">
+<h2>
+<span class="header-section-number">15.12</span> تابع setdiff<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-setdiff"><i class="fas fa-link"></i></a>
+</h2>
+<p>داده هایی را بر می گرداند که در مجموعه اولی هستند ولی در مجموعه دوم نیستند.</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb284-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setdiff</span>(<span class="at">x =</span> set1, <span class="at">y =</span> set2)</span>
+<span id="cb284-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb284-2" tabindex="-1"></a><span class="co"># A tibblele: 50 x 5</span></span></code></pre></div>
+<p>year sex name n prop</p>
+<p><dbl><chr><chr><int><dbl></dbl></int></chr></chr></dbl></p>
+<p>1 1880 F Mary 7065 0.0724</p>
+<p>2 1880 F Anna 2604 0.0267</p>
+<p>3 1880 F Emma 2003 0.0205</p>
+<p>4 1880 F Elizabeth 1939 0.0199</p>
+<p>5 1880 F Minnie 1746 0.0179</p>
+<p>6 1880 F Margaret 1578 0.0162</p>
+<p>7 1880 F Ida 1472 0.0151</p>
+<p>8 1880 F Alice 1414 0.0145</p>
+<p>9 1880 F Bertha 1320 0.0135</p>
+<p>10 1880 F Sarah 1288 0.0132</p>
+<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># ... with 40 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb286-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setdiff</span>(<span class="at">x =</span> set2, <span class="at">y =</span> set1)</span>
+<span id="cb286-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb286-2" tabindex="-1"></a><span class="co"># A tibblele: 50 x 5</span></span></code></pre></div>
+<p>year sex name n prop</p>
+<p><dbl><chr><chr><int><dbl></dbl></int></chr></chr></dbl></p>
+<p>1 1880 F Matilda 210 0.00215</p>
+<p>2 1880 F Irene 204 0.00209</p>
+<p>3 1880 F Kathryn 204 0.00209</p>
+<p>4 1880 F Esther 198 0.00203</p>
+<p>5 1880 F Willie 192 0.00197</p>
+<p>6 1880 F Henrietta 191 0.00196</p>
+<p>7 1880 F Ollie 183 0.00187</p>
+<p>8 1880 F Amy 167 0.00171</p>
+<p>9 1880 F Rachel 166 0.00170</p>
+<p>10 1880 F Sara 165 0.00169</p>
+<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># ... with 40 more rows</span></span></code></pre></div>
+</div>
+<div id="bind-در-dplyrr" class="section level2" number="15.13">
+<h2>
+<span class="header-section-number">15.13</span> bind در dplyrr<a class="anchor" aria-label="anchor" href="#bind-%D8%AF%D8%B1-dplyrr"><i class="fas fa-link"></i></a>
+</h2>
+<p>همانند bind در پکیج base عمل می‌کند و شامل bind-rows و bind-cols است.</p>
+<p>دقت کنید که در bind کردن مخصوصاٌ bind-cols فرض برانید که ترتیب قرارگیری مقادیر در دو دیتاست ترتیب مورد نظر برای تلفیق هست. اگر نه دیتا بهم می ریزد.</p>
+<p>فرقشون نسبت به package base این هست که هم سریع تر هستن، هم tibblele بر می گردونن و هم یک امکانی تحت عنوان .id دارن.</p>
+</div>
+<div id="bind-cols" class="section level2" number="15.14">
+<h2>
+<span class="header-section-number">15.14</span> Bind-cols<a class="anchor" aria-label="anchor" href="#bind-cols"><i class="fas fa-link"></i></a>
+</h2>
+<p>ستونها را به هم می چسباند.</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb288-1" tabindex="-1"></a><span class="sc">&gt;</span> df1 <span class="ot">&lt;-</span> mtcars[, <span class="dv">5</span><span class="sc">:</span><span class="fu">dim</span>(mtcars)[<span class="dv">2</span>]]</span>
+<span id="cb288-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb288-2" tabindex="-1"></a><span class="sc">&gt;</span> df2 <span class="ot">&lt;-</span> mtcars[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb288-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb288-3" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">bind_cols</span>(df1, <span class="fu">arrange</span>(df2, <span class="fu">desc</span>(mpg)))</span></code></pre></div>
+<p>drat wt qsec vs am gear carb mpg cyl disp hp</p>
+<p>1 3.90 2.620 16.46 0 1 4 4 33.9 4 71.1 65</p>
+<p>2 3.90 2.875 17.02 0 1 4 4 32.4 4 78.7 66</p>
+<p>3 3.85 2.320 18.61 1 1 4 1 30.4 4 75.7 52</p>
+<p>4 3.08 3.215 19.44 1 0 3 1 30.4 4 95.1 113</p>
+<p>5 3.15 3.440 17.02 0 0 3 2 27.3 4 79.0 66</p>
+<p>6 2.76 3.460 20.22 1 0 3 1 26.0 4 120.3 91</p>
+<p>7 3.21 3.570 15.84 0 0 3 4 24.4 4 146.7 62</p>
+<p>8 3.69 3.190 20.00 1 0 4 2 22.8 4 108.0 93</p>
+<p>9 3.92 3.150 22.90 1 0 4 2 22.8 4 140.8 95</p>
+<p>10 3.92 3.440 18.30 1 0 4 4 21.5 4 120.1 97</p>
+<p>11 3.92 3.440 18.90 1 0 4 4 21.4 6 258.0 110</p>
+<p>12 3.07 4.070 17.40 0 0 3 3 21.4 4 121.0 109</p>
+<p>13 3.07 3.730 17.60 0 0 3 3 21.0 6 160.0 110</p>
+<p>14 3.07 3.780 18.00 0 0 3 3 21.0 6 160.0 110</p>
+<p>15 2.93 5.250 17.98 0 0 3 4 19.7 6 145.0 175</p>
+<p>16 3.00 5.424 17.82 0 0 3 4 19.2 6 167.6 123</p>
+<p>17 3.23 5.345 17.42 0 0 3 4 19.2 8 400.0 175</p>
+<p>18 4.08 2.200 19.47 1 1 4 1 18.7 8 360.0 175</p>
+<p>19 4.93 1.615 18.52 1 1 4 2 18.1 6 225.0 105</p>
+<p>20 4.22 1.835 19.90 1 1 4 1 17.8 6 167.6 123</p>
+<p>21 3.70 2.465 20.01 1 0 3 1 17.3 8 275.8 180</p>
+<p>22 2.76 3.520 16.87 0 0 3 2 16.4 8 275.8 180</p>
+<p>23 3.15 3.435 17.30 0 0 3 2 15.8 8 351.0 264</p>
+<p>24 3.73 3.840 15.41 0 0 3 4 15.5 8 318.0 150</p>
+<p>25 3.08 3.845 17.05 0 0 3 2 15.2 8 275.8 180</p>
+<p>26 4.08 1.935 18.90 1 1 4 1 15.2 8 304.0 150</p>
+<p>27 4.43 2.140 16.70 0 1 5 2 15.0 8 301.0 335</p>
+<p>28 3.77 1.513 16.90 1 1 5 2 14.7 8 440.0 230</p>
+<p>29 4.22 3.170 14.50 0 1 5 4 14.3 8 360.0 245</p>
+<p>30 3.62 2.770 15.50 0 1 5 6 13.3 8 350.0 245</p>
+<p>31 3.54 3.570 14.60 0 1 5 8 10.4 8 472.0 205</p>
+<p>32 4.11 2.780 18.60 1 1 4 2 10.4 8 460.0 215</p>
+</div>
+<div id="bind-rows" class="section level2" number="15.15">
+<h2>
+<span class="header-section-number">15.15</span> Bind-rows<a class="anchor" aria-label="anchor" href="#bind-rows"><i class="fas fa-link"></i></a>
+</h2>
+<p>سطرها را با هم تلفیق می‌کند به شرطی که تعداد ستونها برابر باشند. در عین حال یک آرگومان بسیار کاربردی .id را دارد که از ان طریق می‌تواند داده های هر دسته را مشخص کند.</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb289-1" tabindex="-1"></a><span class="sc">&gt;</span> ali <span class="ot">&lt;-</span> <span class="fu">data_frame</span>(<span class="at">point =</span> <span class="dv">18</span>, <span class="at">year =</span> <span class="dv">1396</span>, <span class="at">major =</span> <span class="st">"Automation"</span>)</span>
+<span id="cb289-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb289-2" tabindex="-1"></a><span class="sc">&gt;</span> babak <span class="ot">&lt;-</span> <span class="fu">data_frame</span>(<span class="at">point =</span> <span class="dv">19</span>, <span class="at">year =</span> <span class="dv">1396</span>, <span class="at">major =</span> <span class="st">"Programming"</span>)</span>
+<span id="cb289-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb289-3" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">bind_rows</span>(ali, babak)</span>
+<span id="cb289-4"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb289-4" tabindex="-1"></a><span class="co"># A tibblele: 2 x 3</span></span></code></pre></div>
+<p>point year major</p>
+<p><dbl><dbl><chr></chr></dbl></dbl></p>
+<p>1 18 1396 Automation</p>
+<p>2 19 1396 Programming</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb290-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">bind_rows</span>(ali, babak, <span class="at">.id =</span> <span class="st">"id"</span>)</span>
+<span id="cb290-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb290-2" tabindex="-1"></a><span class="co"># A tibblele: 2 x 4</span></span></code></pre></div>
+<p>id point year major</p>
+<p><chr><dbl><dbl><chr></chr></dbl></dbl></chr></p>
+<p>1 1 18 1396 Automation</p>
+<p>2 2 19 1396 Programming</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb291-1" tabindex="-1"></a><span class="sc">&gt;</span> list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ali =</span> ali, <span class="at">babak =</span> babak)</span>
+<span id="cb291-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb291-2" tabindex="-1"></a><span class="sc">&gt;</span> list</span></code></pre></div>
+<p>$<code>ali</code></p>
+<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># A tibblele: 1 x 3</span></span></code></pre></div>
+<p>point year major</p>
+<p><dbl><dbl><chr></chr></dbl></dbl></p>
+<p>1 18 1396 Automation</p>
+<p>$babak</p>
+<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># A tibblele: 1 x 3</span></span></code></pre></div>
+<p>point year major</p>
+<p><dbl><dbl><chr></chr></dbl></dbl></p>
+<p>1 19 1396 Programming</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb294-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">bind_rows</span>(list,<span class="at">.id =</span> <span class="st">"name"</span>)</span>
+<span id="cb294-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb294-2" tabindex="-1"></a><span class="co"># A tibblele: 2 x 4</span></span></code></pre></div>
+<p>name point year major</p>
+<p><chr><dbl><dbl><chr></chr></dbl></dbl></chr></p>
+<p>1 ali 18 1396 Automation</p>
+<p>2 babak 19 1396 Programming</p>
+<blockquote>
+<p><strong>تمرین:</strong> با استفاده از دیتاست های discography و jimi یک data.frame از تمام داده ها به همراه داده های سال های مربوطه بسازید.</p>
+</blockquote>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb295-1" tabindex="-1"></a><span class="sc">&gt;</span> jimi <span class="sc">%&gt;%</span> <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"album"</span>) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(<span class="at">y =</span> discography)</span>
+<span id="cb295-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb295-2" tabindex="-1"></a>Joining, by <span class="ot">=</span> <span class="st">"album"</span></span>
+<span id="cb295-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb295-3" tabindex="-1"></a><span class="co"># A tibblele: 39 x 4</span></span></code></pre></div>
+<p>album song length year</p>
+<p><chr><chr><time><int></int></time></chr></chr></p>
+<p>1 Are You Experienced Purple Haze ” 9960 secs” 1967</p>
+<p>2 Are You Experienced Manic Depression 13560 secs 1967</p>
+<p>3 Are You Experienced Hey Joe 12180 secs 1967</p>
+<p>4 Are You Experienced May This Be Love 11640 secs 1967</p>
+<p>5 Are You Experienced I Don’t Live Today 14100 secs 1967</p>
+<p>6 Are You Experienced The Wind Cries Mary 12060 secs 1967</p>
+<p>7 Are You Experienced Fire ” 9240 secs” 1967</p>
+<p>8 Are You Experienced Third Stone from the Sun 24000 secs 1967</p>
+<p>9 Are You Experienced Foxy Lady 11700 secs 1967</p>
+<p>10 Are You Experienced Are You Experienced? 14100 secs 1967</p>
+<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># ... with 29 more rows</span></span></code></pre></div>
+</div>
+<div id="data_-frame" class="section level2" number="15.16">
+<h2>
+<span class="header-section-number">15.16</span> data_ frame<a class="anchor" aria-label="anchor" href="#data_-frame"><i class="fas fa-link"></i></a>
+</h2>
+<p>data. Frame است ولی string ها را به factor تبدیل نمی‌کند، اسم ناخواسته به سطرها نمی‌دهد، اسامی ستونها را تغییر نمی‌دهد و recycle نمی‌کند.</p>
+<p>همچنین امکان ایجاد lazy Argamet (آرگومانی که از آرگومانهای قبلی خودش استفاده کند) را به ما داده و خروجی اش tibblele است.</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb297-1" tabindex="-1"></a><span class="sc">&gt;</span> name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Ali"</span>, <span class="st">"Babak"</span>, <span class="st">"Parviz"</span>)</span>
+<span id="cb297-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb297-2" tabindex="-1"></a><span class="sc">&gt;</span> family <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Sadeghi Aghili"</span>, <span class="st">"Pirooz"</span>, <span class="st">"Agha Sadeghi"</span>)</span>
+<span id="cb297-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb297-3" tabindex="-1"></a><span class="sc">&gt;</span> age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">50</span>)</span>
+<span id="cb297-4"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb297-4" tabindex="-1"></a><span class="sc">&gt;</span> major <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DS"</span>, <span class="st">"BI"</span>, <span class="st">"DB"</span>)</span>
+<span id="cb297-5"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb297-5" tabindex="-1"></a><span class="sc">&gt;</span> df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(name, family, age, major)</span>
+<span id="cb297-6"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb297-6" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">glimpse</span>(df1)</span></code></pre></div>
+<p>Observations: 3</p>
+<p>Variables: 4</p>
+<p>$ name <fct> Ali, Babak, Parviz</fct></p>
+<p>$ family <fct> Sadeghi Aghili, Pirooz, Agha Sadeghi</fct></p>
+<p>$ age <dbl> 30, 35, 50</dbl></p>
+<p>$ major <fct> DS, BI, DB</fct></p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb298-1" tabindex="-1"></a><span class="sc">&gt;</span> df2 <span class="ot">&lt;-</span> <span class="fu">data_frame</span>(name, family, age, major)</span>
+<span id="cb298-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb298-2" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">glimpse</span>(df2)</span></code></pre></div>
+<p>Observations: 3</p>
+<p>Variables: 4</p>
+<p>$ name <chr> “Ali”, “Babak”, “Parviz”</chr></p>
+<p>$ family <chr> “Sadeghi Aghili”, “Pirooz”, “Agha Sadeghi”</chr></p>
+<p>$ age <dbl> 30, 35, 50</dbl></p>
+<p>$ major <chr> “DS”, “BI”, “DB”</chr></p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb299-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">data_frame</span>(<span class="at">nums =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">nums2 =</span> nums<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb299-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb299-2" tabindex="-1"></a><span class="co"># A tibblele: 5 x 2</span></span></code></pre></div>
+<p>nums nums2</p>
+<p><int><dbl></dbl></int></p>
+<p>1 1 1</p>
+<p>2 2 4</p>
+<p>3 3 9</p>
+<p>4 4 16</p>
+<p>5 5 25</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb300-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">data.frame</span>(<span class="at">nums =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">nums2 =</span> nums<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb300-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb300-2" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">data.frame</span>(<span class="at">nums =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">nums2 =</span> nums<span class="sc">^</span><span class="dv">2</span>) <span class="sc">:</span> object <span class="st">'nums'</span> not found</span></code></pre></div>
+</div>
+<div id="coercion-rules" class="section level2" number="15.17">
+<h2>
+<span class="header-section-number">15.17</span> Coercion rules<a class="anchor" aria-label="anchor" href="#coercion-rules"><i class="fas fa-link"></i></a>
+</h2>
+<p>R در نهایت می‌بایست مقادیر هر بردار رو به صورت تک جنسی ذخیره کند. یعنی هم عناصر از یک جنس باشند.</p>
+<p>R به این جنسها atomic vector می گه عبارتند از</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb301-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#logical</span></span>
+<span id="cb301-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb301-2" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">typeof</span>(<span class="cn">TRUE</span>)</span>
+<span id="cb301-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb301-3" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"logical"</span></span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb302-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#characterer</span></span>
+<span id="cb302-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb302-2" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">typeof</span>(<span class="st">"Hello"</span>)</span>
+<span id="cb302-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb302-3" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"characterer"</span></span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb303-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#double</span></span>
+<span id="cb303-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb303-2" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">typeof</span>(<span class="fl">3.14</span>)</span>
+<span id="cb303-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb303-3" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"double"</span></span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb304-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#integer</span></span>
+<span id="cb304-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb304-2" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">typeof</span>(<span class="dv">3</span><span class="dt">L</span>)</span>
+<span id="cb304-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb304-3" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"integer"</span></span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb305-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#complex</span></span>
+<span id="cb305-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb305-2" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">typeof</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span><span class="dt">i</span>)</span>
+<span id="cb305-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb305-3" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"complex"</span></span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb306-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#raw</span></span>
+<span id="cb306-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb306-2" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">typeof</span>(<span class="fu">raw</span>(<span class="dv">1</span>))</span>
+<span id="cb306-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb306-3" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"raw"</span></span>
+<span id="cb306-4"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb306-4" tabindex="-1"></a>این جنسها با <span class="fu">typeof</span>( ) مشخص می شن.</span></code></pre></div>
+<p>دقت کنید که typeof از class متفاوت است. Class جنس شی رو به ما می‌گوید و typeof جنس محتوای شی رو. R اگر با انواع مختلف داده توی یک بردار روبرو بشه مجبوره همرو به یکی از این atomic ها برگردونه.</p>
+<p>قواعدی که R باهاشون تصمیم میگیره که هرم بردار ترکیبی رو در نهایت با چه جنسی ذخیره کنه Coercion Rules یا قواعد اجباری کن.</p>
+<p>ولی در مورد factor ها موضوع پیچیده تره. تبدیل فاکتور به عدد یا کاراکتر باید دقت کرد که فاکتور ها یک عدد دارند و یک لیبل دارند که به ان مرتبط است.</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb307-1" tabindex="-1"></a><span class="sc">&gt;</span> fac <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>))</span>
+<span id="cb307-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb307-2" tabindex="-1"></a><span class="sc">&gt;</span> fac</span>
+<span id="cb307-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb307-3" tabindex="-1"></a>[<span class="dv">1</span>] A B C B</span></code></pre></div>
+<p>Levels: A B C</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb308-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">as.characterer</span>(fac)</span>
+<span id="cb308-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb308-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"A"</span> <span class="st">"B"</span> <span class="st">"C"</span> <span class="st">"B"</span></span>
+<span id="cb308-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb308-3" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">as.numeric</span>(fac)</span>
+<span id="cb308-4"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb308-4" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">2</span></span></code></pre></div>
+<p>در مورد فاکتور های رشته ای مشکلی وجود ندارد ولی فاکتور های عددی می‌توانند موجب سردرگمی‌شوند.</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb309-1" tabindex="-1"></a><span class="sc">&gt;</span> fac2 <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">5</span>))</span>
+<span id="cb309-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb309-2" tabindex="-1"></a><span class="sc">&gt;</span> fac2</span>
+<span id="cb309-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb309-3" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">5</span></span></code></pre></div>
+<p>Levels: 4 5 6</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb310-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">as.characterer</span>(fac2)</span>
+<span id="cb310-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb310-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"4"</span> <span class="st">"5"</span> <span class="st">"6"</span> <span class="st">"5"</span></span>
+<span id="cb310-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb310-3" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">as.numeric</span>(fac2)</span>
+<span id="cb310-4"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb310-4" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">2</span></span></code></pre></div>
+<p>برای جلوگیری از بروز این مشکل می‌بایست ابتدا فاکتور های عددی حتما به رشته و سپس به عدد تبدیل شوند.</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb311-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">as.numeric</span>(<span class="fu">as.characterer</span>(fac2))</span>
+<span id="cb311-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb311-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">5</span></span></code></pre></div>
+<blockquote>
+<p><strong>تمرین:</strong> دیتاست های seventies و eighties را با هم bind قبل از bird، جنس ستونها رو چک کنید و ببینید که چه اتفاقی می افتد.</p>
+</blockquote>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb312-1" tabindex="-1"></a><span class="sc">&gt;</span> seventies</span>
+<span id="cb312-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb312-2" tabindex="-1"></a><span class="co"># A tibblele: 10 x 3</span></span></code></pre></div>
+<p>year album band</p>
+<p><fct><chr><chr></chr></chr></fct></p>
+<p>1 1970 Bridge Over Troubled Water Simon and Garfunkel</p>
+<p>2 1971 Jesus Christ Superstar Various Artists</p>
+<p>3 1972 Harvest Neil Young</p>
+<p>4 1973 The World is a Ghetto War</p>
+<p>5 1974 Goodbye Yellow Brick Road Elton John</p>
+<p>6 1975 Elton John’s Greatest Hits Elton John</p>
+<p>7 1976 Peter Frampton Frampton Comes Alive</p>
+<p>8 1977 Rumours Fleetwood Mac</p>
+<p>9 1978 Saturday Night Fever Bee Gees</p>
+<p>10 1979 Billy Joel 52nd Street</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb313-1" tabindex="-1"></a><span class="sc">&gt;</span> eighties</span>
+<span id="cb313-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb313-2" tabindex="-1"></a><span class="co"># A tibblele: 10 x 3</span></span></code></pre></div>
+<p>year album band</p>
+<p><chr><chr><chr></chr></chr></chr></p>
+<p>1 1980 The Wall Pink Floyd</p>
+<p>2 1981 Hi Infidelity REO Speedwagon</p>
+<p>3 1982 Asia Asia</p>
+<p>4 1983 Thriller Michael Jackson</p>
+<p>5 1984 Thriller Michael Jackson</p>
+<p>6 1985 Born in the U.S.A. Bruce Springsteen</p>
+<p>7 1986 Whitney Houston Whitney Houston</p>
+<p>8 1987 Slippery When Wet Bon Jovi</p>
+<p>9 1988 Faith George Michael</p>
+<p>10 1989 Don’t Be Cruel Bobby Brown</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb314-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">bind_rows</span>(seventies, eighties)</span>
+<span id="cb314-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb314-2" tabindex="-1"></a><span class="co"># A tibblele: 20 x 3</span></span></code></pre></div>
+<p>year album band</p>
+<p><chr><chr><chr></chr></chr></chr></p>
+<p>1 1970 Bridge Over Troubled Water Simon and Garfunkel</p>
+<p>2 1971 Jesus Christ Superstar Various Artists</p>
+<p>3 1972 Harvest Neil Young</p>
+<p>4 1973 The World is a Ghetto War</p>
+<p>5 1974 Goodbye Yellow Brick Road Elton John</p>
+<p>6 1975 Elton John’s Greatest Hits Elton John</p>
+<p>7 1976 Peter Frampton Frampton Comes Alive</p>
+<p>8 1977 Rumours Fleetwood Mac</p>
+<p>9 1978 Saturday Night Fever Bee Gees</p>
+<p>10 1979 Billy Joel 52nd Street</p>
+<p>11 1980 The Wall Pink Floyd</p>
+<p>12 1981 Hi Infidelity REO Speedwagon</p>
+<p>13 1982 Asia Asia</p>
+<p>14 1983 Thriller Michael Jackson</p>
+<p>15 1984 Thriller Michael Jackson</p>
+<p>16 1985 Born in the U.S.A. Bruce Springsteen</p>
+<p>17 1986 Whitney Houston Whitney Houston</p>
+<p>18 1987 Slippery When Wet Bon Jovi</p>
+<p>19 1988 Faith George Michael</p>
+<p>20 1989 Don’t Be Cruel Bobby Brown</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb315-1" tabindex="-1"></a>Warning messages<span class="sc">:</span></span>
+<span id="cb315-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb315-2" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> In <span class="fu">bind_rows_</span>(x, .id) <span class="sc">:</span></span></code></pre></div>
+<p>binding factor and characterer vector, coercing into characterer vector</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb316-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> In <span class="fu">bind_rows_</span>(x, .id) <span class="sc">:</span></span></code></pre></div>
+<p>binding characterer and factor vector, coercing into characterer vector</p>
+<blockquote>
+<p><strong>تمرین:</strong> دیتاست های sixties و sevent را با هم bind کنید.</p>
+</blockquote>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb317-1" tabindex="-1"></a><span class="sc">&gt;</span> sixties</span>
+<span id="cb317-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb317-2" tabindex="-1"></a><span class="co"># A tibblele: 10 x 3</span></span></code></pre></div>
+<p>year album band</p>
+<p><int><chr><chr></chr></chr></int></p>
+<p>1 1960 The Sound of Music Original Broadway Cast</p>
+<p>2 1961 Camelot Original Broadway Cast</p>
+<p>3 1962 West Side Story Soundtrack</p>
+<p>4 1963 West Side Story Soundtrack</p>
+<p>5 1964 Hello, Dolly! Original Broadway Cast</p>
+<p>6 1965 Mary Poppins Soundtrack</p>
+<p>7 1966 Whipped Cream &amp; Other Delights Herb Alpert &amp; The Tijuana Brass</p>
+<p>8 1967 More of The Monkees The Monkees</p>
+<p>9 1968 Are You Experienced? The Jimi Hendrix Experience</p>
+<p>10 1969 In-A-Gadda-Da-Vida Iron Butterfly</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb318-1" tabindex="-1"></a><span class="sc">&gt;</span> seventies</span>
+<span id="cb318-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb318-2" tabindex="-1"></a><span class="co"># A tibblele: 10 x 3</span></span></code></pre></div>
+<p>year album band</p>
+<p><fct><chr><chr></chr></chr></fct></p>
+<p>1 1970 Bridge Over Troubled Water Simon and Garfunkel</p>
+<p>2 1971 Jesus Christ Superstar Various Artists</p>
+<p>3 1972 Harvest Neil Young</p>
+<p>4 1973 The World is a Ghetto War</p>
+<p>5 1974 Goodbye Yellow Brick Road Elton John</p>
+<p>6 1975 Elton John’s Greatest Hits Elton John</p>
+<p>7 1976 Peter Frampton Frampton Comes Alive</p>
+<p>8 1977 Rumours Fleetwood Mac</p>
+<p>9 1978 Saturday Night Fever Bee Gees</p>
+<p>10 1979 Billy Joel 52nd Street</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb319-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">bind_rows</span>(sixties, seventies)</span>
+<span id="cb319-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb319-2" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">bind_rows_</span>(x, .id) <span class="sc">:</span></span></code></pre></div>
+<p>Column <code>year</code> can’t be converted from integer to factor</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb320-1" tabindex="-1"></a><span class="sc">&gt;</span> seventies <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(<span class="fu">as.characterer</span>(year))) <span class="sc">%&gt;%</span> <span class="fu">bind_rows</span>(sixties)</span>
+<span id="cb320-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb320-2" tabindex="-1"></a><span class="co"># A tibblele: 20 x 3</span></span></code></pre></div>
+<p>year album band</p>
+<p><dbl><chr><chr></chr></chr></dbl></p>
+<p>1 1970 Bridge Over Troubled Water Simon and Garfunkel</p>
+<p>2 1971 Jesus Christ Superstar Various Artists</p>
+<p>3 1972 Harvest Neil Young</p>
+<p>4 1973 The World is a Ghetto War</p>
+<p>5 1974 Goodbye Yellow Brick Road Elton John</p>
+<p>6 1975 Elton John’s Greatest Hits Elton John</p>
+<p>7 1976 Peter Frampton Frampton Comes Alive</p>
+<p>8 1977 Rumours Fleetwood Mac</p>
+<p>9 1978 Saturday Night Fever Bee Gees</p>
+<p>10 1979 Billy Joel 52nd Street</p>
+<p>11 1960 The Sound of Music Original Broadway Cast</p>
+<p>12 1961 Camelot Original Broadway Cast</p>
+<p>13 1962 West Side Story Soundtrack</p>
+<p>14 1963 West Side Story Soundtrack</p>
+<p>15 1964 Hello, Dolly! Original Broadway Cast</p>
+<p>16 1965 Mary Poppins Soundtrack</p>
+<p>17 1966 Whipped Cream &amp; Other Delights Herb Alpert &amp; The Tijuana Brass</p>
+<p>18 1967 More of The Monkees The Monkees</p>
+<p>19 1968 Are You Experienced? The Jimi Hendrix Experience</p>
+<p>20 1969 In-A-Gadda-Da-Vida Iron Butterfly</p>
+</div>
+<div id="تابع-rowmas--to--colam" class="section level2" number="15.18">
+<h2>
+<span class="header-section-number">15.18</span> تابع rowmas- to- colam<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-rowmas--to--colam"><i class="fas fa-link"></i></a>
+</h2>
+<p>از توابع پکیج tibblele هست که به ما کمک می‌کند به راحتی عناوین سطرها را در قالب یک ستون به dataset اضافه کنیم .</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb321-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rownames_to_column</span>(<span class="at">df =</span> mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,])</span></code></pre></div>
+<p>rowname mpg cyl disp hp drat wt qsec vs am gear carb</p>
+<p>1 Mazda RX4 21.0 6 160 110 3.90 2.620 16.46 0 1 4 4</p>
+<p>2 Mazda RX4 Wag 21.0 6 160 110 3.90 2.875 17.02 0 1 4 4</p>
+<p>3 Datsun 710 22.8 4 108 93 3.85 2.320 18.61 1 1 4 1</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb322-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rownames_to_column</span>(<span class="at">df =</span> mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,], <span class="at">var =</span> <span class="st">"carname"</span>)</span></code></pre></div>
+<p>carname mpg cyl disp hp drat wt qsec vs am gear carb</p>
+<p>1 Mazda RX4 21.0 6 160 110 3.90 2.620 16.46 0 1 4 4</p>
+<p>2 Mazda RX4 Wag 21.0 6 160 110 3.90 2.875 17.02 0 1 4 4</p>
+<p>3 Datsun 710 22.8 4 108 93 3.85 2.320 18.61 1 1 4 1</p>
+</div>
+<div id="تابع-has-rowamas" class="section level2" number="15.19">
+<h2>
+<span class="header-section-number">15.19</span> تابع has-rowamas<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-has-rowamas"><i class="fas fa-link"></i></a>
+</h2>
+<p>از توابع پکیج tibblele هست که تنها مشخص می‌کند که دیتاست label دارد یا خیر.</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb323-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">has_rownames</span>(mtcars)</span>
+<span id="cb323-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb323-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span></code></pre></div>
+</div>
+<div id="مشکلاتی-که-در-join-ها-به-وجود-می-آیند." class="section level2" number="15.20">
+<h2>
+<span class="header-section-number">15.20</span> مشکلاتی که در join ها به وجود می آیند.<a class="anchor" aria-label="anchor" href="#%D9%85%D8%B4%DA%A9%D9%84%D8%A7%D8%AA%DB%8C-%DA%A9%D9%87-%D8%AF%D8%B1-join-%D9%87%D8%A7-%D8%A8%D9%87-%D9%88%D8%AC%D9%88%D8%AF-%D9%85%DB%8C-%D8%A2%DB%8C%D9%86%D8%AF."><i class="fas fa-link"></i></a>
+</h2>
+<p>مشکلاتی که در زمان استفاده از join ها ممکن است با آن ها مواجه شویم عبارتند از</p>
+<p>کلید گم شده</p>
+<p>ستون گمشده کلید</p>
+<p>ستون غیر کلید تکراری</p>
+<p>کلید تکراری</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb324-1" tabindex="-1"></a><span class="sc">&gt;</span> shows</span>
+<span id="cb324-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb324-2" tabindex="-1"></a><span class="co"># A tibblele: 6 x 2</span></span></code></pre></div>
+<p>musical year</p>
+<p><chr><int></int></chr></p>
+<p>1 The Sound of Music 1959</p>
+<p>2 Into the Woods 1986</p>
+<p>3 The King and I 1951</p>
+<p>4 West Side Story 1957</p>
+<p>5 Cats 1981</p>
+<p>6 Phantom of the Opera 1986</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb325-1" tabindex="-1"></a><span class="sc">&gt;</span> composers</span>
+<span id="cb325-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb325-2" tabindex="-1"></a><span class="co"># A tibblele: 8 x 2</span></span></code></pre></div>
+<p>musical composer</p>
+<p><chr><chr></chr></chr></p>
+<p>1 Cats Andrew Lloyd Webber</p>
+<p>2 Into the Woods Stephen Sondheim</p>
+<p>3 Phantom of the Opera Andrew Lloyd Webber</p>
+<p>4 The King and I Richard Rogers</p>
+<p>5 The King and I Oscar Hammerstein II</p>
+<p>6 The Sound of Music Richard Rogers</p>
+<p>7 The Sound of Music Oscar Hammerstein II</p>
+<p>8 West Side Story Leonard Bernstein</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb326-1" tabindex="-1"></a><span class="sc">&gt;</span> shows <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(composers)</span>
+<span id="cb326-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb326-2" tabindex="-1"></a>Joining, by <span class="ot">=</span> <span class="st">"musical"</span></span>
+<span id="cb326-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb326-3" tabindex="-1"></a><span class="co"># A tibblele: 8 x 3</span></span></code></pre></div>
+<p>musical year composer</p>
+<p><chr><int><chr></chr></int></chr></p>
+<p>1 The Sound of Music 1959 Richard Rogers</p>
+<p>2 The Sound of Music 1959 Oscar Hammerstein II</p>
+<p>3 Into the Woods 1986 Stephen Sondheim</p>
+<p>4 The King and I 1951 Richard Rogers</p>
+<p>5 The King and I 1951 Oscar Hammerstein II</p>
+<p>6 West Side Story 1957 Leonard Bernstein</p>
+<p>7 Cats 1981 Andrew Lloyd Webber</p>
+<p>8 Phantom of the Opera 1986 Andrew Lloyd Webber</p>
+<p>کلید تکراری</p>
+<p>dplyrr با کلید تکراری مشکلی ندارد و هر دو رو در نظر می گیره که این ممکنه data set رو زیادی بزرگ کنه.</p>
+<blockquote>
+<p><strong>تمرین:</strong> دیتاست های ستون کلید گم شده stage-writers, stage_songs را join کنید.</p>
+</blockquote>
+<p>کلید گم شده کلید مربوط در ستون کلیدهای اصلی وجود ندارد.</p>
+</div>
+<div id="ستون-غیر-کلید-تکراری" class="section level2" number="15.21">
+<h2>
+<span class="header-section-number">15.21</span> ستون غیر کلید تکراری<a class="anchor" aria-label="anchor" href="#%D8%B3%D8%AA%D9%88%D9%86-%D8%BA%DB%8C%D8%B1-%DA%A9%D9%84%DB%8C%D8%AF-%D8%AA%DA%A9%D8%B1%D8%A7%D8%B1%DB%8C"><i class="fas fa-link"></i></a>
+</h2>
+<p>در صورتی که ستونهای غیر کلید تکراری در dataset ها وجود داشته باشند dplyrr به صورت اتواتیک به آنها پیوندی دهد مگر آنکه پسوند به صورت دستی مشخص شود.</p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb327-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">inner_join</span>(work, study)</span>
+<span id="cb327-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb327-2" tabindex="-1"></a>Joining, by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"major"</span>)</span>
+<span id="cb327-3"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb327-3" tabindex="-1"></a><span class="co"># A tibblele: 0 x 2</span></span>
+<span id="cb327-4"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb327-4" tabindex="-1"></a><span class="co"># ... with 2 variables: name &lt;chr&gt;, major &lt;chr&gt;</span></span>
+<span id="cb327-5"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb327-5" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">inner_join</span>(work, study, <span class="at">by =</span> <span class="st">"name"</span>)</span>
+<span id="cb327-6"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb327-6" tabindex="-1"></a><span class="co"># A tibblele: 3 x 3</span></span></code></pre></div>
+<p>name major.x major.y</p>
+<p><chr><chr><chr></chr></chr></chr></p>
+<p>1 ali Automation &amp; Advanced Analitycs Automation</p>
+<p>2 babak Business Intelligence &amp; Data Visualization Software Engineering</p>
+<p>3 parviz Database Administration Chemical Engineering</p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb328-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">inner_join</span>(work, study, <span class="at">by =</span> <span class="st">"name"</span>, <span class="at">suffix=</span> <span class="fu">c</span>(<span class="st">"work"</span>, <span class="st">"study"</span>))</span>
+<span id="cb328-2"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html#cb328-2" tabindex="-1"></a><span class="co"># A tibblele: 3 x 3</span></span></code></pre></div>
+<p>name majorwork majorstudy</p>
+<p><chr><chr><chr></chr></chr></chr></p>
+<p>1 ali Automation &amp; Advanced Analitycs Automation</p>
+<p>2 babak Business Intelligence &amp; Data Visualization Software Engineering</p>
+<p>3 parviz Database Administration Chemical Engineering</p>
+<p>می‌شود به جای استفاده از suffin از تابع rename استفاده کرد.</p>
+<blockquote>
+<p><strong>تمرین:</strong> داده های elvis-movie, elvis-sang رو با هم join کنید و بعد اسم ستون name رو به name.y movie رو به sany تمیز بدهید</p>
+</blockquote>
+</div>
+<div id="join-کردن-بیش-از2-dataset" class="section level2" number="15.22">
+<h2>
+<span class="header-section-number">15.22</span> Join کردن بیش از2 dataset<a class="anchor" aria-label="anchor" href="#join-%DA%A9%D8%B1%D8%AF%D9%86-%D8%A8%DB%8C%D8%B4-%D8%A7%D8%B22-dataset"><i class="fas fa-link"></i></a>
+</h2>
+<p>برای اینکار می‌بایست به ترتیب datag set ها رو با هم join کرد. ولی می‌توان از تابع reduce کمک گرفت.</p>
+</div>
+<div id="reduce" class="section level2" number="15.23">
+<h2>
+<span class="header-section-number">15.23</span> Reduce<a class="anchor" aria-label="anchor" href="#reduce"><i class="fas fa-link"></i></a>
+</h2>
+<p>تابع reduce یکی از توابع پکیج purrr هست و به داده های dataret ها رو بر اساس تابع معرفی شده و آرگومانهای مربوط با هم تلفیق می کنه ولی برای اینکار اول باید به نحوی دیتاست ها رو از هم در یک محل متمایز و در کنار هم ذخیره کنیم. که بهترین روش برای اینکار ذخیره اونها در یک list هست.</p>
+</div>
+<div id="تابع-merge" class="section level2" number="15.24">
+<h2>
+<span class="header-section-number">15.24</span> تابع merge<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-merge"><i class="fas fa-link"></i></a>
+</h2>
+<p>یکی از توابع package base هست که صورت کار join رو می‌کند.</p>
+<p>برای full join ، آرگومان all=TRUE و برای inner join قرار می‌گیرد.</p>
+<hr>
+<div id="پیمایش-14" class="section level3" number="15.24.1">
+<h3>
+<span class="header-section-number">15.24.1</span> پیمایش<a class="anchor" aria-label="anchor" href="#%D9%BE%DB%8C%D9%85%D8%A7%DB%8C%D8%B4-14"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>قبلی: <a href="dplyr.md">14. دستکاری داده با dplyr</a>
+</li>
+<li>فهرست: <a href="../README.md">README</a>
+</li>
+<li>بعدی: <a href="datetime.md">16. تاریخ و زمان</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="%D9%81%D8%B5%D9%84-14-%D8%AF%D8%B3%D8%AA%DA%A9%D8%A7%D8%B1%DB%8C-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A8%D8%A7-dplyr.html"><span class="header-section-number">14</span> فصل 14 — دستکاری داده با dplyr</a></div>
+<div class="next"><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html"><span class="header-section-number">16</span> فصل 16 — تاریخ و زمان</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join"><span class="header-section-number">15</span> فصل 15 — ترکیب داده (Join)</a></li>
+<li><a class="nav-link" href="#%D8%AF%D8%B1-%D8%A7%DB%8C%D9%86-%D9%81%D8%B5%D9%84-14"><span class="header-section-number">15.1</span> در این فصل</a></li>
+<li><a class="nav-link" href="#joining-data"><span class="header-section-number">15.2</span> Joining Data</a></li>
+<li><a class="nav-link" href="#mutating-joins"><span class="header-section-number">15.3</span> Mutating joins</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-setequal"><span class="header-section-number">15.4</span> تابع setequal</a></li>
+<li><a class="nav-link" href="#filtering-joins"><span class="header-section-number">15.5</span> Filtering joins</a></li>
+<li><a class="nav-link" href="#semi--join"><span class="header-section-number">15.6</span> Semi- join</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-nrow"><span class="header-section-number">15.7</span> تابع nrow( )</a></li>
+<li><a class="nav-link" href="#anti--join"><span class="header-section-number">15.8</span> Anti- join</a></li>
+<li><a class="nav-link" href="#%D8%A7%D9%BE%D8%B1%D8%A7%D8%AA%D9%88%D8%B1%D9%87%D8%A7%DB%8C-%D9%85%D8%AC%D9%85%D9%88%D8%B9%D9%87-%D9%87%D8%A7"><span class="header-section-number">15.9</span> اپراتورهای مجموعه ها</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-union"><span class="header-section-number">15.10</span> تابع union</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-intersect"><span class="header-section-number">15.11</span> تابع intersect</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-setdiff"><span class="header-section-number">15.12</span> تابع setdiff</a></li>
+<li><a class="nav-link" href="#bind-%D8%AF%D8%B1-dplyrr"><span class="header-section-number">15.13</span> bind در dplyrr</a></li>
+<li><a class="nav-link" href="#bind-cols"><span class="header-section-number">15.14</span> Bind-cols</a></li>
+<li><a class="nav-link" href="#bind-rows"><span class="header-section-number">15.15</span> Bind-rows</a></li>
+<li><a class="nav-link" href="#data_-frame"><span class="header-section-number">15.16</span> data_ frame</a></li>
+<li><a class="nav-link" href="#coercion-rules"><span class="header-section-number">15.17</span> Coercion rules</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-rowmas--to--colam"><span class="header-section-number">15.18</span> تابع rowmas- to- colam</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-has-rowamas"><span class="header-section-number">15.19</span> تابع has-rowamas</a></li>
+<li><a class="nav-link" href="#%D9%85%D8%B4%DA%A9%D9%84%D8%A7%D8%AA%DB%8C-%DA%A9%D9%87-%D8%AF%D8%B1-join-%D9%87%D8%A7-%D8%A8%D9%87-%D9%88%D8%AC%D9%88%D8%AF-%D9%85%DB%8C-%D8%A2%DB%8C%D9%86%D8%AF."><span class="header-section-number">15.20</span> مشکلاتی که در join ها به وجود می آیند.</a></li>
+<li><a class="nav-link" href="#%D8%B3%D8%AA%D9%88%D9%86-%D8%BA%DB%8C%D8%B1-%DA%A9%D9%84%DB%8C%D8%AF-%D8%AA%DA%A9%D8%B1%D8%A7%D8%B1%DB%8C"><span class="header-section-number">15.21</span> ستون غیر کلید تکراری</a></li>
+<li><a class="nav-link" href="#join-%DA%A9%D8%B1%D8%AF%D9%86-%D8%A8%DB%8C%D8%B4-%D8%A7%D8%B22-dataset"><span class="header-section-number">15.22</span> Join کردن بیش از2 dataset</a></li>
+<li><a class="nav-link" href="#reduce"><span class="header-section-number">15.23</span> Reduce</a></li>
+<li>
+<a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-merge"><span class="header-section-number">15.24</span> تابع merge</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#%D9%BE%DB%8C%D9%85%D8%A7%DB%8C%D8%B4-14"><span class="header-section-number">15.24.1</span> پیمایش</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/alisadeghiaghili/r-book/blob/master/15-joins.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/alisadeghiaghili/r-book/edit/master/15-joins.md">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>کتاب R — مقدماتی</strong>: آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS" was written by Ali Sadeghi Aghili. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

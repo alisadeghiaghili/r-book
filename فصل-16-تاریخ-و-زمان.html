@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>فصل 16 فصل 16 — تاریخ و زمان | کتاب R — مقدماتی</title>
+<meta name="author" content="Ali Sadeghi Aghili">
+<meta name="description" content="بخش: زمان و داده‌های پیشرفته ← فصل قبل: 15. ترکیب داده (Join) · فهرست کلی · فصل بعد: 17. data.table و داده‌های حجیم →  16.1 در این فصل تاریخ و زمان تاریخ و زمان در R پکیج auytime تابع...">
+<meta name="generator" content="bookdown 0.48 with bs4_book()">
+<meta property="og:title" content="فصل 16 فصل 16 — تاریخ و زمان | کتاب R — مقدماتی">
+<meta property="og:type" content="book">
+<meta property="og:description" content="بخش: زمان و داده‌های پیشرفته ← فصل قبل: 15. ترکیب داده (Join) · فهرست کلی · فصل بعد: 17. data.table و داده‌های حجیم →  16.1 در این فصل تاریخ و زمان تاریخ و زمان در R پکیج auytime تابع...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="فصل 16 فصل 16 — تاریخ و زمان | کتاب R — مقدماتی">
+<meta name="twitter:description" content="بخش: زمان و داده‌های پیشرفته ← فصل قبل: 15. ترکیب داده (Join) · فهرست کلی · فصل بعد: 17. data.table و داده‌های حجیم →  16.1 در این فصل تاریخ و زمان تاریخ و زمان در R پکیج auytime تابع...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script>
+      (function () {
+        var r = document.documentElement;
+        r.setAttribute("dir", "rtl");
+        r.setAttribute("lang", "fa");
+      })();
+    </script><style>
+      /* critical RTL + LTR-code before CSS file loads */
+      html, body { direction: rtl; text-align: right; }
+      pre, code, div.sourceCode,
+      pre *, code *,
+      .ltr-block, .ltr-block pre, .ltr-block code {
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+        text-align: left !important;
+      }
+    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS">کتاب R — مقدماتی</a>:
+        <small class="text-muted">آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">پیشگفتار</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-1-%D9%85%D9%82%D8%AF%D9%85%D9%87.html"><span class="header-section-number">1</span> فصل 1 — مقدمه</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-2-%D8%A2%D8%B4%D9%86%D8%A7%DB%8C%DB%8C-%D8%A8%D8%A7-rstudio.html"><span class="header-section-number">2</span> فصل 2 — آشنایی با RStudio</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-3-%D8%B9%D9%85%D9%84%DB%8C%D8%A7%D8%AA-%D8%B1%DB%8C%D8%A7%D8%B6%DB%8C-%D9%88-%D9%85%D8%AA%D8%BA%DB%8C%D8%B1%D9%87%D8%A7.html"><span class="header-section-number">3</span> فصل 3 — عملیات ریاضی و متغیرها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-4-%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%D9%87%D8%A7-%D9%88-%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3%D9%87%D8%A7.html"><span class="header-section-number">4</span> فصل 4 — بردارها و ماتریس‌ها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-5-%D9%81%D8%A7%DA%A9%D8%AA%D9%88%D8%B1-data.frame-%D9%88-list.html"><span class="header-section-number">5</span> فصل 5 — فاکتور، data.frame و list</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-6-%D8%B3%D8%A7%D8%AE%D8%AA%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%DA%A9%D9%86%D8%AA%D8%B1%D9%84%DB%8C.html"><span class="header-section-number">6</span> فصل 6 — ساختارهای کنترلی</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7.html"><span class="header-section-number">7</span> فصل 7 — توابع و پکیج‌ها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-8-importing-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-flat.html"><span class="header-section-number">8</span> فصل 8 — Importing: فایل‌های flat</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-9-excel-%D9%88-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-%D8%AC%D8%AF%D9%88%D9%84%DB%8C.html"><span class="header-section-number">9</span> فصل 9 — Excel و فایل‌های جدولی</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-10-%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%BE%D8%A7%DB%8C%DA%AF%D8%A7%D9%87%D8%AF%D8%A7%D8%AF%D9%87.html"><span class="header-section-number">10</span> فصل 10 — ورود داده از پایگاه‌داده</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-11-%D8%AE%D9%88%D8%A7%D9%86%D8%AF%D9%86-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%88%D8%A8-%D9%88-api.html"><span class="header-section-number">11</span> فصل 11 — خواندن داده از وب و API</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-12-%D8%AF%D8%A7%D8%AF%D9%87-%D8%AA%D9%85%DB%8C%D8%B2-%D9%88-tidyverse.html"><span class="header-section-number">12</span> فصل 12 — دادهٔ تمیز و tidyverse</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html"><span class="header-section-number">13</span> فصل 13 — رشته‌ها و Regular Expression</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-14-%D8%AF%D8%B3%D8%AA%DA%A9%D8%A7%D8%B1%DB%8C-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A8%D8%A7-dplyr.html"><span class="header-section-number">14</span> فصل 14 — دستکاری داده با dplyr</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html"><span class="header-section-number">15</span> فصل 15 — ترکیب داده (Join)</a></li>
+<li><a class="active" href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html"><span class="header-section-number">16</span> فصل 16 — تاریخ و زمان</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-17-data.table-%D9%88-%D8%AF%D8%A7%D8%AF%D9%87%D9%87%D8%A7%DB%8C-%D8%AD%D8%AC%DB%8C%D9%85.html"><span class="header-section-number">17</span> فصل 17 — data.table و داده‌های حجیم</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-18-%D8%AF%D8%A7%D8%AF%D9%87-%D9%BE%D8%B1%D8%AA-%D9%88-%D9%86%D9%85%D9%88%D8%AF%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%D9%BE%D8%A7%DB%8C%D9%87.html"><span class="header-section-number">18</span> فصل 18 — داده پرت و نمودارهای پایه</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-19-%D9%BE%DB%8C%D9%88%D8%B3%D8%AA-%DA%A9%D8%AF%D9%87%D8%A7%DB%8C-%D8%AA%DA%A9%D9%85%DB%8C%D9%84%DB%8C.html"><span class="header-section-number">19</span> فصل 19 — پیوست: کدهای تکمیلی</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/alisadeghiaghili/r-book">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="فصل-16-تاریخ-و-زمان" class="section level1" number="16">
+<h1>
+<span class="header-section-number">فصل 16</span> فصل 16 — تاریخ و زمان<a class="anchor" aria-label="anchor" href="#%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>بخش:</strong> زمان و داده‌های پیشرفته</p>
+<p><a href="joins.md">← فصل قبل: 15. ترکیب داده (Join)</a> · <a href="../README.md">فهرست کلی</a> · <a href="data-table.md">فصل بعد: 17. data.table و داده‌های حجیم →</a></p>
+<div id="در-این-فصل-15" class="section level2" number="16.1">
+<h2>
+<span class="header-section-number">16.1</span> در این فصل<a class="anchor" aria-label="anchor" href="#%D8%AF%D8%B1-%D8%A7%DB%8C%D9%86-%D9%81%D8%B5%D9%84-15"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86">تاریخ و زمان</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86-%D8%AF%D8%B1-R">تاریخ و زمان در R</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D9%BE%DA%A9%DB%8C%D8%AC-auytime">پکیج auytime</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D8%AA%D8%A7%D8%A8%D8%B9-parse_date_time">تابع parse_date_time</a></li>
+<li><a href="#Make-dataine-make-datece">Make-dataine, make-datece</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-lubridate%D8%AF%D8%B1-rownd">توابع lubridateدر rownd</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D8%AA%D8%A7%D8%A8%D8%B9-difftime">تابع difftime</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D8%A8%D8%A7%D8%B2%D9%87-%D9%87%D8%A7%DB%8C-%D8%B2%D9%85%D8%A7%D9%86%DB%8C">بازه های زمانی</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D8%AA%D8%A7%D8%A8%D8%B9-period">تابع period</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-Duration">تابع Duration</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D8%B4%DA%A9%D9%84-%D9%86%D8%A7%D8%A8%D8%B1%D8%A7%D8%A8%D8%B1%DB%8C-%D9%85%D8%A7%D9%87-%D9%87%D8%A7">شکل نابرابری ماه ها</a></li>
+<li><a href="#Int-endint-start">Int-end,int-start</a></li>
+<li><a href="#Int-lenget">Int-lenget</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-asperiod">تابع as.period</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D8%A7%D9%BE%D8%B1%D8%A7%D8%AA%D9%88%D8%B1-within">اپراتور %within%</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D8%AC%D9%85%D8%B9-%D8%A8%D9%86%D8%AF%DB%8C">جمع بندی</a></li>
+<li><a href="#%D9%85%D8%AD%D8%AF%D9%88%D8%AF%D9%87%D8%A7%DB%8C-%D8%B2%D9%85%D8%A7%D9%86%DB%8C-time-towe--%D9%85%D9%86%D8%B7%D9%82%D9%87-%D8%B2%D9%85%D8%A7%D9%86%DB%8C">محدودهای زمانی( time towe ) منطقه زمانی</a></li>
+<li><a href="#Systimezone">Sys.timezone</a></li>
+<li><a href="#OlsonNames">OlsonNames</a></li>
+<li><a href="#%D8%AF%D8%B3%D8%AA%DA%A9%D8%A7%D8%B1%DB%8C-Timezone">دستکاری Timezone</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D8%AA%D8%A7%D8%A8%D8%B9-with_tz">تابع with_tz</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D9%BE%D8%B1%D8%AF%D8%A7%D8%B2%D8%B4-%D8%B3%D8%B1%DB%8C%D8%B9-%D8%B2%D9%85%D8%A7%D9%86-%D9%88-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE">پردازش سریع زمان و تاریخ</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D8%AA%D8%A7%D8%A8%D8%B9-fast-strptime">تابع fast-strptime</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#%D8%AA%D8%A7%D8%A8%D8%B9-stamp">تابع stamp</a></li>
+</ul>
+</div>
+<div id="تاریخ-و-زمان" class="section level2" number="16.2">
+<h2>
+<span class="header-section-number">16.2</span> تاریخ و زمان<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>کد: as.Date / strptime / strftime (3-2)</strong></p>
+<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">date</span> <span class="op">&lt;-</span> <span class="st">"2026-09-17"</span></span></code></pre></div>
+<pre class="text"><code>[1] "2026-09-17"</code></pre>
+<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] "character"</code></pre>
+<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dated</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] "2026-09-17"</code></pre>
+<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">dated</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] "Date"</code></pre>
+<div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">dated</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] 20713</code></pre>
+<div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dated</span> <span class="op">+</span> <span class="fl">1</span></span></code></pre></div>
+<pre class="text"><code>[1] "2026-09-18"</code></pre>
+<div class="sourceCode" id="cb341"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dated</span> <span class="op">+</span> <span class="fl">365</span></span></code></pre></div>
+<pre class="text"><code>[1] "2027-09-17"</code></pre>
+<div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] "2026-09-20"</code></pre>
+<div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] "2026-09-20 15:08:42 +0330"</code></pre>
+<p><strong>کد: strptime / strftime (3-2)</strong></p>
+<div class="sourceCode" id="cb347"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">timed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strptime</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"09/17/2026"</span>, format <span class="op">=</span> <span class="st">"%m/%d/%Y"</span><span class="op">)</span></span>
+<span><span class="va">timed</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strftime</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">timed</span>, format <span class="op">=</span> <span class="st">"%Y"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strftime</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">timed</span>, format <span class="op">=</span> <span class="st">"%A"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strftime</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">timed</span>, format <span class="op">=</span> <span class="st">"%y, %A/%b, %d"</span><span class="op">)</span></span>
+<span><span class="va">dimDate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>fullDate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2026-09-17"</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0</span><span class="op">:</span><span class="fl">365</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dimDate</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] "2026-09-17 +0330"
+[1] "2026"
+[1] "Thursday"
+[1] "26, Thursday/Sep, 17"
+    fullDate
+1 2026-09-17
+2 2026-09-18
+3 2026-09-19
+4 2026-09-20
+5 2026-09-21
+6 2026-09-22
+    fullDate
+1 2026-09-17
+2 2026-09-18
+3 2026-09-19
+4 2026-09-20
+5 2026-09-21
+6 2026-09-22</code></pre>
+<p>متدی R توابع مختلفی برای تاریخ و زمان داریم –</p>
+<p>Sys.time( ) مثل خیلی از زبان‌های دیگه زمان را بر حسب ثانیه از ژانویهٔ 1970 نگه می‌دارد هست. و برای Sys.Date همون بعد اولی به روز هست.</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html#cb349-1" tabindex="-1"></a>برای تبدیل یک عدد یا کاراکتر به تاریخ از تابع as.Date استفاده می‌کنیم. Edate<span class="ot">&lt;-</span><span class="dv">13</span> January1982 e.g با استفاده آرگومان format این تابع می تونیم فرمت دلخواهمون رو از اون استخراج کنیم توی این آرگومان مقادیر مختلفی می‌تواند بشینه.</span></code></pre></div>
+<p>اصولاٌ R اگر as.Date بدون فرمت وارد بشه اونو به‌عنوان یا تبدیل می کنه. بر عکس اینکارم می‌شود با تابع format کرد یعنی وقتی می‌خواهیم یک تاریخ رو به رشته تا فرمت خاص تبدیل کنیم.</p>
+<blockquote>
+<p><strong>تمرین:</strong> 3 تا رشته زیر رو با فرمت مناسب به تاریخ تبدیل کنید و توی متغیر ذخیره کنید.</p>
+</blockquote>
+<p>حالا متغیرها رو با استفاده از تابع فرمت به رشته تبدیل کنید. از اول روز هفته، از روی روز و از سوی مختصر ماه فاصله سال کاملو می‌خواهم.</p>
+<p>مثل تاریخ برای زمان هم می تونیم از تابع as.POSIXct استفاده کنیم که یک رشته رو به یک زمان تبدیل کنیم.</p>
+<p>همین طور مثل قبل برای عکس این عمل می‌شود از تابع format استفاده کرد.</p>
+<p>توی strptime تمام فرمتها رو نوشته ولی مهمترین هاش هستن.</p>
+<p>همین طور که گفتیم R به زمان و تاریخ به چشم عدد نگاه میکنه پس می‌شود اعمال ریاضی هم روش انجام داد.</p>
+<p>یه تابع داریم difftime که اختلاف بین هر 2 تا مقدار پشت هم رو بهمون می‌گوید</p>
+<blockquote>
+<p><strong>تمرین:</strong> برای کنترل رژیم غذا یمون تصمیم گرفتیم تاریخ 5 روز آخری که pizza در می خوریم رو ثبت کنیم. اونها رو توی متغیرهایی Day1 تا Day5 ذخیره کردیم. فاصله زمانی بین اولین روز و آخرین روز رو حساب کنید، بعد فاصله بین هر 2 دفعه پیتزا خوردن رو نمایش بدهید.</p>
+</blockquote>
+<p>محاسبات یا زمان هم به همین شکل هست با این تفاوت که بر حسب ثانیه هست مثلاٌ میخوام یک ساعت دیگه رو نمایش بدم.</p>
+<blockquote>
+<p><strong>تمرین:</strong> فکر کنید یک وبسایت داریم که کاربر برای استفاده ازش باید حسابش وارد بشه و وقتی کارش تموم شد هم خارج می‌شود. می‌خواهیم بدونیم میانگین و کل زمانی که یک کاربر بخصوص توی سایت صرف کرده چقدره؟ این اطلاعات مربوط به 5 دفعه تراکنش آخرش هست. زمانی که کاربر هر بار توی سایت گذرونده، کل زمانی که گذرونده و میانگین زمانش رو نمایش بدهید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> داده های مربوط به نمره های یک دانش آموز خاص و 199 دانش آموز دیگر یک کلاس درس در سال جاری در متغیرهای Dthes.me موجوداند. همچنین داده های مربوط به شاگردان 4 سال گذشته همین کلاس نیز موجود است. داده ها را تجمیع کنید و در یک متغیر بریزید. پس با استفاده از تابع paste ستونها را به صورت سال اول، دوم و …. نام گذاری کنید.</p>
+</blockquote>
+<p>جدا ساختن به دو تا تابع boxplot,hist</p>
+<p>تنها یک Arguman اون هم همین دیتا که ساختین</p>
+<p>رو بهش بدهید ببین چی می‌شود</p>
+<p>یه تابع داریم تابع hist( ) برامون histogram میکشه.</p>
+<p>بدهید بخونین ببین چطوره</p>
+<p>و یه تابع دیگه داریم به اسم boxplot( )</p>
+<p>می‌شود اعمال دیگری هم روی داده های زمان و تاریخ انجام داد مثلاٌ</p>
+<p>یک تابع دیگر هم داریم به اسم weekdays( ) که می‌تواند به شما بگه</p>
+<p>یک تابع هم داریم که داده رو به میلادی بهتون می‌گوید</p>
+<p>حتی می‌شود از تابع seq هم برای تولید زمان استفاده کرد.</p>
+<p>یک تابع دیگه داریم difftime که اختلاف 2 زمان رو بهمون میده.</p>
+<p>می‌شود حتی واحد رو براش مشخص کرد.</p>
+<blockquote>
+<p><strong>تمرین:</strong> توی کلاس شما چند نفر نمرشون بالای 75 و چند نفر بالاتر از شما هستند؟</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> طی 5 سال اخیر چند درصداند در نمره هاشون کوچکتر یا برابر 64 بوده؟</p>
+</blockquote>
+<p>تعداد نفراتی که توی کلاس شما نمره بالای 80 دارن رو ذخیره کنید. و بعد کوی بنویسین که اگر اینجا تعداد بالای 50 بود چاپ کنه کلاس قوی و در غیر این صورت بنویسه کلاس معمولی</p>
+<blockquote>
+<p><strong>تمرین:</strong> کری بنویسن که توی اون اگر نمره شما از 50% افراد بهتر بود بنویسه شما جزو 10 درصد بالا هستن، اگر از 60% افراد بهتر بود بنویسه شما از 80 درصد افراد بهتر هستین و در غیر این صورت بنویسه تحلیل بیشتری نیازه</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> نمرات بزرگتر یا ساری 85 رو به‌عنوان نمرات برتر و زیر 65 رو به‌عنوان نمرات در نظر بگیرید و نمایش بدید و دستوری بنویسد که اگر تعداد نمرات برتر از نمرات بر بیشتر بود چاپ کند نمرات برتر بیشتراند.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> loop</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> تصور کنید که توی یک پتروشیمی کار می کنید و در چند روز گذشته یک سری مشکلات و ایرادات پیش‌بینی نشده براتون به وجود آمده. بنابراین تصمیم گرفتین log مربوط به 4 روز گذشته اتفاقات رو بررسی کنید. سیستم کنترلی تقریباٌ در هر ساعت یک پیغامی در رابطه با وضعیت سیستم ایجاد می کنه. Details مربوط به عنصر 4 ام در log رو نشون بدهید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> می‌خواهیم بدونیم چه تعداد پیغام بودن خطا( success برابر TRUE ) قبل از اولین خطا (success=FALSE ) وجود داشته.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> توی مثال قبل می‌خواهیم پیغام ها ( message ) ها رو تا قبل از اولین خطا بخونیم. دقت کنید که پیغام یک بخشی از details هست (بهتر نگاهی به ساختار داده بکنید) .</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> توی جلسه توی همین کمپانی متوجه شدیم که خرابی توی بخش ضایعات (waste) رخ داده. بنابراین می‌خواهیم باز هم با استفاده از while داده ها رو بگردیم تا به اولین خرابی توی waste برسیم. تا زمانی که به خرابی waste نرسیم چاپ بشه در حال جستجو و هنگامی که یافت شد چاپ بشه یافت شد.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> حلقه ای بنویسید که timestamp تمام عناصر logs رو پرینت کنه.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> می‌خواهیم تمام داده های timestamp رو به فرمت تاریخ در بیارید و این ساختار جدید رو به logs اضافه کنید. و بعد 6 عنصر اول logs رو نمایش بدید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> مدیرتون به سراغتون آمده و گفته از کل logs فقط اونجاهایی که به شکل خوردید رو می خواد. گزارش رو بسازید و نمایش بدید. دقت کنید که اینجا اول یک لیست خالی احتیاج دارید.</p>
+</blockquote>
+<p>اگر دو تا list داریم و می‌خواهیم به هم بچسبونیمشون</p>
+<p>(یکی لیست دو لیست دیگری هست) می‌توان از</p>
+<p>c(a, list) استفاده کرد.</p>
+<blockquote>
+<p><strong>تمرین:</strong> function</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> timestamp و مقدار و تاریخ شده این زمان را بدست آورید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> قبل را بر روی داده های times tamps with NA انجام دهید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> تابعی بنویسید که از dataset مربوط به logs تمام timestamp ها بخواند و نمایش دهد.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> در داده های logs 3 مشخصه اصلی وجود دارد. Timestamp, details, success . تابع قبل را طوری تغییر دهید که بنا به در خواست کاربر یکی از این سه استخراج شود.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> تابعی بنویسید که درصد مشکلات در Data ( آنجایی که success برابر false هست) رو نشون بده.</p>
+</blockquote>
+<p>Utils –</p>
+<p>Readr –</p>
+<p>Read.table –</p>
+<blockquote>
+<p><strong>تمرین:</strong></p>
+</blockquote>
+<p>Readxl</p>
+<p>Gdata</p>
+<p>Xlconnect</p>
+</div>
+<div id="تاریخ-و-زمان-در-r" class="section level2" number="16.3">
+<h2>
+<span class="header-section-number">16.3</span> تاریخ و زمان در R<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86-%D8%AF%D8%B1-r"><i class="fas fa-link"></i></a>
+</h2>
+<p>اصولاٌ نگارش تاریخ در کشورهای مختلف می‌تواند به اشکال مختلفی صورت پذیرد ولی یک استاندارد جهانی برای اینکار وجود دارد که می گوید اجزای تاریخ می‌بایست از بزرگ به کوچک نوشته شوند (ISO 8601 ) و در عین حال تعداد کارکترهای هر بخش مشخص هستند. (سال 4 تا و ماه هر کدام 2 کاراکتر) همینطور جدا کننده در این استاندراد فاصله یا خط تیره است.</p>
+<p>یادآوری تابع as.Date یک رشته می پذیرد که می‌بایست با فرمت استاندارد باشد یا فرمت آن مشخص شود.</p>
+<p>یادآوری برخی پکیج‌ها از جمله readr در موقع ورود داده معمولاٌ فرمت تاریخ را تشخیص می دهند. خصوصاٌ اگر به فرمتهای معمول باشد.</p>
+</div>
+<div id="پکیج-auytime" class="section level2" number="16.4">
+<h2>
+<span class="header-section-number">16.4</span> پکیج auytime<a class="anchor" aria-label="anchor" href="#%D9%BE%DA%A9%DB%8C%D8%AC-auytime"><i class="fas fa-link"></i></a>
+</h2>
+<p>این پکیج و تابع اصلی آن تابع any time( ) برای راحتی تبدیل واستفاده از زمان و تاریخ بدون نیاز به تغییر فرمت ایجاد شده است و فرمتهای بسیار زیادی را پشتیبانی می‌کند.</p>
+<p>یادآوری</p>
+<p>تاریخ در R از 1/1/1970 به صورت عدد ذخیره می‌شود. پس می‌توان روی آنها اعمال ریاضی انجام داد یا آنها را کشید.</p>
+</div>
+<div id="تابع-parse_date_time" class="section level2" number="16.5">
+<h2>
+<span class="header-section-number">16.5</span> تابع parse_date_time<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-parse_date_time"><i class="fas fa-link"></i></a>
+</h2>
+<p>نسبت به توابع 3و6 حرفی تبدیل تاریخ و زمان کامل تر است ولی مهمترین مزیت آن این است که می‌توان چندین فرمت خروجی را به صورت همزمان برای چندین ورودی اعمال کرد.</p>
+</div>
+<div id="make-dataine-make-datece" class="section level2" number="16.6">
+<h2>
+<span class="header-section-number">16.6</span> Make-dataine, make-datece<a class="anchor" aria-label="anchor" href="#make-dataine-make-datece"><i class="fas fa-link"></i></a>
+</h2>
+<p>با استفاده از این تابع می‌توان اجزای مجزای محدودی را با یکدیگر ادغام نموده و به صورت زمان تاریخ تبدیل نمود.</p>
+<blockquote>
+<p><strong>تمرین:</strong> داده های دیتاست aki-weather- hourlg-2016-csv را خوانده، سپس با استفاده از تابع makedate و توابعی که پیش از این آموخته اید، یک فیلد date و یک فیلد datetime بسازید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> در دیتای مربوط به releasetime بگویید فراوانی relase ها در هر سال چقدر بوده و بگویید چه کسری از release ها در صبح اتفاق افتاده.</p>
+</blockquote>
+<p>اجزای هر date یا datetime رو هم می‌شود با استفاده از تابع مربوطه تغییر داد.</p>
+</div>
+<div id="توابع-lubridateدر-rownd" class="section level2" number="16.7">
+<h2>
+<span class="header-section-number">16.7</span> توابع lubridateدر rownd<a class="anchor" aria-label="anchor" href="#%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-lubridate%D8%AF%D8%B1-rownd"><i class="fas fa-link"></i></a>
+</h2>
+<p>در lubridate سه تابع برای round کردن زمان وجود دارند. —-</p>
+<p>هر سه یک آرگومان umit دارند که میزان رند شدن را مشخص می‌کند.</p>
+<p>آرگومان umit می‌تواند شامل یک عدد و umit باشد مثل zgeas</p>
+<blockquote>
+<p><strong>تمرین:</strong> اختلاف زمان امروز از ابتدای هفته را بدست آورید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> با استفاده از دیتاست aki-haurly بگویید در هر ساعت چند مشاهده انجام شده است ؟</p>
+</blockquote>
+<p>راهنمایی: برای اینکار ابتدایی بایست از طریق رند کردن یک ستون برای هر ساعت در هر روز ایجاد کرد(تا ساعت رند کرد)</p>
+</div>
+<div id="تابع-difftime" class="section level2" number="16.8">
+<h2>
+<span class="header-section-number">16.8</span> تابع difftime<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-difftime"><i class="fas fa-link"></i></a>
+</h2>
+<p>با استفاده از این تابع می‌توان اختلاف بین دو زمان را بر حسب واحد ارائه شده بدست آورد.</p>
+<blockquote>
+<p><strong>تمرین:</strong> اختلاف امروز و 2 روز پیش رو بر حسب ساعت می‌خواهیم.</p>
+</blockquote>
+</div>
+<div id="بازه-های-زمانی" class="section level2" number="16.9">
+<h2>
+<span class="header-section-number">16.9</span> بازه های زمانی<a class="anchor" aria-label="anchor" href="#%D8%A8%D8%A7%D8%B2%D9%87-%D9%87%D8%A7%DB%8C-%D8%B2%D9%85%D8%A7%D9%86%DB%8C"><i class="fas fa-link"></i></a>
+</h2>
+<p>حتی زمانی که ما می گوییم 2 روز را در تاریخ کم کن نمی‌توان مطمئن بود که واقعاٌ 48 ساعت از تاریخ فوق کم شده یا خیر. پس دقیقاٌ باید تبدیل کنیم که منظورمون چی هست؟ برای اینکار lubridate از 2 تابع duration,period استفاده می‌کند.</p>
+</div>
+<div id="تابع-period" class="section level2" number="16.10">
+<h2>
+<span class="header-section-number">16.10</span> تابع period<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-period"><i class="fas fa-link"></i></a>
+</h2>
+<p>همون مفهوم انسانی زمان رو پیاده می‌کند. مثلاٌ یک زمان منهای یک پریود یک روزه زمانی روز قبل و همون زمان رو میده حتی اگر این اختلاف کمتر از 24 ساعت باشه.</p>
+</div>
+<div id="تابع-duration" class="section level2" number="16.11">
+<h2>
+<span class="header-section-number">16.11</span> تابع Duration<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-duration"><i class="fas fa-link"></i></a>
+</h2>
+<p>این تابع به شکل دقیق و کامپیوتری و بر حسب تعداد ثانیه های تشکیل دهنده هر ساعت، زمانها را محاسبه می‌کند. یعنی اگر بگوییم از این ساعت در امروز یک روز برو به عقب امروز را منهای 400/86 ثانیه می‌کند.</p>
+<p>Period ها با توابع به شکل عادی و duration ها با توابعی با یک d اضافه اولشون شروع میشن.</p>
+<blockquote>
+<p><strong>تمرین:</strong> می‌خواهیم هفته دیگر همین ساعت یک ایمیل بفرستیم. هفته دیگه همین ساعت رو بدست بیاورید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> می‌خواهیم که تا پس فردا یک کاری انجام شده باشه. پس فردا بدست بیارید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> می‌خواهیم از تاریخ امروز به مدت 12 هفته هر هفته بیایم کلاس. تاریخ کلاس ها رو بدست بیارین.</p>
+</blockquote>
+</div>
+<div id="شکل-نابرابری-ماه-ها" class="section level2" number="16.12">
+<h2>
+<span class="header-section-number">16.12</span> شکل نابرابری ماه ها<a class="anchor" aria-label="anchor" href="#%D8%B4%DA%A9%D9%84-%D9%86%D8%A7%D8%A8%D8%B1%D8%A7%D8%A8%D8%B1%DB%8C-%D9%85%D8%A7%D9%87-%D9%87%D8%A7"><i class="fas fa-link"></i></a>
+</h2>
+<p>فرض کنید می‌خواهیم به 31 ژانویه ماه به ماه اضافه کنیم تا آخر هر ماه رو بدست بیاریم.</p>
+<p>بسیاری از مقادیر NA بر می گردند چون تمام ماه ها 31 روز ندارند. برای حل این مشکل از در اپراتور ——- به ترتیب برای جمع و تفریق استفاده می‌شود.</p>
+<p>Interual یا بازه زمانی</p>
+<p>بر خلاف pericd ها، بازه های زمانی نقطه شروع و پایان مشخصی دارند. و با تابع interval یا اپراتور %–% مشخص می‌شوند.</p>
+</div>
+<div id="int-endint-start" class="section level2" number="16.13">
+<h2>
+<span class="header-section-number">16.13</span> Int-end,int-start<a class="anchor" aria-label="anchor" href="#int-endint-start"><i class="fas fa-link"></i></a>
+</h2>
+<p>یک بازه می گیرند و ابتدا و انتهای آنرا بر می گردانند.</p>
+</div>
+<div id="int-lenget" class="section level2" number="16.14">
+<h2>
+<span class="header-section-number">16.14</span> Int-lenget<a class="anchor" aria-label="anchor" href="#int-lenget"><i class="fas fa-link"></i></a>
+</h2>
+<p>طول بازه را به صورت Dwration بر می گردانند.</p>
+<p>طول بازه را به صورت as.rurdtion هم همین کار را می‌کند.</p>
+</div>
+<div id="تابع-as.period" class="section level2" number="16.15">
+<h2>
+<span class="header-section-number">16.15</span> تابع as.period<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-as.period"><i class="fas fa-link"></i></a>
+</h2>
+<p>طول بازه را به صورت periced بر می گرداند.</p>
+</div>
+<div id="اپراتور-within" class="section level2" number="16.16">
+<h2>
+<span class="header-section-number">16.16</span> اپراتور %within%<a class="anchor" aria-label="anchor" href="#%D8%A7%D9%BE%D8%B1%D8%A7%D8%AA%D9%88%D8%B1-within"><i class="fas fa-link"></i></a>
+</h2>
+<p>برای بررسی اینکه یک مقطع زمانی در بازه زمانی خاصی وجود دارد یا خیر به کار می رود.</p>
+<p>تابع int-ouelupe</p>
+<p>دو بازه می‌گیرد و می گوید آیا این دو بازه هم پوشانی دارند یا خیر —</p>
+</div>
+<div id="جمع-بندی" class="section level2" number="16.17">
+<h2>
+<span class="header-section-number">16.17</span> جمع بندی<a class="anchor" aria-label="anchor" href="#%D8%AC%D9%85%D8%B9-%D8%A8%D9%86%D8%AF%DB%8C"><i class="fas fa-link"></i></a>
+</h2>
+<p>اگر نقطه شروع و پایان مشخصی وجود دارد. از intervals استفاده کنید.</p>
+<p>اگر قراره از نتیجهٔ کار انسان استفاده کند معمولاٌ باید از period استفاده کنید.</p>
+<p>اگر دقیقاٌ فواصل زمانی براتون مهمه از Duration استفاده کنید.</p>
+<blockquote>
+<p><strong>تمرین:</strong> با استفاده از داده های monarchs که مربوط به پادشاهی های England هست، گزارش ارائه دهید که در ان اسامی پادشاهان، طول سلطنت. نمایش داده شود و بر اساس طول سلطنت به ترتیب نزولی مرتب شده باشد.</p>
+</blockquote>
+<p>راهنمایی می‌بایست ابتدا بازه ای برای مدت سلطنت ایجاد شود .</p>
+</div>
+<div id="محدودهای-زمانی-time-towe-منطقه-زمانی" class="section level2" number="16.18">
+<h2>
+<span class="header-section-number">16.18</span> محدودهای زمانی( time towe ) منطقه زمانی<a class="anchor" aria-label="anchor" href="#%D9%85%D8%AD%D8%AF%D9%88%D8%AF%D9%87%D8%A7%DB%8C-%D8%B2%D9%85%D8%A7%D9%86%DB%8C-time-towe-%D9%85%D9%86%D8%B7%D9%82%D9%87-%D8%B2%D9%85%D8%A7%D9%86%DB%8C"><i class="fas fa-link"></i></a>
+</h2>
+<p>برای مشخص کردن مکان زمانی در هر نقطه جغرافیایی به کار می رود .</p>
+</div>
+<div id="sys.timezone" class="section level2" number="16.19">
+<h2>
+<span class="header-section-number">16.19</span> Sys.timezone<a class="anchor" aria-label="anchor" href="#sys.timezone"><i class="fas fa-link"></i></a>
+</h2>
+<p>مکان زمانی کامپیوتر را به ما می‌دهد.</p>
+</div>
+<div id="olsonnames" class="section level2" number="16.20">
+<h2>
+<span class="header-section-number">16.20</span> OlsonNames<a class="anchor" aria-label="anchor" href="#olsonnames"><i class="fas fa-link"></i></a>
+</h2>
+<p>تمامی مکان های زمانی موجود را به ما می‌دهد. و از طریق یک مرجع جهانی update می شه. همون مرجعی که متولی IP دهی هم هست.</p>
+</div>
+<div id="دستکاری-timezone" class="section level2" number="16.21">
+<h2>
+<span class="header-section-number">16.21</span> دستکاری Timezone<a class="anchor" aria-label="anchor" href="#%D8%AF%D8%B3%D8%AA%DA%A9%D8%A7%D8%B1%DB%8C-timezone"><i class="fas fa-link"></i></a>
+</h2>
+<p>دو صورت ساله ممکن است. می‌خواهیم دقیقاٌ زمان معادل در یک منطقه را برای منطقه ای دیگر بیابیم یا می‌خواهیم زمان عددی ثابتی را در تمام مناطق مختلف به کار می رود.</p>
+</div>
+<div id="تابع-with_tz" class="section level2" number="16.22">
+<h2>
+<span class="header-section-number">16.22</span> تابع with_tz<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-with_tz"><i class="fas fa-link"></i></a>
+</h2>
+<p>برای بدست آوردن زمان مشخص یکسان در بازه زمانی دیگر به کار می رود.</p>
+</div>
+<div id="پردازش-سریع-زمان-و-تاریخ" class="section level2" number="16.23">
+<h2>
+<span class="header-section-number">16.23</span> پردازش سریع زمان و تاریخ<a class="anchor" aria-label="anchor" href="#%D9%BE%D8%B1%D8%AF%D8%A7%D8%B2%D8%B4-%D8%B3%D8%B1%DB%8C%D8%B9-%D8%B2%D9%85%D8%A7%D9%86-%D9%88-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE"><i class="fas fa-link"></i></a>
+</h2>
+<p>با توجه به انکه تابع parse-date-time می‌بایست forimat ها را چک بکند ممکن است گاهی کند باشد. برای اینکار پکیج sttime و تابع fast_strptime( ) وجود دارند.</p>
+</div>
+<div id="تابع-fast-strptime" class="section level2" number="16.24">
+<h2>
+<span class="header-section-number">16.24</span> تابع fast-strptime<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-fast-strptime"><i class="fas fa-link"></i></a>
+</h2>
+<p>در این تابع می‌بایست تاریخ و فرمت دقیق تاریخ همانند آنچه در as.Date مشخص می شد. مشخص شود.</p>
+</div>
+<div id="تابع-stamp" class="section level2" number="16.25">
+<h2>
+<span class="header-section-number">16.25</span> تابع stamp<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-stamp"><i class="fas fa-link"></i></a>
+</h2>
+<p>یک تاریخ یا زمان می‌گیرد و از طریق آن تابعی می سازد که با استفاده از ان می‌توان تمام تاریخ ها را به یک فرمت دلخواه در آورد .</p>
+<p>بیشتر برای گزارش گیری کاربرد دارد.</p>
+<hr>
+<div id="پیمایش-15" class="section level3" number="16.25.1">
+<h3>
+<span class="header-section-number">16.25.1</span> پیمایش<a class="anchor" aria-label="anchor" href="#%D9%BE%DB%8C%D9%85%D8%A7%DB%8C%D8%B4-15"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>قبلی: <a href="joins.md">15. ترکیب داده (Join)</a>
+</li>
+<li>فهرست: <a href="../README.md">README</a>
+</li>
+<li>بعدی: <a href="data-table.md">17. data.table و داده‌های حجیم</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html"><span class="header-section-number">15</span> فصل 15 — ترکیب داده (Join)</a></div>
+<div class="next"><a href="%D9%81%D8%B5%D9%84-17-data.table-%D9%88-%D8%AF%D8%A7%D8%AF%D9%87%D9%87%D8%A7%DB%8C-%D8%AD%D8%AC%DB%8C%D9%85.html"><span class="header-section-number">17</span> فصل 17 — data.table و داده‌های حجیم</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86"><span class="header-section-number">16</span> فصل 16 — تاریخ و زمان</a></li>
+<li><a class="nav-link" href="#%D8%AF%D8%B1-%D8%A7%DB%8C%D9%86-%D9%81%D8%B5%D9%84-15"><span class="header-section-number">16.1</span> در این فصل</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86"><span class="header-section-number">16.2</span> تاریخ و زمان</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86-%D8%AF%D8%B1-r"><span class="header-section-number">16.3</span> تاریخ و زمان در R</a></li>
+<li><a class="nav-link" href="#%D9%BE%DA%A9%DB%8C%D8%AC-auytime"><span class="header-section-number">16.4</span> پکیج auytime</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-parse_date_time"><span class="header-section-number">16.5</span> تابع parse_date_time</a></li>
+<li><a class="nav-link" href="#make-dataine-make-datece"><span class="header-section-number">16.6</span> Make-dataine, make-datece</a></li>
+<li><a class="nav-link" href="#%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-lubridate%D8%AF%D8%B1-rownd"><span class="header-section-number">16.7</span> توابع lubridateدر rownd</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-difftime"><span class="header-section-number">16.8</span> تابع difftime</a></li>
+<li><a class="nav-link" href="#%D8%A8%D8%A7%D8%B2%D9%87-%D9%87%D8%A7%DB%8C-%D8%B2%D9%85%D8%A7%D9%86%DB%8C"><span class="header-section-number">16.9</span> بازه های زمانی</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-period"><span class="header-section-number">16.10</span> تابع period</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-duration"><span class="header-section-number">16.11</span> تابع Duration</a></li>
+<li><a class="nav-link" href="#%D8%B4%DA%A9%D9%84-%D9%86%D8%A7%D8%A8%D8%B1%D8%A7%D8%A8%D8%B1%DB%8C-%D9%85%D8%A7%D9%87-%D9%87%D8%A7"><span class="header-section-number">16.12</span> شکل نابرابری ماه ها</a></li>
+<li><a class="nav-link" href="#int-endint-start"><span class="header-section-number">16.13</span> Int-end,int-start</a></li>
+<li><a class="nav-link" href="#int-lenget"><span class="header-section-number">16.14</span> Int-lenget</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-as.period"><span class="header-section-number">16.15</span> تابع as.period</a></li>
+<li><a class="nav-link" href="#%D8%A7%D9%BE%D8%B1%D8%A7%D8%AA%D9%88%D8%B1-within"><span class="header-section-number">16.16</span> اپراتور %within%</a></li>
+<li><a class="nav-link" href="#%D8%AC%D9%85%D8%B9-%D8%A8%D9%86%D8%AF%DB%8C"><span class="header-section-number">16.17</span> جمع بندی</a></li>
+<li><a class="nav-link" href="#%D9%85%D8%AD%D8%AF%D9%88%D8%AF%D9%87%D8%A7%DB%8C-%D8%B2%D9%85%D8%A7%D9%86%DB%8C-time-towe-%D9%85%D9%86%D8%B7%D9%82%D9%87-%D8%B2%D9%85%D8%A7%D9%86%DB%8C"><span class="header-section-number">16.18</span> محدودهای زمانی( time towe ) منطقه زمانی</a></li>
+<li><a class="nav-link" href="#sys.timezone"><span class="header-section-number">16.19</span> Sys.timezone</a></li>
+<li><a class="nav-link" href="#olsonnames"><span class="header-section-number">16.20</span> OlsonNames</a></li>
+<li><a class="nav-link" href="#%D8%AF%D8%B3%D8%AA%DA%A9%D8%A7%D8%B1%DB%8C-timezone"><span class="header-section-number">16.21</span> دستکاری Timezone</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-with_tz"><span class="header-section-number">16.22</span> تابع with_tz</a></li>
+<li><a class="nav-link" href="#%D9%BE%D8%B1%D8%AF%D8%A7%D8%B2%D8%B4-%D8%B3%D8%B1%DB%8C%D8%B9-%D8%B2%D9%85%D8%A7%D9%86-%D9%88-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE"><span class="header-section-number">16.23</span> پردازش سریع زمان و تاریخ</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-fast-strptime"><span class="header-section-number">16.24</span> تابع fast-strptime</a></li>
+<li>
+<a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-stamp"><span class="header-section-number">16.25</span> تابع stamp</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#%D9%BE%DB%8C%D9%85%D8%A7%DB%8C%D8%B4-15"><span class="header-section-number">16.25.1</span> پیمایش</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/alisadeghiaghili/r-book/blob/master/16-datetime.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/alisadeghiaghili/r-book/edit/master/16-datetime.md">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>کتاب R — مقدماتی</strong>: آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS" was written by Ali Sadeghi Aghili. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

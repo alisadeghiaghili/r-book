@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>فصل 7 فصل 7 — توابع و پکیج‌ها | کتاب R — مقدماتی</title>
+<meta name="author" content="Ali Sadeghi Aghili">
+<meta name="description" content="بخش: برنامه‌نویسی ← فصل قبل: 6. ساختارهای کنترلی · فهرست کلی · فصل بعد: 8. Importing: فایل‌های flat →  7.1 در این فصل Function ایجاد function Package خانواده apply lapply sapply  7.2 Function کد:...">
+<meta name="generator" content="bookdown 0.48 with bs4_book()">
+<meta property="og:title" content="فصل 7 فصل 7 — توابع و پکیج‌ها | کتاب R — مقدماتی">
+<meta property="og:type" content="book">
+<meta property="og:description" content="بخش: برنامه‌نویسی ← فصل قبل: 6. ساختارهای کنترلی · فهرست کلی · فصل بعد: 8. Importing: فایل‌های flat →  7.1 در این فصل Function ایجاد function Package خانواده apply lapply sapply  7.2 Function کد:...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="فصل 7 فصل 7 — توابع و پکیج‌ها | کتاب R — مقدماتی">
+<meta name="twitter:description" content="بخش: برنامه‌نویسی ← فصل قبل: 6. ساختارهای کنترلی · فهرست کلی · فصل بعد: 8. Importing: فایل‌های flat →  7.1 در این فصل Function ایجاد function Package خانواده apply lapply sapply  7.2 Function کد:...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script>
+      (function () {
+        var r = document.documentElement;
+        r.setAttribute("dir", "rtl");
+        r.setAttribute("lang", "fa");
+      })();
+    </script><style>
+      /* critical RTL + LTR-code before CSS file loads */
+      html, body { direction: rtl; text-align: right; }
+      pre, code, div.sourceCode,
+      pre *, code *,
+      .ltr-block, .ltr-block pre, .ltr-block code {
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+        text-align: left !important;
+      }
+    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS">کتاب R — مقدماتی</a>:
+        <small class="text-muted">آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">پیشگفتار</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-1-%D9%85%D9%82%D8%AF%D9%85%D9%87.html"><span class="header-section-number">1</span> فصل 1 — مقدمه</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-2-%D8%A2%D8%B4%D9%86%D8%A7%DB%8C%DB%8C-%D8%A8%D8%A7-rstudio.html"><span class="header-section-number">2</span> فصل 2 — آشنایی با RStudio</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-3-%D8%B9%D9%85%D9%84%DB%8C%D8%A7%D8%AA-%D8%B1%DB%8C%D8%A7%D8%B6%DB%8C-%D9%88-%D9%85%D8%AA%D8%BA%DB%8C%D8%B1%D9%87%D8%A7.html"><span class="header-section-number">3</span> فصل 3 — عملیات ریاضی و متغیرها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-4-%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%D9%87%D8%A7-%D9%88-%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3%D9%87%D8%A7.html"><span class="header-section-number">4</span> فصل 4 — بردارها و ماتریس‌ها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-5-%D9%81%D8%A7%DA%A9%D8%AA%D9%88%D8%B1-data.frame-%D9%88-list.html"><span class="header-section-number">5</span> فصل 5 — فاکتور، data.frame و list</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-6-%D8%B3%D8%A7%D8%AE%D8%AA%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%DA%A9%D9%86%D8%AA%D8%B1%D9%84%DB%8C.html"><span class="header-section-number">6</span> فصل 6 — ساختارهای کنترلی</a></li>
+<li><a class="active" href="%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7.html"><span class="header-section-number">7</span> فصل 7 — توابع و پکیج‌ها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-8-importing-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-flat.html"><span class="header-section-number">8</span> فصل 8 — Importing: فایل‌های flat</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-9-excel-%D9%88-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-%D8%AC%D8%AF%D9%88%D9%84%DB%8C.html"><span class="header-section-number">9</span> فصل 9 — Excel و فایل‌های جدولی</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-10-%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%BE%D8%A7%DB%8C%DA%AF%D8%A7%D9%87%D8%AF%D8%A7%D8%AF%D9%87.html"><span class="header-section-number">10</span> فصل 10 — ورود داده از پایگاه‌داده</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-11-%D8%AE%D9%88%D8%A7%D9%86%D8%AF%D9%86-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%88%D8%A8-%D9%88-api.html"><span class="header-section-number">11</span> فصل 11 — خواندن داده از وب و API</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-12-%D8%AF%D8%A7%D8%AF%D9%87-%D8%AA%D9%85%DB%8C%D8%B2-%D9%88-tidyverse.html"><span class="header-section-number">12</span> فصل 12 — دادهٔ تمیز و tidyverse</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html"><span class="header-section-number">13</span> فصل 13 — رشته‌ها و Regular Expression</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-14-%D8%AF%D8%B3%D8%AA%DA%A9%D8%A7%D8%B1%DB%8C-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A8%D8%A7-dplyr.html"><span class="header-section-number">14</span> فصل 14 — دستکاری داده با dplyr</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html"><span class="header-section-number">15</span> فصل 15 — ترکیب داده (Join)</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html"><span class="header-section-number">16</span> فصل 16 — تاریخ و زمان</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-17-data.table-%D9%88-%D8%AF%D8%A7%D8%AF%D9%87%D9%87%D8%A7%DB%8C-%D8%AD%D8%AC%DB%8C%D9%85.html"><span class="header-section-number">17</span> فصل 17 — data.table و داده‌های حجیم</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-18-%D8%AF%D8%A7%D8%AF%D9%87-%D9%BE%D8%B1%D8%AA-%D9%88-%D9%86%D9%85%D9%88%D8%AF%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%D9%BE%D8%A7%DB%8C%D9%87.html"><span class="header-section-number">18</span> فصل 18 — داده پرت و نمودارهای پایه</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-19-%D9%BE%DB%8C%D9%88%D8%B3%D8%AA-%DA%A9%D8%AF%D9%87%D8%A7%DB%8C-%D8%AA%DA%A9%D9%85%DB%8C%D9%84%DB%8C.html"><span class="header-section-number">19</span> فصل 19 — پیوست: کدهای تکمیلی</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/alisadeghiaghili/r-book">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="فصل-7-توابع-و-پکیجها" class="section level1" number="7">
+<h1>
+<span class="header-section-number">فصل 7</span> فصل 7 — توابع و پکیج‌ها<a class="anchor" aria-label="anchor" href="#%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>بخش:</strong> برنامه‌نویسی</p>
+<p><a href="control-flow.md">← فصل قبل: 6. ساختارهای کنترلی</a> · <a href="../README.md">فهرست کلی</a> · <a href="import-flat.md">فصل بعد: 8. Importing: فایل‌های flat →</a></p>
+<div id="در-این-فصل-6" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> در این فصل<a class="anchor" aria-label="anchor" href="#%D8%AF%D8%B1-%D8%A7%DB%8C%D9%86-%D9%81%D8%B5%D9%84-6"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><a href="#Function">Function</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7.html#%D8%A7%DB%8C%D8%AC%D8%A7%D8%AF-function">ایجاد function</a></li>
+<li><a href="#Package">Package</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7.html#%D8%AE%D8%A7%D9%86%D9%88%D8%A7%D8%AF%D9%87-apply">خانواده apply</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7.html#lapply">lapply</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7.html#sapply">sapply</a></li>
+</ul>
+</div>
+<div id="function" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Function<a class="anchor" aria-label="anchor" href="#function"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>کد: تعریف تابع (3-2.Rhistory)</strong></p>
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">triple</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">num</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">num</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">triple</span><span class="op">(</span>num <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span>
+<span><span class="fu">triple</span><span class="op">(</span>num <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">triple</span><span class="op">(</span>num <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span>
+<span><span class="va">result</span></span></code></pre></div>
+<pre class="text"><code>[1] 36
+[1] 30
+[1] 36
+[1] 36</code></pre>
+<p><strong>کد: آرگومان و default (3-2)</strong></p>
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">multiply</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">num1</span>, <span class="va">num2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">num1</span> <span class="op">*</span> <span class="va">num2</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">multiply</span><span class="op">(</span>num1 <span class="op">=</span> <span class="fl">12</span>, num2 <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">multiply</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">num1</span> <span class="op">=</span> <span class="fl">1</span>, <span class="va">num2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">num1</span> <span class="op">*</span> <span class="va">num2</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">multiply</span><span class="op">(</span>num2 <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">sayHello</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="st">"Hello"</span><span class="op">)</span> <span class="op">}</span></span>
+<span><span class="fu">sayHello</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">num2pow</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">num</span>, <span class="va">pow</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">num</span> <span class="op">^</span> <span class="va">pow</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">num2pow</span><span class="op">(</span><span class="fl">12</span><span class="op">)</span></span>
+<span><span class="fu">num2pow</span><span class="op">(</span><span class="fl">12</span>, <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] 48
+[1] 4
+[1] "Hello"
+[1] "2026-09-20"
+[1] 12
+[1] 144
+[1] 144</code></pre>
+<p><strong>کد: توابع پایه و sample (3-2)</strong></p>
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] 3</code></pre>
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] 1.581139</code></pre>
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="op">-</span><span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">1</span>, to <span class="op">=</span> <span class="fl">20</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1]  1  3  5  7  9 11 13 15 17 19</code></pre>
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">20</span>, to <span class="op">=</span> <span class="fl">1</span>, by <span class="op">=</span> <span class="op">-</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] 20 17 14 11  8  5  2</code></pre>
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] 10  9  8  7  6  5  4  3  2  1</code></pre>
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] 9</code></pre>
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">3</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] 9 4 7</code></pre>
+<p><strong>کد: تمرین تابع تاس (الگو)</strong></p>
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dice</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">verbose</span> <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">verbose</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"dice1 ="</span>, <span class="va">a</span>, <span class="st">", dice2 ="</span>, <span class="va">b</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">a</span> <span class="op">+</span> <span class="va">b</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">dice</span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] "dice1 = 1 , dice2 = 5"
+[1] 6
+[1] 6</code></pre>
+<p>تعریف تابع (جعبه سیاه)</p>
+<p>تابع args() در مقابل help</p>
+<p>تابع mean( )</p>
+<p>تابع abs( )</p>
+<p>تابع sum()</p>
+</div>
+<div id="ایجاد-function" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> ایجاد function<a class="anchor" aria-label="anchor" href="#%D8%A7%DB%8C%D8%AC%D8%A7%D8%AF-function"><i class="fas fa-link"></i></a>
+</h2>
+<p>هدف مفهوم black box می‌خواهیم 2 تابع بسازیم که مقادیر رو 3 برابر کنه.</p>
+<p>Return رو می‌شود گذاشت. می‌شود نگذاشت چون آخرین خط function‌ها همیشه return هست.</p>
+<p>می تونیم تابع با هر چند تا Arg که می‌خواهیم بنویسیم.</p>
+<p>تعریف default – e.g قبل و 0=g</p>
+<blockquote>
+<p><strong>تمرین:</strong> یه تابع بنویسید که 3 تا عدد بگیره، قدر مطلقشان رو با هم جمع کنه و نتیجه رو نمایش بده.</p>
+</blockquote>
+<p>تابع بدون Arg – تاسی که از بیرون چیزی نمی خواد. خودش یکسری چیزها رو حساب میکنه و نتیجه رو باز می‌گرداند. مثلاٌ می خواد زمان</p>
+<p>تابع بدون Arg – سیستم رو بگیره نمایش بده یا – eg</p>
+<p>تابع بدون Arg – عدد تصادفی تولید میکنه</p>
+<blockquote>
+<p><strong>تمرین:</strong> یه تابع بنویسید که بدون Arg باشه، 2 تا عدد از 1 تا 6 تولید کنه و با هم جمع کنه و بعد نتیجه رو نمایش بده.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> تابع رو تغییر بدهید که یک Arg بگیره یا پیشفرض false . اگر مقدار tevs بهش داده شد بگه که هر عدد هر تاس چقدر بوده.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> یعنی دو تا بردار داریم از بازدیدهای YouTube aparat می‌خواهیم یه تابع بنویسن که اگر متد و بازدیدها بیشتر از 15 بود یه پیغام بده که video محبو— و مقدار رو برگردونه و در غیر این صورت چاپ کنه نامحبوب و 5 رو برگردونه بعد یه تابع دیگه بنویسید که مقدار نتیجه تابع قبل و به مقدار False,Teus بگیره. اگر Trvs بود مجموع مقادیر بیشتر از 15 روهم نمایش بده و در غیر این صورت نده.</p>
+</blockquote>
+</div>
+<div id="package" class="section level2" number="7.4">
+<h2>
+<span class="header-section-number">7.4</span> Package<a class="anchor" aria-label="anchor" href="#package"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>کد: library / detach / search (3-2)</strong></p>
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html">.libPaths</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] "C:/Users/alisa/AppData/Local/R/win-library/4.6"</code></pre>
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/search.html">search</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>[1] ".GlobalEnv"        "package:stats"     "package:graphics" 
+[4] "package:grDevices" "package:utils"     "package:datasets" 
+[7] "package:methods"   "Autoloads"         "package:base"</code></pre>
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="st">"Package"</span><span class="op">]</span>, <span class="fl">8</span><span class="op">)</span></span></code></pre></div>
+<pre class="text"><code>A3          abc     abc.data        abcrf        abind      acepack 
+        "A3"        "abc"   "abc.data"      "abcrf"      "abind"    "acepack" 
+  AICcmodavg     airports 
+"AICcmodavg"   "airports"</code></pre>
+<p>Package چیه ؟ (همه توابعی که ما به صورت built-in استفاده می‌کنیم عنصری از Package ها متن) .</p>
+<p>بعضی از Package ها به صورت پیش‌فرض نصب می‌شوند به همراه نصب محیط و base هستند.</p>
+<p>پکیج‌ها معمولاٌ از طریق CRAN نصب میشن. ولی برای اینکه بتونیم از Package ها استفاده کنیم باید آن‌ها را load کنیم که برای اینکار از تابع</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7.html#cb213-1" tabindex="-1"></a>وقتی Package‌ها load می‌شوند در واقع به یک لیست قابل جستجویی برای R اضافه میشن. برای اینکه این list رو بتونیم ببینیم. می تونین از تابع <span class="fu">search</span>() استفاده کنید.</span>
+<span id="cb213-2"><a href="%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7.html#cb213-2" tabindex="-1"></a>یک تابع دیگه هم برای load کردن Package ها داریم به نام <span class="fu">require</span>( ) . این تابع یه فرق بزرگ با <span class="fu">library</span>( ) داره اونهم اینکه اگر یک Package نصب شده باشه و از library استفاده کنیم به یک error بر می خوریم که باعث توقف برنامه می‌شود ولی با استفاده از require فقط یک warning می گیرم.</span></code></pre></div>
+</div>
+<div id="خانواده-apply" class="section level2" number="7.5">
+<h2>
+<span class="header-section-number">7.5</span> خانواده apply<a class="anchor" aria-label="anchor" href="#%D8%AE%D8%A7%D9%86%D9%88%D8%A7%D8%AF%D9%87-apply"><i class="fas fa-link"></i></a>
+</h2>
+<p>خیلی وقتها ما می‌خواهیم که یک کار تکراری رو روی یک مجموعه از داده هامون انجام بدیم. اینجاست که خانواده applg خیلی مفید هستن.</p>
+</div>
+<div id="lapply" class="section level2" number="7.6">
+<h2>
+<span class="header-section-number">7.6</span> lapply<a class="anchor" aria-label="anchor" href="#lapply"><i class="fas fa-link"></i></a>
+</h2>
+<p>تابع lapply( ) – eg می‌خواهیم ببینیم هر شهر چند حرفه</p>
+<p>می‌شود func هایی که خودمان نوشته‌ایم هم استفاده کنیم من می تونم زباله هام رو کیلویی 3 هزار تومن بفروشم.</p>
+<p>lapply همیشه list باز می‌گرداند . برای خارج کردنش از فرمت list می‌شود از تابع unlist() استفاده کرد.</p>
+<p>می‌شود از تابع lapply برای func های با چند آرگومان هم استفاده کرد. مثلاٌ تابع قبل رو می‌خواهیم هر دفعه بهش بگیم ضربدر چه عددی بکنه.</p>
+<p>تابع tolower کافیه مقدار باقی آرگومانها رو بلافاصله بعد از تابع ذکر کنیم.</p>
+<blockquote>
+<p><strong>تمرین:</strong> یک بردار از اسامی آدمها و سال تولد شدن داریم. با استفاده از تابع split اسامی شدن رو از تاریخ جدا کنید و با استفاده از تابع tolower( ) اسامی رو به حروف کوچک تبدیل کنید. بعد 2 تا تابع بنویسید به طوری که یکی اسامی رو انتخاب کنه و یکی سالها رو. با استفاده از lapply اونها رو توی 2 تا متغیر بریزید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> مثال قبل رو جوری حل کنید. که تنها با یک func حل بشه (به‌جز …,split,lapply )</p>
+</blockquote>
+</div>
+<div id="sapply" class="section level2" number="7.7">
+<h2>
+<span class="header-section-number">7.7</span> sapply<a class="anchor" aria-label="anchor" href="#sapply"><i class="fas fa-link"></i></a>
+</h2>
+<p>از اونجایی که تابع sapply خیلی مطمئن نیست و ممکن هست که به sapply تبدیل بشه می‌شود از vapply استفاده کرد. که هم مطمئن تره و ما اندازه و نوع خروجی رو توش می‌کنیم و هم گاهی سریع تره.</p>
+<blockquote>
+<p><strong>تمرین:</strong> به مثال قبل تابع median رو هم اضافه کنید و تغییرات رو اعمال نتیجه رو نمایش بدهید.</p>
+</blockquote>
+<p>می‌شود توابع رو به صورت Anonymous هم نوشت</p>
+<p>تابع is.*() چک میکنه فرمت خروجی رو</p>
+<p>تابع as.*() تبدیل میکنه خروجی رو . e.g</p>
+<hr>
+<div id="پیمایش-6" class="section level3" number="7.7.1">
+<h3>
+<span class="header-section-number">7.7.1</span> پیمایش<a class="anchor" aria-label="anchor" href="#%D9%BE%DB%8C%D9%85%D8%A7%DB%8C%D8%B4-6"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>قبلی: <a href="control-flow.md">6. ساختارهای کنترلی</a>
+</li>
+<li>فهرست: <a href="../README.md">README</a>
+</li>
+<li>بعدی: <a href="import-flat.md">8. Importing: فایل‌های flat</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="%D9%81%D8%B5%D9%84-6-%D8%B3%D8%A7%D8%AE%D8%AA%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%DA%A9%D9%86%D8%AA%D8%B1%D9%84%DB%8C.html"><span class="header-section-number">6</span> فصل 6 — ساختارهای کنترلی</a></div>
+<div class="next"><a href="%D9%81%D8%B5%D9%84-8-importing-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-flat.html"><span class="header-section-number">8</span> فصل 8 — Importing: فایل‌های flat</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7"><span class="header-section-number">7</span> فصل 7 — توابع و پکیج‌ها</a></li>
+<li><a class="nav-link" href="#%D8%AF%D8%B1-%D8%A7%DB%8C%D9%86-%D9%81%D8%B5%D9%84-6"><span class="header-section-number">7.1</span> در این فصل</a></li>
+<li><a class="nav-link" href="#function"><span class="header-section-number">7.2</span> Function</a></li>
+<li><a class="nav-link" href="#%D8%A7%DB%8C%D8%AC%D8%A7%D8%AF-function"><span class="header-section-number">7.3</span> ایجاد function</a></li>
+<li><a class="nav-link" href="#package"><span class="header-section-number">7.4</span> Package</a></li>
+<li><a class="nav-link" href="#%D8%AE%D8%A7%D9%86%D9%88%D8%A7%D8%AF%D9%87-apply"><span class="header-section-number">7.5</span> خانواده apply</a></li>
+<li><a class="nav-link" href="#lapply"><span class="header-section-number">7.6</span> lapply</a></li>
+<li>
+<a class="nav-link" href="#sapply"><span class="header-section-number">7.7</span> sapply</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#%D9%BE%DB%8C%D9%85%D8%A7%DB%8C%D8%B4-6"><span class="header-section-number">7.7.1</span> پیمایش</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/alisadeghiaghili/r-book/blob/master/07-functions-packages.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/alisadeghiaghili/r-book/edit/master/07-functions-packages.md">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>کتاب R — مقدماتی</strong>: آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS" was written by Ali Sadeghi Aghili. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

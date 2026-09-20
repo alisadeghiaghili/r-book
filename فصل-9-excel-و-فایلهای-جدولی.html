@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>فصل 9 فصل 9 — Excel و فایل‌های جدولی | کتاب R — مقدماتی</title>
+<meta name="author" content="Ali Sadeghi Aghili">
+<meta name="description" content="بخش: داده‌ها و ورود داده ← فصل قبل: 8. Importing: فایل‌های flat · فهرست کلی · فصل بعد: 10. ورود داده از پایگاه‌داده →  9.1 در این فصل ورود داده های excel Readxl پکیج Excel-sheets( ) پکیج gdata...">
+<meta name="generator" content="bookdown 0.48 with bs4_book()">
+<meta property="og:title" content="فصل 9 فصل 9 — Excel و فایل‌های جدولی | کتاب R — مقدماتی">
+<meta property="og:type" content="book">
+<meta property="og:description" content="بخش: داده‌ها و ورود داده ← فصل قبل: 8. Importing: فایل‌های flat · فهرست کلی · فصل بعد: 10. ورود داده از پایگاه‌داده →  9.1 در این فصل ورود داده های excel Readxl پکیج Excel-sheets( ) پکیج gdata...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="فصل 9 فصل 9 — Excel و فایل‌های جدولی | کتاب R — مقدماتی">
+<meta name="twitter:description" content="بخش: داده‌ها و ورود داده ← فصل قبل: 8. Importing: فایل‌های flat · فهرست کلی · فصل بعد: 10. ورود داده از پایگاه‌داده →  9.1 در این فصل ورود داده های excel Readxl پکیج Excel-sheets( ) پکیج gdata...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script>
+      (function () {
+        var r = document.documentElement;
+        r.setAttribute("dir", "rtl");
+        r.setAttribute("lang", "fa");
+      })();
+    </script><style>
+      /* critical RTL + LTR-code before CSS file loads */
+      html, body { direction: rtl; text-align: right; }
+      pre, code, div.sourceCode,
+      pre *, code *,
+      .ltr-block, .ltr-block pre, .ltr-block code {
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+        text-align: left !important;
+      }
+    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS">کتاب R — مقدماتی</a>:
+        <small class="text-muted">آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">پیشگفتار</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-1-%D9%85%D9%82%D8%AF%D9%85%D9%87.html"><span class="header-section-number">1</span> فصل 1 — مقدمه</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-2-%D8%A2%D8%B4%D9%86%D8%A7%DB%8C%DB%8C-%D8%A8%D8%A7-rstudio.html"><span class="header-section-number">2</span> فصل 2 — آشنایی با RStudio</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-3-%D8%B9%D9%85%D9%84%DB%8C%D8%A7%D8%AA-%D8%B1%DB%8C%D8%A7%D8%B6%DB%8C-%D9%88-%D9%85%D8%AA%D8%BA%DB%8C%D8%B1%D9%87%D8%A7.html"><span class="header-section-number">3</span> فصل 3 — عملیات ریاضی و متغیرها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-4-%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%D9%87%D8%A7-%D9%88-%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3%D9%87%D8%A7.html"><span class="header-section-number">4</span> فصل 4 — بردارها و ماتریس‌ها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-5-%D9%81%D8%A7%DA%A9%D8%AA%D9%88%D8%B1-data.frame-%D9%88-list.html"><span class="header-section-number">5</span> فصل 5 — فاکتور، data.frame و list</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-6-%D8%B3%D8%A7%D8%AE%D8%AA%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%DA%A9%D9%86%D8%AA%D8%B1%D9%84%DB%8C.html"><span class="header-section-number">6</span> فصل 6 — ساختارهای کنترلی</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7.html"><span class="header-section-number">7</span> فصل 7 — توابع و پکیج‌ها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-8-importing-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-flat.html"><span class="header-section-number">8</span> فصل 8 — Importing: فایل‌های flat</a></li>
+<li><a class="active" href="%D9%81%D8%B5%D9%84-9-excel-%D9%88-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-%D8%AC%D8%AF%D9%88%D9%84%DB%8C.html"><span class="header-section-number">9</span> فصل 9 — Excel و فایل‌های جدولی</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-10-%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%BE%D8%A7%DB%8C%DA%AF%D8%A7%D9%87%D8%AF%D8%A7%D8%AF%D9%87.html"><span class="header-section-number">10</span> فصل 10 — ورود داده از پایگاه‌داده</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-11-%D8%AE%D9%88%D8%A7%D9%86%D8%AF%D9%86-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%88%D8%A8-%D9%88-api.html"><span class="header-section-number">11</span> فصل 11 — خواندن داده از وب و API</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-12-%D8%AF%D8%A7%D8%AF%D9%87-%D8%AA%D9%85%DB%8C%D8%B2-%D9%88-tidyverse.html"><span class="header-section-number">12</span> فصل 12 — دادهٔ تمیز و tidyverse</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html"><span class="header-section-number">13</span> فصل 13 — رشته‌ها و Regular Expression</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-14-%D8%AF%D8%B3%D8%AA%DA%A9%D8%A7%D8%B1%DB%8C-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A8%D8%A7-dplyr.html"><span class="header-section-number">14</span> فصل 14 — دستکاری داده با dplyr</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html"><span class="header-section-number">15</span> فصل 15 — ترکیب داده (Join)</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html"><span class="header-section-number">16</span> فصل 16 — تاریخ و زمان</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-17-data.table-%D9%88-%D8%AF%D8%A7%D8%AF%D9%87%D9%87%D8%A7%DB%8C-%D8%AD%D8%AC%DB%8C%D9%85.html"><span class="header-section-number">17</span> فصل 17 — data.table و داده‌های حجیم</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-18-%D8%AF%D8%A7%D8%AF%D9%87-%D9%BE%D8%B1%D8%AA-%D9%88-%D9%86%D9%85%D9%88%D8%AF%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%D9%BE%D8%A7%DB%8C%D9%87.html"><span class="header-section-number">18</span> فصل 18 — داده پرت و نمودارهای پایه</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-19-%D9%BE%DB%8C%D9%88%D8%B3%D8%AA-%DA%A9%D8%AF%D9%87%D8%A7%DB%8C-%D8%AA%DA%A9%D9%85%DB%8C%D9%84%DB%8C.html"><span class="header-section-number">19</span> فصل 19 — پیوست: کدهای تکمیلی</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/alisadeghiaghili/r-book">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="فصل-9-excel-و-فایلهای-جدولی" class="section level1" number="9">
+<h1>
+<span class="header-section-number">فصل 9</span> فصل 9 — Excel و فایل‌های جدولی<a class="anchor" aria-label="anchor" href="#%D9%81%D8%B5%D9%84-9-excel-%D9%88-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-%D8%AC%D8%AF%D9%88%D9%84%DB%8C"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>بخش:</strong> داده‌ها و ورود داده</p>
+<p><a href="import-flat.md">← فصل قبل: 8. Importing: فایل‌های flat</a> · <a href="../README.md">فهرست کلی</a> · <a href="import-db.md">فصل بعد: 10. ورود داده از پایگاه‌داده →</a></p>
+<div id="در-این-فصل-8" class="section level2" number="9.1">
+<h2>
+<span class="header-section-number">9.1</span> در این فصل<a class="anchor" aria-label="anchor" href="#%D8%AF%D8%B1-%D8%A7%DB%8C%D9%86-%D9%81%D8%B5%D9%84-8"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><a href="%D9%81%D8%B5%D9%84-9-excel-%D9%88-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-%D8%AC%D8%AF%D9%88%D9%84%DB%8C.html#%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D9%87%D8%A7%DB%8C-excel">ورود داده های excel</a></li>
+<li><a href="#Readxl-%D9%BE%DA%A9%DB%8C%D8%AC">Readxl پکیج</a></li>
+<li><a href="#Excel-sheets">Excel-sheets( )</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-9-excel-%D9%88-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-%D8%AC%D8%AF%D9%88%D9%84%DB%8C.html#%D9%BE%DA%A9%DB%8C%D8%AC-gdata">پکیج gdata</a></li>
+<li><a href="#%D8%A7%D9%86%D8%AC%D8%A7%D9%85-%DA%A9%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-Excel-%D8%A7%DB%8C-%D8%A7%D8%B2-%D8%AF%D8%A7%D8%AE%D9%84-R">انجام کارهای Excel ای از داخل R</a></li>
+<li><a href="#%D9%BE%DA%A9%DB%8C%D8%AC-Xlconnect">پکیج Xlconnect</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-createSheet">تابع createSheet( )</a></li>
+</ul>
+</div>
+<div id="ورود-داده-های-excel" class="section level2" number="9.2">
+<h2>
+<span class="header-section-number">9.2</span> ورود داده های excel<a class="anchor" aria-label="anchor" href="#%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D9%87%D8%A7%DB%8C-excel"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="readxl-پکیج" class="section level2" number="9.3">
+<h2>
+<span class="header-section-number">9.3</span> Readxl پکیج<a class="anchor" aria-label="anchor" href="#readxl-%D9%BE%DA%A9%DB%8C%D8%AC"><i class="fas fa-link"></i></a>
+</h2>
+<p>برای خوندن داده های Excel استفاده می‌شود و از هر دو پسوند Xlsx, Xls پشتیبانی میکنه و 2 تابع پرکاربرد داره excel-sheets( ) و read- excel</p>
+<p>با استفاده از تابع dir( ) می‌شود فایل های یک دایرکتوری رودید.</p>
+<p>این پکیج بسیار سریع هست.</p>
+</div>
+<div id="excel-sheets" class="section level2" number="9.4">
+<h2>
+<span class="header-section-number">9.4</span> Excel-sheets( )<a class="anchor" aria-label="anchor" href="#excel-sheets"><i class="fas fa-link"></i></a>
+</h2>
+<p>به‌عنوان اولین قدم لازمه بدونیم که فایل excel ما چه صفحاتی داره.</p>
+<blockquote>
+<p><strong>تمرین:</strong> این اطلاعات مربوط به جمعیت شهری کشورهای مختلف توی 3 بازه زمانی متفاوت هست.</p>
+</blockquote>
+<p>این تابع یک آرگومان دیگه هم داره که با استفاده از اسم shet یا شماره اون می‌شود بهش ارجاع داد که اگر excel چند شیت داره کدوم شیت import بشه.</p>
+<p>در صورت مشخص نشدن فقط sheet اول import می‌شود.</p>
+<blockquote>
+<p><strong>تمرین:</strong> سه صفحه excel رو توی 3 تا متغیر ذخیره کنید و بعد اونها رو توی یک list بریزین و ساختارش رو ببینین.</p>
+</blockquote>
+<p>می‌شود از lapply هم استفاده کرد.</p>
+<p>و یکی دیگه از آرگومانهای مهم read-excel ، آرگومان col-names هست.</p>
+<p>به طور پیش‌فرض TRUE هست و به این معنی هستش که ستونهای فایل excel عنوان دارن.</p>
+<p>اگر false بشه یعنی اون عناوین رو نمی‌خواهیم و R خودش اسم برای ما انتخاب میکنه.</p>
+<p>می‌شود هم بهش یک بردار عناوین بدیم تا به ستونها تخصیص بده</p>
+<p>Col-typo</p>
+<blockquote>
+<p><strong>تمرین:</strong> از فایل wbam pap-nonames.xlsx</p>
+</blockquote>
+<p>Sheet اول رو با نام pop-a ذخیره کنید طوری که اسامی رو خود R انتخاب کنه.</p>
+<blockquote>
+<p><strong>تمرین:</strong> قبل را تکرار و نام ستونها رو به ترتیب برابر country ، به ترتیب gear از 1960 تا 1966 بگزارین.</p>
+</blockquote>
+<p>summary هر دو رو بگیرین.</p>
+<p>یک آرگومان skip هم وجود داره که مشخص میکنه چند سطر اولی باید خوانده نشد.</p>
+<p>اگر perl نبود باید نصب بشه و بعد برای</p>
+</div>
+<div id="پکیج-gdata" class="section level2" number="9.5">
+<h2>
+<span class="header-section-number">9.5</span> پکیج gdata<a class="anchor" aria-label="anchor" href="#%D9%BE%DA%A9%DB%8C%D8%AC-gdata"><i class="fas fa-link"></i></a>
+</h2>
+<p>یک مجموعه ابزار برای دستکاری داده هست و بسیار قدرتمنده و همینطور می‌تواند به‌عنوان یک پکیج excel import کلیه استفاده می‌شود . به صورت پیش‌فرض xls و پشتیبانی میکنه.</p>
+<p>مثل readxl دیگه هیچ تابع excel-sheet ای وجود نداره. بلکه میادو فایل exeel رو با استفاده از perl به csv تبدیل میکنه و بعد با استفاده از read.csv( ) اون رو به datafrece تبدیل میکنه.</p>
+<p>بسیار انعطاف پذیره و تمام آرگومانهای read.table( ) براش قابل استفاده ولی از طرفی کند می‌شود اینجوری. با استفاده از تابع read-xls می‌شود داده هارو import کرد.</p>
+<blockquote>
+<p><strong>تمرین:</strong> 70: مثال قبل رو با استفاده از تابع read.xls از پکیج gdata و داده های urbanpop چک کنید.</p>
+</blockquote>
+<blockquote>
+<p><strong>تمرین:</strong> 71: شیت های wbanpop.xls رو بخونین و توی 3 تا متغیر ذخیره کنید. بعد هر 3 شیت و با هم ادغام کنید و توجه کنید که ستون اولی تکرار نشه. بعد با استفاده از تابع na.omit( ) داده های na دار رو از داده هاتون حذف کنید. و نتیجه summy رو نمایش بدهید.</p>
+</blockquote>
+</div>
+<div id="انجام-کارهای-excel-ای-از-داخل-r" class="section level2" number="9.6">
+<h2>
+<span class="header-section-number">9.6</span> انجام کارهای Excel ای از داخل R<a class="anchor" aria-label="anchor" href="#%D8%A7%D9%86%D8%AC%D8%A7%D9%85-%DA%A9%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-excel-%D8%A7%DB%8C-%D8%A7%D8%B2-%D8%AF%D8%A7%D8%AE%D9%84-r"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="پکیج-xlconnect" class="section level2" number="9.7">
+<h2>
+<span class="header-section-number">9.7</span> پکیج Xlconnect<a class="anchor" aria-label="anchor" href="#%D9%BE%DA%A9%DB%8C%D8%AC-xlconnect"><i class="fas fa-link"></i></a>
+</h2>
+<p>خیلی از کارهای پکیج‌های قبل رو می‌شود باهاش کرد علاوه بر اینکه از این طریق می‌شود با excel تعامل کرد.</p>
+<p>برای کارکردن با این پکیج اولین قدم local کردن فایل excel در R از طریق تابع load workbook( هست. در واقع این تابع اتصال بین R و excel رو برقرار می کنه.</p>
+<p>برای بدست آوردن نام sheet ها می‌توان از تابع getSheets() استفاده نمود.</p>
+<p>بعد از این مرحله برای خواندن اطلاعات sheet می‌توان از تابع readWorksheet() استفاده نمود.</p>
+<blockquote>
+<p><strong>تمرین:</strong> کل داده های urbanpop.xlsx رو با استفاده از پکیج XLConnect بخونین.</p>
+</blockquote>
+<p>برای محدود کردن اطلاعات در تابع readWorksheet می‌توان از آرگومانهای startCol، endCol ، startRow و endRow استفاده کرد.</p>
+<p>می‌خواهم ستونهای 3 تا 5 از sheet دوم فایل urbanpop.xlsx رو load کنم.</p>
+<p>یا فقط ستون کشورها رو از sheet دوم load کنم.</p>
+</div>
+<div id="تابع-createsheet" class="section level2" number="9.8">
+<h2>
+<span class="header-section-number">9.8</span> تابع createSheet( )<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-createsheet"><i class="fas fa-link"></i></a>
+</h2>
+<p>همین طور با این پکیج از داخل R می‌شود صفحه به sheet excel اضافه کرد. با استفاده از تابع createSheet( ) .</p>
+<p>با استفاده از تابع write worksheet( ) می‌شود داخل sheet ها داده وارد کرد.</p>
+<p>با استفاده از تابع saveWorkbook هم می‌شود نتیجه رو ذخیره کرد.</p>
+<p>با استفاده از تابع renameSheet() می‌شود sheet ها رو rename کرد.</p>
+<p>نهایتا با استفاده از تابع removeSheet() می‌شود sheet ها رو حذف کرد.</p>
+<hr>
+<div id="پیمایش-8" class="section level3" number="9.8.1">
+<h3>
+<span class="header-section-number">9.8.1</span> پیمایش<a class="anchor" aria-label="anchor" href="#%D9%BE%DB%8C%D9%85%D8%A7%DB%8C%D8%B4-8"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>قبلی: <a href="import-flat.md">8. Importing: فایل‌های flat</a>
+</li>
+<li>فهرست: <a href="../README.md">README</a>
+</li>
+<li>بعدی: <a href="import-db.md">10. ورود داده از پایگاه‌داده</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="%D9%81%D8%B5%D9%84-8-importing-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-flat.html"><span class="header-section-number">8</span> فصل 8 — Importing: فایل‌های flat</a></div>
+<div class="next"><a href="%D9%81%D8%B5%D9%84-10-%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%BE%D8%A7%DB%8C%DA%AF%D8%A7%D9%87%D8%AF%D8%A7%D8%AF%D9%87.html"><span class="header-section-number">10</span> فصل 10 — ورود داده از پایگاه‌داده</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D9%81%D8%B5%D9%84-9-excel-%D9%88-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-%D8%AC%D8%AF%D9%88%D9%84%DB%8C"><span class="header-section-number">9</span> فصل 9 — Excel و فایل‌های جدولی</a></li>
+<li><a class="nav-link" href="#%D8%AF%D8%B1-%D8%A7%DB%8C%D9%86-%D9%81%D8%B5%D9%84-8"><span class="header-section-number">9.1</span> در این فصل</a></li>
+<li><a class="nav-link" href="#%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D9%87%D8%A7%DB%8C-excel"><span class="header-section-number">9.2</span> ورود داده های excel</a></li>
+<li><a class="nav-link" href="#readxl-%D9%BE%DA%A9%DB%8C%D8%AC"><span class="header-section-number">9.3</span> Readxl پکیج</a></li>
+<li><a class="nav-link" href="#excel-sheets"><span class="header-section-number">9.4</span> Excel-sheets( )</a></li>
+<li><a class="nav-link" href="#%D9%BE%DA%A9%DB%8C%D8%AC-gdata"><span class="header-section-number">9.5</span> پکیج gdata</a></li>
+<li><a class="nav-link" href="#%D8%A7%D9%86%D8%AC%D8%A7%D9%85-%DA%A9%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-excel-%D8%A7%DB%8C-%D8%A7%D8%B2-%D8%AF%D8%A7%D8%AE%D9%84-r"><span class="header-section-number">9.6</span> انجام کارهای Excel ای از داخل R</a></li>
+<li><a class="nav-link" href="#%D9%BE%DA%A9%DB%8C%D8%AC-xlconnect"><span class="header-section-number">9.7</span> پکیج Xlconnect</a></li>
+<li>
+<a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-createsheet"><span class="header-section-number">9.8</span> تابع createSheet( )</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#%D9%BE%DB%8C%D9%85%D8%A7%DB%8C%D8%B4-8"><span class="header-section-number">9.8.1</span> پیمایش</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/alisadeghiaghili/r-book/blob/master/09-import-excel.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/alisadeghiaghili/r-book/edit/master/09-import-excel.md">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>کتاب R — مقدماتی</strong>: آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS" was written by Ali Sadeghi Aghili. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

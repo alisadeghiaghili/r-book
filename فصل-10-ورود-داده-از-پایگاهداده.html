@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>فصل 10 فصل 10 — ورود داده از پایگاه‌داده | کتاب R — مقدماتی</title>
+<meta name="author" content="Ali Sadeghi Aghili">
+<meta name="description" content="بخش: داده‌ها و ورود داده ← فصل قبل: 9. Excel و فایل‌های جدولی · فهرست کلی · فصل بعد: 11. خواندن داده از وب و API →  10.1 در این فصل ورود داده از DB تابع db connect ورود داده از DB ها پکیچ DBI پکیج...">
+<meta name="generator" content="bookdown 0.48 with bs4_book()">
+<meta property="og:title" content="فصل 10 فصل 10 — ورود داده از پایگاه‌داده | کتاب R — مقدماتی">
+<meta property="og:type" content="book">
+<meta property="og:description" content="بخش: داده‌ها و ورود داده ← فصل قبل: 9. Excel و فایل‌های جدولی · فهرست کلی · فصل بعد: 11. خواندن داده از وب و API →  10.1 در این فصل ورود داده از DB تابع db connect ورود داده از DB ها پکیچ DBI پکیج...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="فصل 10 فصل 10 — ورود داده از پایگاه‌داده | کتاب R — مقدماتی">
+<meta name="twitter:description" content="بخش: داده‌ها و ورود داده ← فصل قبل: 9. Excel و فایل‌های جدولی · فهرست کلی · فصل بعد: 11. خواندن داده از وب و API →  10.1 در این فصل ورود داده از DB تابع db connect ورود داده از DB ها پکیچ DBI پکیج...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script>
+      (function () {
+        var r = document.documentElement;
+        r.setAttribute("dir", "rtl");
+        r.setAttribute("lang", "fa");
+      })();
+    </script><style>
+      /* critical RTL + LTR-code before CSS file loads */
+      html, body { direction: rtl; text-align: right; }
+      pre, code, div.sourceCode,
+      pre *, code *,
+      .ltr-block, .ltr-block pre, .ltr-block code {
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+        text-align: left !important;
+      }
+    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS">کتاب R — مقدماتی</a>:
+        <small class="text-muted">آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">پیشگفتار</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-1-%D9%85%D9%82%D8%AF%D9%85%D9%87.html"><span class="header-section-number">1</span> فصل 1 — مقدمه</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-2-%D8%A2%D8%B4%D9%86%D8%A7%DB%8C%DB%8C-%D8%A8%D8%A7-rstudio.html"><span class="header-section-number">2</span> فصل 2 — آشنایی با RStudio</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-3-%D8%B9%D9%85%D9%84%DB%8C%D8%A7%D8%AA-%D8%B1%DB%8C%D8%A7%D8%B6%DB%8C-%D9%88-%D9%85%D8%AA%D8%BA%DB%8C%D8%B1%D9%87%D8%A7.html"><span class="header-section-number">3</span> فصل 3 — عملیات ریاضی و متغیرها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-4-%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%D9%87%D8%A7-%D9%88-%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3%D9%87%D8%A7.html"><span class="header-section-number">4</span> فصل 4 — بردارها و ماتریس‌ها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-5-%D9%81%D8%A7%DA%A9%D8%AA%D9%88%D8%B1-data.frame-%D9%88-list.html"><span class="header-section-number">5</span> فصل 5 — فاکتور، data.frame و list</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-6-%D8%B3%D8%A7%D8%AE%D8%AA%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%DA%A9%D9%86%D8%AA%D8%B1%D9%84%DB%8C.html"><span class="header-section-number">6</span> فصل 6 — ساختارهای کنترلی</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-7-%D8%AA%D9%88%D8%A7%D8%A8%D8%B9-%D9%88-%D9%BE%DA%A9%DB%8C%D8%AC%D9%87%D8%A7.html"><span class="header-section-number">7</span> فصل 7 — توابع و پکیج‌ها</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-8-importing-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-flat.html"><span class="header-section-number">8</span> فصل 8 — Importing: فایل‌های flat</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-9-excel-%D9%88-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-%D8%AC%D8%AF%D9%88%D9%84%DB%8C.html"><span class="header-section-number">9</span> فصل 9 — Excel و فایل‌های جدولی</a></li>
+<li><a class="active" href="%D9%81%D8%B5%D9%84-10-%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%BE%D8%A7%DB%8C%DA%AF%D8%A7%D9%87%D8%AF%D8%A7%D8%AF%D9%87.html"><span class="header-section-number">10</span> فصل 10 — ورود داده از پایگاه‌داده</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-11-%D8%AE%D9%88%D8%A7%D9%86%D8%AF%D9%86-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%88%D8%A8-%D9%88-api.html"><span class="header-section-number">11</span> فصل 11 — خواندن داده از وب و API</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-12-%D8%AF%D8%A7%D8%AF%D9%87-%D8%AA%D9%85%DB%8C%D8%B2-%D9%88-tidyverse.html"><span class="header-section-number">12</span> فصل 12 — دادهٔ تمیز و tidyverse</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-13-%D8%B1%D8%B4%D8%AA%D9%87%D9%87%D8%A7-%D9%88-regular-expression.html"><span class="header-section-number">13</span> فصل 13 — رشته‌ها و Regular Expression</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-14-%D8%AF%D8%B3%D8%AA%DA%A9%D8%A7%D8%B1%DB%8C-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A8%D8%A7-dplyr.html"><span class="header-section-number">14</span> فصل 14 — دستکاری داده با dplyr</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-15-%D8%AA%D8%B1%DA%A9%DB%8C%D8%A8-%D8%AF%D8%A7%D8%AF%D9%87-join.html"><span class="header-section-number">15</span> فصل 15 — ترکیب داده (Join)</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-16-%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D9%88-%D8%B2%D9%85%D8%A7%D9%86.html"><span class="header-section-number">16</span> فصل 16 — تاریخ و زمان</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-17-data.table-%D9%88-%D8%AF%D8%A7%D8%AF%D9%87%D9%87%D8%A7%DB%8C-%D8%AD%D8%AC%DB%8C%D9%85.html"><span class="header-section-number">17</span> فصل 17 — data.table و داده‌های حجیم</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-18-%D8%AF%D8%A7%D8%AF%D9%87-%D9%BE%D8%B1%D8%AA-%D9%88-%D9%86%D9%85%D9%88%D8%AF%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%D9%BE%D8%A7%DB%8C%D9%87.html"><span class="header-section-number">18</span> فصل 18 — داده پرت و نمودارهای پایه</a></li>
+<li><a class="" href="%D9%81%D8%B5%D9%84-19-%D9%BE%DB%8C%D9%88%D8%B3%D8%AA-%DA%A9%D8%AF%D9%87%D8%A7%DB%8C-%D8%AA%DA%A9%D9%85%DB%8C%D9%84%DB%8C.html"><span class="header-section-number">19</span> فصل 19 — پیوست: کدهای تکمیلی</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/alisadeghiaghili/r-book">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="فصل-10-ورود-داده-از-پایگاهداده" class="section level1" number="10">
+<h1>
+<span class="header-section-number">فصل 10</span> فصل 10 — ورود داده از پایگاه‌داده<a class="anchor" aria-label="anchor" href="#%D9%81%D8%B5%D9%84-10-%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%BE%D8%A7%DB%8C%DA%AF%D8%A7%D9%87%D8%AF%D8%A7%D8%AF%D9%87"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>بخش:</strong> داده‌ها و ورود داده</p>
+<p><a href="import-excel.md">← فصل قبل: 9. Excel و فایل‌های جدولی</a> · <a href="../README.md">فهرست کلی</a> · <a href="import-web.md">فصل بعد: 11. خواندن داده از وب و API →</a></p>
+<div id="در-این-فصل-9" class="section level2" number="10.1">
+<h2>
+<span class="header-section-number">10.1</span> در این فصل<a class="anchor" aria-label="anchor" href="#%D8%AF%D8%B1-%D8%A7%DB%8C%D9%86-%D9%81%D8%B5%D9%84-9"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><a href="#%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-DB">ورود داده از DB</a></li>
+<li><a href="%D9%81%D8%B5%D9%84-10-%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%BE%D8%A7%DB%8C%DA%AF%D8%A7%D9%87%D8%AF%D8%A7%D8%AF%D9%87.html#%D8%AA%D8%A7%D8%A8%D8%B9-db-connect">تابع db connect</a></li>
+<li><a href="#%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-DB-%D9%87%D8%A7">ورود داده از DB ها</a></li>
+<li><a href="#%D9%BE%DA%A9%DB%8C%DA%86-DBI">پکیچ DBI</a></li>
+<li><a href="#%D9%BE%DA%A9%DB%8C%D8%AC-Rsqlserver">پکیج Rsqlserver</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbListTables">تابع dbListTables</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbListFields">تابع dbListFields</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbReadTable">تابع dbReadTable</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbSendQuery">تابع dbSendQuery</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbFetch">تابع dbFetch</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbClearResult">تابع dbClearResult</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbDisconnect">تابع dbDisconnect</a></li>
+<li><a href="#%D9%BE%DA%A9%DB%8C%D8%AC-RODBC">پکیج RODBC</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlQuery">تابع sqlQuery</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlSave">تابع sqlSave</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlFetch">تابع sqlFetch</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlCopy">تابع sqlCopy</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlDrop">تابع sqlDrop</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlClear">تابع sqlClear</a></li>
+<li><a href="#%D8%AA%D8%A7%D8%A8%D8%B9-odbcClose">تابع odbcClose</a></li>
+</ul>
+</div>
+<div id="ورود-داده-از-db" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> ورود داده از DB<a class="anchor" aria-label="anchor" href="#%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-db"><i class="fas fa-link"></i></a>
+</h2>
+<p>برای خواندن داده از DB های مختلف پکیج‌های مختلفی وجود داره مثل RODBC، RMYSQL، DOSTGEESQL، RORACLE، RSQLSEAVEN، … در کنار تمام اینها یک پکیجی نصب می‌شود به نام DBI</p>
+</div>
+<div id="تابع-db-connect" class="section level2" number="10.3">
+<h2>
+<span class="header-section-number">10.3</span> تابع db connect<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-db-connect"><i class="fas fa-link"></i></a>
+</h2>
+<p>تابع dbconnect از پکیج DBI مواردی که در بالا شرح داده شد رو به همراه هر اطلاعات دیگه ای که مورد نیاز هست جمع آوری می کنه.</p>
+</div>
+<div id="ورود-داده-از-db-ها" class="section level2" number="10.4">
+<h2>
+<span class="header-section-number">10.4</span> ورود داده از DB ها<a class="anchor" aria-label="anchor" href="#%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-db-%D9%87%D8%A7"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>برای خواندن داده از DB ها در R پکیج‌های مختلفی وجود داره</li>
+</ul>
+</div>
+<div id="پکیچ-dbi" class="section level2" number="10.5">
+<h2>
+<span class="header-section-number">10.5</span> پکیچ DBI<a class="anchor" aria-label="anchor" href="#%D9%BE%DA%A9%DB%8C%DA%86-dbi"><i class="fas fa-link"></i></a>
+</h2>
+<p>در کنار تمام پکیجهای بالای بایت پکیج دیگری نصب بشه که با استفاده از اون driver ما مشخص بشه که اینکار با استفاده از پکیج DBI اتفاق می افته علاوه بر این اطلاعات دسترسی هم از این طریق با R ارسال می‌شود.</p>
+</div>
+<div id="پکیج-rsqlserver" class="section level2" number="10.6">
+<h2>
+<span class="header-section-number">10.6</span> پکیج Rsqlserver<a class="anchor" aria-label="anchor" href="#%D9%BE%DA%A9%DB%8C%D8%AC-rsqlserver"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="تابع-dblisttables" class="section level2" number="10.7">
+<h2>
+<span class="header-section-number">10.7</span> تابع dbListTables<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dblisttables"><i class="fas fa-link"></i></a>
+</h2>
+<p>این تابع نام تمام table های db را به ما می‌دهد.</p>
+</div>
+<div id="تابع-dblistfields" class="section level2" number="10.8">
+<h2>
+<span class="header-section-number">10.8</span> تابع dbListFields<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dblistfields"><i class="fas fa-link"></i></a>
+</h2>
+<p>این تابع نام تمام ستونها را بر می گرداند.</p>
+<p>اگر دسترسی به db یا table ها به دلیل schema ها وجود نداشته باشه پیغام عدم وجود شی مورد نظر بر می گردد.</p>
+</div>
+<div id="تابع-dbreadtable" class="section level2" number="10.9">
+<h2>
+<span class="header-section-number">10.9</span> تابع dbReadTable<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbreadtable"><i class="fas fa-link"></i></a>
+</h2>
+<p>کل یک table را در یک DF ، load می‌کند.</p>
+</div>
+<div id="تابع-dbsendquery" class="section level2" number="10.10">
+<h2>
+<span class="header-section-number">10.10</span> تابع dbSendQuery<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbsendquery"><i class="fas fa-link"></i></a>
+</h2>
+<p>یک Querg را بر روی سرور اجرا می‌کند و نتیجه آنرا آماده ارسال می نماید.</p>
+</div>
+<div id="تابع-dbfetch" class="section level2" number="10.11">
+<h2>
+<span class="header-section-number">10.11</span> تابع dbFetch<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbfetch"><i class="fas fa-link"></i></a>
+</h2>
+<p>نتیجه dbSendQuery را می خواند</p>
+</div>
+<div id="تابع-dbclearresult" class="section level2" number="10.12">
+<h2>
+<span class="header-section-number">10.12</span> تابع dbClearResult<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbclearresult"><i class="fas fa-link"></i></a>
+</h2>
+<p>تمام منابع تخصیص یافته در مبدا و مقصد را آزاد می‌کند.</p>
+</div>
+<div id="تابع-dbdisconnect" class="section level2" number="10.13">
+<h2>
+<span class="header-section-number">10.13</span> تابع dbDisconnect<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbdisconnect"><i class="fas fa-link"></i></a>
+</h2>
+<p>Cemnection را terminate و منابع را آزادی می‌کند.</p>
+<blockquote>
+<p><strong>تمرین:</strong> نتایج dbfetch را در یک data.frame ذخیره کنید به طوری که داده های جدید به data.frame اضافه شدند.</p>
+</blockquote>
+</div>
+<div id="پکیج-rodbc" class="section level2" number="10.14">
+<h2>
+<span class="header-section-number">10.14</span> پکیج RODBC<a class="anchor" aria-label="anchor" href="#%D9%BE%DA%A9%DB%8C%D8%AC-rodbc"><i class="fas fa-link"></i></a>
+</h2>
+<p>راه دیگری برای خواندن داده از DB است. برای ساختن این package قبل از نوشتن connection می‌بایست connection ایجاد شود.</p>
+</div>
+<div id="تابع-sqlquery" class="section level2" number="10.15">
+<h2>
+<span class="header-section-number">10.15</span> تابع sqlQuery<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlquery"><i class="fas fa-link"></i></a>
+</h2>
+<p>با استفاده از این تابع می‌توان به Query, SQL ارسال کرد و نتیجه به صورت DF بر می گردد.</p>
+</div>
+<div id="تابع-sqlsave" class="section level2" number="10.16">
+<h2>
+<span class="header-section-number">10.16</span> تابع sqlSave<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlsave"><i class="fas fa-link"></i></a>
+</h2>
+<p>یک data frae رو توی DB مشخص شده ذخیره می‌کند.</p>
+</div>
+<div id="تابع-sqlfetch" class="section level2" number="10.17">
+<h2>
+<span class="header-section-number">10.17</span> تابع sqlFetch<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlfetch"><i class="fas fa-link"></i></a>
+</h2>
+<p>بخش یا کل یک table رو می خونه و توی یک DF ذخیره می‌کند.</p>
+</div>
+<div id="تابع-sqlcopy" class="section level2" number="10.18">
+<h2>
+<span class="header-section-number">10.18</span> تابع sqlCopy<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlcopy"><i class="fas fa-link"></i></a>
+</h2>
+<p>برای ذخیره کردن نتایج در یک DB یا table دیگر استفاده می‌شود.</p>
+</div>
+<div id="تابع-sqldrop" class="section level2" number="10.19">
+<h2>
+<span class="header-section-number">10.19</span> تابع sqlDrop<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqldrop"><i class="fas fa-link"></i></a>
+</h2>
+<p>یک table را حذف می‌کند.</p>
+</div>
+<div id="تابع-sqlclear" class="section level2" number="10.20">
+<h2>
+<span class="header-section-number">10.20</span> تابع sqlClear<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlclear"><i class="fas fa-link"></i></a>
+</h2>
+<p>تمام سطرهای یک table را حذف می‌کند.</p>
+</div>
+<div id="تابع-odbcclose" class="section level2" number="10.21">
+<h2>
+<span class="header-section-number">10.21</span> تابع odbcClose<a class="anchor" aria-label="anchor" href="#%D8%AA%D8%A7%D8%A8%D8%B9-odbcclose"><i class="fas fa-link"></i></a>
+</h2>
+<p>کانکشن را termindtc و منابع را آزاد می‌کند.</p>
+<p>برای امنیت بیشتر با نصب پکیج rstudioapi و خواندن تابع askForPassword می‌توان در لحظه اجرا pass را از کاربر گرفت.</p>
+<hr>
+<div id="پیمایش-9" class="section level3" number="10.21.1">
+<h3>
+<span class="header-section-number">10.21.1</span> پیمایش<a class="anchor" aria-label="anchor" href="#%D9%BE%DB%8C%D9%85%D8%A7%DB%8C%D8%B4-9"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>قبلی: <a href="import-excel.md">9. Excel و فایل‌های جدولی</a>
+</li>
+<li>فهرست: <a href="../README.md">README</a>
+</li>
+<li>بعدی: <a href="import-web.md">11. خواندن داده از وب و API</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="%D9%81%D8%B5%D9%84-9-excel-%D9%88-%D9%81%D8%A7%DB%8C%D9%84%D9%87%D8%A7%DB%8C-%D8%AC%D8%AF%D9%88%D9%84%DB%8C.html"><span class="header-section-number">9</span> فصل 9 — Excel و فایل‌های جدولی</a></div>
+<div class="next"><a href="%D9%81%D8%B5%D9%84-11-%D8%AE%D9%88%D8%A7%D9%86%D8%AF%D9%86-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%88%D8%A8-%D9%88-api.html"><span class="header-section-number">11</span> فصل 11 — خواندن داده از وب و API</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D9%81%D8%B5%D9%84-10-%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%BE%D8%A7%DB%8C%DA%AF%D8%A7%D9%87%D8%AF%D8%A7%D8%AF%D9%87"><span class="header-section-number">10</span> فصل 10 — ورود داده از پایگاه‌داده</a></li>
+<li><a class="nav-link" href="#%D8%AF%D8%B1-%D8%A7%DB%8C%D9%86-%D9%81%D8%B5%D9%84-9"><span class="header-section-number">10.1</span> در این فصل</a></li>
+<li><a class="nav-link" href="#%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-db"><span class="header-section-number">10.2</span> ورود داده از DB</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-db-connect"><span class="header-section-number">10.3</span> تابع db connect</a></li>
+<li><a class="nav-link" href="#%D9%88%D8%B1%D9%88%D8%AF-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-db-%D9%87%D8%A7"><span class="header-section-number">10.4</span> ورود داده از DB ها</a></li>
+<li><a class="nav-link" href="#%D9%BE%DA%A9%DB%8C%DA%86-dbi"><span class="header-section-number">10.5</span> پکیچ DBI</a></li>
+<li><a class="nav-link" href="#%D9%BE%DA%A9%DB%8C%D8%AC-rsqlserver"><span class="header-section-number">10.6</span> پکیج Rsqlserver</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dblisttables"><span class="header-section-number">10.7</span> تابع dbListTables</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dblistfields"><span class="header-section-number">10.8</span> تابع dbListFields</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbreadtable"><span class="header-section-number">10.9</span> تابع dbReadTable</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbsendquery"><span class="header-section-number">10.10</span> تابع dbSendQuery</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbfetch"><span class="header-section-number">10.11</span> تابع dbFetch</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbclearresult"><span class="header-section-number">10.12</span> تابع dbClearResult</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-dbdisconnect"><span class="header-section-number">10.13</span> تابع dbDisconnect</a></li>
+<li><a class="nav-link" href="#%D9%BE%DA%A9%DB%8C%D8%AC-rodbc"><span class="header-section-number">10.14</span> پکیج RODBC</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlquery"><span class="header-section-number">10.15</span> تابع sqlQuery</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlsave"><span class="header-section-number">10.16</span> تابع sqlSave</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlfetch"><span class="header-section-number">10.17</span> تابع sqlFetch</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlcopy"><span class="header-section-number">10.18</span> تابع sqlCopy</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqldrop"><span class="header-section-number">10.19</span> تابع sqlDrop</a></li>
+<li><a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-sqlclear"><span class="header-section-number">10.20</span> تابع sqlClear</a></li>
+<li>
+<a class="nav-link" href="#%D8%AA%D8%A7%D8%A8%D8%B9-odbcclose"><span class="header-section-number">10.21</span> تابع odbcClose</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#%D9%BE%DB%8C%D9%85%D8%A7%DB%8C%D8%B4-9"><span class="header-section-number">10.21.1</span> پیمایش</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/alisadeghiaghili/r-book/blob/master/10-import-db.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/alisadeghiaghili/r-book/edit/master/10-import-db.md">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>کتاب R — مقدماتی</strong>: آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS" was written by Ali Sadeghi Aghili. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
