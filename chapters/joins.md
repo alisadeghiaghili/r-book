@@ -54,13 +54,19 @@ dir: rtl
 
 یک متغیر از یک مجموعه داده دیگه رو به مجموعه داده فعلی اضافه می‌کند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 inner_join(x, y, by = NULL, copy = FALSE, suffix = c(".x", ".y"), ...)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 left_join(x, y, by = NULL, copy = FALSE, suffix = c(".x", ".y"), ...)
 ```
+</div>
+
 
 right_join(x, y, by = NULL, copy = FALSE, suffix = c(".x", ".y"), ...)
 
@@ -70,12 +76,15 @@ full_join(x, y, by = NULL, copy = FALSE, suffix = c(".x", ".y"), ...)
 
 به‌عنوان مثال می‌خواهیم داده های bands و artists را به هم متصل نماییم.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bands <- readRDS("C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/bands.rds")
 > artists <- readRDS("C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/artists.rds")
 > bands
 # A tibblele: 13 x 3
 ```
+</div>
+
 
 first last band
 
@@ -107,10 +116,13 @@ first last band
 
 13 Ronnie Wood The Rolling Stones
 
+<div dir="ltr" class="ltr-block">
 ```r
 > artists
 # A tibblele: 16 x 3
 ```
+</div>
+
 
 first last instrument
 
@@ -150,17 +162,23 @@ first last instrument
 
 همانطور که ملاحظه می‌شود در این جداول ستون های first و last یکسان هستند. بنابرین نیازی به مشخص کردن ستون ها برای اتصال نیست و در زمان اجرا خود R هم به ما پیغامی مبنی بر انتخاب این ستون ها به منظور اتصال می‌دهد.
 
+<div dir="ltr" class="ltr-block">
 ```r
 < left_join(x = bands, y = artists)
 Joining, by = c("first", "last")
 # A tibblele: 13 x 4
 ```
+</div>
+
 
 first last band instrument
 
+<div dir="ltr" class="ltr-block">
 ```r
 > chr> <chr> <chr> <chr>
 ```
+</div>
+
 
 1 John Bonham Led Zeppelin NA
 
@@ -190,10 +208,13 @@ first last band instrument
 
 همچنین برای اطمینان می شد که ستون های اتصال را مشخص نمود.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > left_join(x = bands, y = artists, by = c("first", "last"))
 # A tibblele: 13 x 4
 ```
+</div>
+
 
 first last band instrument
 
@@ -227,10 +248,13 @@ first last band instrument
 
 در صورت نا هم نام بودن نیست می‌بایست ستون ها به صورت زیر نوشته می شدند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > left_join(x = bands, y = artists, by = c("first" = "first", "last" = "last"))
 # A tibblele: 13 x 4
 ```
+</div>
+
 
 first last band instrument
 
@@ -268,6 +292,7 @@ first last band instrument
 
 نام دو مجموعه داده را می‌گیرد و یک logical بر می گردادند که آیا مقادیر این دو مجموعه برابراند یا خیر. و در صورت برابر نبودن دلیل نابرابر نبودن دلیل نا برابری هم می‌گوید
 
+<div dir="ltr" class="ltr-block">
 ```r
 > set1 <- left_join(x = bands, y = artists)
 Joining, by = c("first", "last")
@@ -275,11 +300,14 @@ Joining, by = c("first", "last")
 Joining, by = c("first", "last")
 > setequal(x = set1, y = set2)
 ```
+</div>
+
 
 FALSE: Different number of rows
 
 > **تمرین:** join ها رو برای دیتاست های albums, stage songs انجام بدهید و بعد با setequal مقایسشون کنید.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > albums <- readRDS("C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/albums.rds")
 > stage_songs <- readRDS("C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/stage_songs.rds")
@@ -289,16 +317,21 @@ Joining, by = "year"
 Joining, by = "year"
 > setequal(x = set1, set2)
 ```
+</div>
+
 
 FALSE: Different number of rows
 
 > **تمرین:** با استفاده از پایپ (% < %) دیتاست bands را به‌عنوان دیتاست مرجع در نظر بگیرید (left join ) و با دیتاست artists ، join کنید و بعد اسم، فامیل و گروه گیتاریست ها رو نمایش بدید.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bands %>% left_join(y = artists) %>% filter(instrument == "Guitar") %>% select(first, last, band)
 Joining, by = c("first", "last")
 # A tibblele: 5 x 3
 ```
+</div>
+
 
 first last band
 
@@ -316,11 +349,14 @@ first last band
 
 > **تمرین:** منزل: با استفاده از join ها و دیتاستهای artists,songs,bands ، دیتاستی مانند goal بسازید.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > goal <- readRDS("C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/goal.rds")
 > goal
 # A tibblele: 3 x 6
 ```
+</div>
+
 
 first last instrument band song album
 
@@ -332,11 +368,14 @@ first last instrument band song album
 
 3 Paul McCartney Bass The Beatles Hello, Goodbye Magical Mystery Tour
 
+<div dir="ltr" class="ltr-block">
 ```r
 > songs <- readRDS("C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/songs.rds")
 > songs
 # A tibblele: 4 x 4
 ```
+</div>
+
 
 song album first last
 
@@ -350,10 +389,13 @@ song album first last
 
 4 It's Not Unusual Along Came Jones Tom Jones
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bands
 # A tibblele: 13 x 3
 ```
+</div>
+
 
 first last band
 
@@ -385,10 +427,13 @@ first last band
 
 13 Ronnie Wood The Rolling Stones
 
+<div dir="ltr" class="ltr-block">
 ```r
 > artists
 # A tibblele: 16 x 3
 ```
+</div>
+
 
 first last instrument
 
@@ -426,12 +471,15 @@ first last instrument
 
 16 Nancy Wilson Vocals
 
+<div dir="ltr" class="ltr-block">
 ```r
 > (goal2 <- full_join(x = bands, y = artists) %>% inner_join(y = songs))
 Joining, by = c("first", "last")
 Joining, by = c("first", "last")
 # A tibblele: 3 x 6
 ```
+</div>
+
 
 first last band instrument song album
 
@@ -443,9 +491,12 @@ first last band instrument song album
 
 3 Tom Jones NA Vocals It's Not Unusual Along Came Jones
 
+<div dir="ltr" class="ltr-block">
 ```r
 > setequal(x = goal, y = goal2)
 ```
+</div>
+
 
 TRUE
 
@@ -457,10 +508,13 @@ TRUE
 
 دیتا را در جدول اول بر اساس جدول دوم فیلتر می‌کند. مثلا می‌خواهیم از دیتای موجود در جدول artists آن هایی را ببینیم که اطلاعات مرتبطی در جدول songs دارند
 
+<div dir="ltr" class="ltr-block">
 ```r
 > semi_join(x = artists, y = songs, by = c("first", "last"))
 # A tibblele: 3 x 3
 ```
+</div>
+
 
 first last instrument
 
@@ -474,10 +528,13 @@ first last instrument
 
 > **تمرین:** این مثال رو بدون استفاده از semi- join حل کنید.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > artists %>% right_join(y = songs, by = c("first", "last")) %>% filter(!is.na(instrument)) %>% select(first, last, instrument)
 # A tibblele: 3 x 3
 ```
+</div>
+
 
 first last instrument
 
@@ -493,28 +550,37 @@ first last instrument
 
 این تابع تعداد سطرهای خروجی را به ما می‌دهد.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > nrow(bands)
 [1] 13
 ```
+</div>
+
 
 > **تمرین:** با استفاده از semi-join بگویید چه تعداد آلبوم توسط بندهای موجود در جدول bands تولید شده اند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > albums %>% semi_join(y = bands) %>% nrow()
 Joining, by = "band"
 [1] 5
 ```
+</div>
+
 
 ## Anti- join
 
 دیتاهایی که در دیتاست اول هستند ولی دیتای مرتبطی در دیتا ست دوم ندارند را مشخص می‌کند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > artists %>% anti_join(y = bands)
 Joining, by = c("first", "last")
 # A tibblele: 8 x 3
 ```
+</div>
+
 
 first last instrument
 
@@ -552,6 +618,7 @@ setdiff(x, y, ...)
 
 تمام داده های دو مجموعه را بر می گرداند ( اگر تکراری وجود داشته باشد یکبار بر می گرداند).
 
+<div dir="ltr" class="ltr-block">
 ```r
 > library(babynames)
 > set1 <- babynames[1:100, ]
@@ -559,6 +626,8 @@ setdiff(x, y, ...)
 > union(x = set1, y = set2)
 # A tibblele: 150 x 5
 ```
+</div>
+
 
 year sex name n prop
 
@@ -584,18 +653,24 @@ year sex name n prop
 
 10 1880 F Mae 344 0.00352
 
+<div dir="ltr" class="ltr-block">
 ```r
 # ... with 140 more rows
 ```
+</div>
+
 
 ## تابع intersect
 
 اشتراک دو مجموعه را بر می گرداند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > intersect(x = set1, y = set2)
 # A tibblele: 50 x 5
 ```
+</div>
+
 
 year sex name n prop
 
@@ -621,18 +696,24 @@ year sex name n prop
 
 10 1880 F Stella 414 0.00424
 
+<div dir="ltr" class="ltr-block">
 ```r
 # ... with 40 more rows
 ```
+</div>
+
 
 ## تابع setdiff
 
 داده هایی را بر می گرداند که در مجموعه اولی هستند ولی در مجموعه دوم نیستند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > setdiff(x = set1, y = set2)
 # A tibblele: 50 x 5
 ```
+</div>
+
 
 year sex name n prop
 
@@ -658,14 +739,20 @@ year sex name n prop
 
 10 1880 F Sarah 1288 0.0132
 
+<div dir="ltr" class="ltr-block">
 ```r
 # ... with 40 more rows
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 > setdiff(x = set2, y = set1)
 # A tibblele: 50 x 5
 ```
+</div>
+
 
 year sex name n prop
 
@@ -691,9 +778,12 @@ year sex name n prop
 
 10 1880 F Sara 165 0.00169
 
+<div dir="ltr" class="ltr-block">
 ```r
 # ... with 40 more rows
 ```
+</div>
+
 
 ## bind در dplyrr
 
@@ -707,11 +797,14 @@ year sex name n prop
 
 ستونها را به هم می چسباند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > df1 <- mtcars[, 5:dim(mtcars)[2]]
 > df2 <- mtcars[, 1:4]
 > bind_cols(df1, arrange(df2, desc(mpg)))
 ```
+</div>
+
 
 drat wt qsec vs am gear carb mpg cyl disp hp
 
@@ -783,12 +876,15 @@ drat wt qsec vs am gear carb mpg cyl disp hp
 
 سطرها را با هم تلفیق می‌کند به شرطی که تعداد ستونها برابر باشند. در عین حال یک آرگومان بسیار کاربردی .id را دارد که از ان طریق می‌تواند داده های هر دسته را مشخص کند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > ali <- data_frame(point = 18, year = 1396, major = "Automation")
 > babak <- data_frame(point = 19, year = 1396, major = "Programming")
 > bind_rows(ali, babak)
 # A tibblele: 2 x 3
 ```
+</div>
+
 
 point year major
 
@@ -798,10 +894,13 @@ point year major
 
 2 19 1396 Programming
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bind_rows(ali, babak, .id = "id")
 # A tibblele: 2 x 4
 ```
+</div>
+
 
 id point year major
 
@@ -811,16 +910,22 @@ id point year major
 
 2 2 19 1396 Programming
 
+<div dir="ltr" class="ltr-block">
 ```r
 > list <- list(ali = ali, babak = babak)
 > list
 ```
+</div>
+
 
 $`ali`
 
+<div dir="ltr" class="ltr-block">
 ```r
 # A tibblele: 1 x 3
 ```
+</div>
+
 
 point year major
 
@@ -830,9 +935,12 @@ point year major
 
 $babak
 
+<div dir="ltr" class="ltr-block">
 ```r
 # A tibblele: 1 x 3
 ```
+</div>
+
 
 point year major
 
@@ -840,10 +948,13 @@ point year major
 
 1 19 1396 Programming
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bind_rows(list,.id = "name")
 # A tibblele: 2 x 4
 ```
+</div>
+
 
 name point year major
 
@@ -855,11 +966,14 @@ name point year major
 
 > **تمرین:** با استفاده از دیتاست های discography و jimi یک data.frame از تمام داده ها به همراه داده های سال های مربوطه بسازید.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > jimi %>% bind_rows(.id = "album") %>% left_join(y = discography)
 Joining, by = "album"
 # A tibblele: 39 x 4
 ```
+</div>
+
 
 album song length year
 
@@ -885,9 +999,12 @@ album song length year
 
 10 Are You Experienced Are You Experienced? 14100 secs 1967
 
+<div dir="ltr" class="ltr-block">
 ```r
 # ... with 29 more rows
 ```
+</div>
+
 
 ## data_ frame
 
@@ -895,6 +1012,7 @@ data. Frame است ولی string ها را به factor تبدیل نمی‌کن�
 
 همچنین امکان ایجاد lazy Argamet (آرگومانی که از آرگومانهای قبلی خودش استفاده کند) را به ما داده و خروجی اش tibblele است.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > name <- c("Ali", "Babak", "Parviz")
 > family <- c("Sadeghi Aghili", "Pirooz", "Agha Sadeghi")
@@ -903,6 +1021,8 @@ data. Frame است ولی string ها را به factor تبدیل نمی‌کن�
 > df1 <- data.frame(name, family, age, major)
 > glimpse(df1)
 ```
+</div>
+
 
 Observations: 3
 
@@ -916,10 +1036,13 @@ $ age <dbl> 30, 35, 50
 
 $ major <fct> DS, BI, DB
 
+<div dir="ltr" class="ltr-block">
 ```r
 > df2 <- data_frame(name, family, age, major)
 > glimpse(df2)
 ```
+</div>
+
 
 Observations: 3
 
@@ -933,10 +1056,13 @@ $ age <dbl> 30, 35, 50
 
 $ major <chr> "DS", "BI", "DB"
 
+<div dir="ltr" class="ltr-block">
 ```r
 > data_frame(nums = 1:5, nums2 = nums^2)
 # A tibblele: 5 x 2
 ```
+</div>
+
 
 nums nums2
 
@@ -952,10 +1078,13 @@ nums nums2
 
 5 5 25
 
+<div dir="ltr" class="ltr-block">
 ```r
 > data.frame(nums = 1:5, nums2 = nums^2)
 Error in data.frame(nums = 1:5, nums2 = nums^2) : object 'nums' not found
 ```
+</div>
+
 
 ## Coercion rules
 
@@ -963,42 +1092,60 @@ R در نهایت می‌بایست مقادیر هر بردار رو به صو�
 
 R به این جنسها atomic vector می گه عبارتند از
 
+<div dir="ltr" class="ltr-block">
 ```r
 > #logical
 > typeof(TRUE)
 [1] "logical"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 > #characterer
 > typeof("Hello")
 [1] "characterer"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 > #double
 > typeof(3.14)
 [1] "double"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 > #integer
 > typeof(3L)
 [1] "integer"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 > #complex
 > typeof(1 + 2i)
 [1] "complex"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 > #raw
 > typeof(raw(1))
 [1] "raw"
 این جنسها با typeof( ) مشخص می شن.
 ```
+</div>
+
 
 دقت کنید که typeof از class متفاوت است. Class جنس شی رو به ما می‌گوید و typeof جنس محتوای شی رو. R اگر با انواع مختلف داده توی یک بردار روبرو بشه مجبوره همرو به یکی از این atomic ها برگردونه.
 
@@ -1006,51 +1153,69 @@ R به این جنسها atomic vector می گه عبارتند از
 
 ولی در مورد factor ها موضوع پیچیده تره. تبدیل فاکتور به عدد یا کاراکتر باید دقت کرد که فاکتور ها یک عدد دارند و یک لیبل دارند که به ان مرتبط است.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > fac <- as.factor(c("A", "B", "C", "B"))
 > fac
 [1] A B C B
 ```
+</div>
+
 
 Levels: A B C
 
+<div dir="ltr" class="ltr-block">
 ```r
 > as.characterer(fac)
 [1] "A" "B" "C" "B"
 > as.numeric(fac)
 [1] 1 2 3 2
 ```
+</div>
+
 
 در مورد فاکتور های رشته ای مشکلی وجود ندارد ولی فاکتور های عددی می‌توانند موجب سردرگمی‌شوند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > fac2 <- as.factor(c(4, 5, 6, 5))
 > fac2
 [1] 4 5 6 5
 ```
+</div>
+
 
 Levels: 4 5 6
 
+<div dir="ltr" class="ltr-block">
 ```r
 > as.characterer(fac2)
 [1] "4" "5" "6" "5"
 > as.numeric(fac2)
 [1] 1 2 3 2
 ```
+</div>
+
 
 برای جلوگیری از بروز این مشکل می‌بایست ابتدا فاکتور های عددی حتما به رشته و سپس به عدد تبدیل شوند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > as.numeric(as.characterer(fac2))
 [1] 4 5 6 5
 ```
+</div>
+
 
 > **تمرین:** دیتاست های seventies و eighties را با هم bind قبل از bird، جنس ستونها رو چک کنید و ببینید که چه اتفاقی می افتد.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > seventies
 # A tibblele: 10 x 3
 ```
+</div>
+
 
 year album band
 
@@ -1076,10 +1241,13 @@ year album band
 
 10 1979 Billy Joel 52nd Street
 
+<div dir="ltr" class="ltr-block">
 ```r
 > eighties
 # A tibblele: 10 x 3
 ```
+</div>
+
 
 year album band
 
@@ -1105,10 +1273,13 @@ year album band
 
 10 1989 Don't Be Cruel Bobby Brown
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bind_rows(seventies, eighties)
 # A tibblele: 20 x 3
 ```
+</div>
+
 
 year album band
 
@@ -1154,25 +1325,34 @@ year album band
 
 20 1989 Don't Be Cruel Bobby Brown
 
+<div dir="ltr" class="ltr-block">
 ```r
 Warning messages:
 1: In bind_rows_(x, .id) :
 ```
+</div>
+
 
 binding factor and characterer vector, coercing into characterer vector
 
+<div dir="ltr" class="ltr-block">
 ```r
 2: In bind_rows_(x, .id) :
 ```
+</div>
+
 
 binding characterer and factor vector, coercing into characterer vector
 
 > **تمرین:** دیتاست های sixties و sevent را با هم bind کنید.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > sixties
 # A tibblele: 10 x 3
 ```
+</div>
+
 
 year album band
 
@@ -1198,10 +1378,13 @@ year album band
 
 10 1969 In-A-Gadda-Da-Vida Iron Butterfly
 
+<div dir="ltr" class="ltr-block">
 ```r
 > seventies
 # A tibblele: 10 x 3
 ```
+</div>
+
 
 year album band
 
@@ -1227,17 +1410,23 @@ year album band
 
 10 1979 Billy Joel 52nd Street
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bind_rows(sixties, seventies)
 Error in bind_rows_(x, .id) :
 ```
+</div>
+
 
 Column `year` can't be converted from integer to factor
 
+<div dir="ltr" class="ltr-block">
 ```r
 > seventies %>% mutate(year = as.numeric(as.characterer(year))) %>% bind_rows(sixties)
 # A tibblele: 20 x 3
 ```
+</div>
+
 
 year album band
 
@@ -1287,9 +1476,12 @@ year album band
 
 از توابع پکیج tibblele هست که به ما کمک می‌کند به راحتی عناوین سطرها را در قالب یک ستون به dataset اضافه کنیم .
 
+<div dir="ltr" class="ltr-block">
 ```r
 > rownames_to_column(df = mtcars[1:3,])
 ```
+</div>
+
 
 rowname mpg cyl disp hp drat wt qsec vs am gear carb
 
@@ -1299,9 +1491,12 @@ rowname mpg cyl disp hp drat wt qsec vs am gear carb
 
 3 Datsun 710 22.8 4 108 93 3.85 2.320 18.61 1 1 4 1
 
+<div dir="ltr" class="ltr-block">
 ```r
 > rownames_to_column(df = mtcars[1:3,], var = "carname")
 ```
+</div>
+
 
 carname mpg cyl disp hp drat wt qsec vs am gear carb
 
@@ -1315,10 +1510,13 @@ carname mpg cyl disp hp drat wt qsec vs am gear carb
 
 از توابع پکیج tibblele هست که تنها مشخص می‌کند که دیتاست label دارد یا خیر.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > has_rownames(mtcars)
 [1] TRUE
 ```
+</div>
+
 
 ## مشکلاتی که در join ها به وجود می آیند.
 
@@ -1332,10 +1530,13 @@ carname mpg cyl disp hp drat wt qsec vs am gear carb
 
 کلید تکراری
 
+<div dir="ltr" class="ltr-block">
 ```r
 > shows
 # A tibblele: 6 x 2
 ```
+</div>
+
 
 musical year
 
@@ -1353,10 +1554,13 @@ musical year
 
 6 Phantom of the Opera 1986
 
+<div dir="ltr" class="ltr-block">
 ```r
 > composers
 # A tibblele: 8 x 2
 ```
+</div>
+
 
 musical composer
 
@@ -1378,11 +1582,14 @@ musical composer
 
 8 West Side Story Leonard Bernstein
 
+<div dir="ltr" class="ltr-block">
 ```r
 > shows %>% left_join(composers)
 Joining, by = "musical"
 # A tibblele: 8 x 3
 ```
+</div>
+
 
 musical year composer
 
@@ -1416,6 +1623,7 @@ dplyrr با کلید تکراری مشکلی ندارد و هر دو رو در �
 
 در صورتی که ستونهای غیر کلید تکراری در dataset ها وجود داشته باشند dplyrr به صورت اتواتیک به آنها پیوندی دهد مگر آنکه پسوند به صورت دستی مشخص شود.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > inner_join(work, study)
 Joining, by = c("name", "major")
@@ -1424,6 +1632,8 @@ Joining, by = c("name", "major")
 > inner_join(work, study, by = "name")
 # A tibblele: 3 x 3
 ```
+</div>
+
 
 name major.x major.y
 
@@ -1435,10 +1645,13 @@ name major.x major.y
 
 3 parviz Database Administration Chemical Engineering
 
+<div dir="ltr" class="ltr-block">
 ```r
 > inner_join(work, study, by = "name", suffix= c("work", "study"))
 # A tibblele: 3 x 3
 ```
+</div>
+
 
 name majorwork majorstudy
 

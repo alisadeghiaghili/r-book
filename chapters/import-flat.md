@@ -27,29 +27,45 @@ dir: rtl
 
 **کد: data.frame vs tibble lazy (4)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 data.frame(a = 1:3, b = c(10, 100, 1000))
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 a    b
 1 1   10
 2 2  100
 3 3 1000
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 data.frame(a = 1:3, b = c(10, 100, 1000), c = a * b)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 Error: object 'b' not found
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 tibble(a = 1:3, b = c(10, 100, 1000), c = a * b)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 # A tibble: 3 × 3
       a     b     c
@@ -58,55 +74,91 @@ tibble(a = 1:3, b = c(10, 100, 1000), c = a * b)
 2     2   100   200
 3     3  1000  3000
 ```
+</div>
+
 
 **کد: typeof vs class (4)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 class(12)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "numeric"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 typeof(12)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "double"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 typeof(12L)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "integer"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 class(12L)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "integer"
 ```
+</div>
+
 
 **کد: getwd / dir (4)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 getwd()
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "C:/Users/alisa/Desktop/Projects/.mimo-sessions/2026-09-19/این رو با دقت بخون و تایپش رو کامل و درس"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 dir()
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "~$اب R - اصلاح‌شده با کدها.docx"                      
  [2] "~$اب R - نهایی RTL و کدها.docx"                      
@@ -135,9 +187,12 @@ dir()
 [25] "make_capture_r.py"                                   
 ...
 ```
+</div>
+
 
 **کد: read_csv نمونه موقت (4)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 library(readr)
 tmp <- tempfile(fileext = ".csv")
@@ -146,7 +201,10 @@ read_csv(file = tmp, show_col_types = FALSE)
 read_csv(file = tmp, n_max = 2, show_col_types = FALSE)
 unlink(tmp)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 # A tibble: 3 × 3
     mpg   cyl  disp
@@ -161,6 +219,8 @@ unlink(tmp)
 2    21     6   160
 [1] 0
 ```
+</div>
+
 
 تا حالا یاد گرفتیم یکسری کارهایی رو با R انجام بدیم و حالا می‌خواهیم یاد بگیریم که چطور داده ها رو از منابع داده بخونیم. منابع داده ای که مد نظر ما هستند فایل های flat ، فایل های Excel ، Db ها داده های وب و داده های سایر نرم‌افزارهای آماری هست که حالا یکی یکی برسینشون می
 

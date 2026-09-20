@@ -1,14 +1,20 @@
----
-title: کتاب R — مقدماتی
-lang: fa
-dir: rtl
----
-
 <div dir="rtl" lang="fa">
 
 # کتاب R — مقدماتی
 
-منبع فارسی آموزش R، ساختاریافته مانند **R for Data Science**: بخش‌ها و فصل‌های شماره‌دار. نوشته‌ها راست‌به‌چپ؛ کد و خروجی چپ‌به‌چپ.
+منبع فارسی آموزش زبان برنامه‌نویسی R، ساختاریافته مانند **R for Data Science**.
+
+## کتاب را کجا ببینم؟
+
+| جا | لینک |
+|---|---|
+| **سایت کتاب (bookdown)** | [alisadeghiaghili.github.io/r-book](https://alisadeghiaghili.github.io/r-book/) |
+| مخزن GitHub | [github.com/alisadeghiaghili/r-book](https://github.com/alisadeghiaghili/r-book) |
+| متن یکپارچه Markdown | [book.md](book.md) |
+| فصل‌ها (Markdown) | [chapters/](chapters/) |
+| Word / PDF | [exports/](exports/) |
+
+نوشته‌های فارسی راست‌به‌چپ هستند. کد و خروجی R چپ‌به‌چپ نمایش داده می‌شوند.
 
 خروجیِ کدهای تک‌خطی بلافاصله بعد از همان خط آمده است.
 
@@ -16,14 +22,10 @@ dir: rtl
 
 ### مقدمه
 
-با این کتاب چه چیزی یاد می‌گیرید و چطور از آن استفاده کنید.
-
 - [1. مقدمه](chapters/introduction.md)
 - [2. آشنایی با RStudio](chapters/rstudio.md)
 
 ### مبانی R
-
-زبان R مثل یک ماشین‌حساب قدرتمند است؛ با متغیر، نوع داده و ساختارهای پایه شروع می‌کنیم.
 
 - [3. عملیات ریاضی و متغیرها](chapters/basics-variables.md)
 - [4. بردارها و ماتریس‌ها](chapters/vectors-matrices.md)
@@ -31,14 +33,10 @@ dir: rtl
 
 ### برنامه‌نویسی
 
-شرط، حلقه، تابع و پکیج — ابزارهایی که کد شما را قابل استفاده مجدد می‌کنند.
-
 - [6. ساختارهای کنترلی](chapters/control-flow.md)
 - [7. توابع و پکیج‌ها](chapters/functions-packages.md)
 
 ### داده‌ها و ورود داده
-
-خواندن داده از فایل، پایگاه‌داده و وب — گام اول هر تحلیل جدی.
 
 - [8. Importing: فایل‌های flat](chapters/import-flat.md)
 - [9. Excel و فایل‌های جدولی](chapters/import-excel.md)
@@ -47,8 +45,6 @@ dir: rtl
 
 ### پاکسازی و داده‌کاوی
 
-دادهٔ خام به‌ندرت آمادهٔ تحلیل است؛ tidyverse، رشته، regex و dplyr.
-
 - [12. دادهٔ تمیز و tidyverse](chapters/tidy-data.md)
 - [13. رشته‌ها و Regular Expression](chapters/strings-regex.md)
 - [14. دستکاری داده با dplyr](chapters/dplyr.md)
@@ -56,25 +52,34 @@ dir: rtl
 
 ### زمان و داده‌های پیشرفته
 
-تاریخ/زمان، data.table، داده پرت و خروجی‌های کمکی.
-
 - [16. تاریخ و زمان](chapters/datetime.md)
 - [17. data.table و داده‌های حجیم](chapters/data-table.md)
 - [18. داده پرت و نمودارهای پایه](chapters/outliers-plots.md)
 - [19. پیوست: کدهای تکمیلی](chapters/appendix.md)
 
-## فایل‌ها
+## ساخت سایت (bookdown)
 
-- متن یکپارچه: [book.md](book.md)
-- [کتاب R - نهایی RTL و کدها.docx](exports/کتاب R - نهایی RTL و کدها.docx)
-- [کتاب R - نهایی RTL و کدها.pdf](exports/کتاب R - نهایی RTL و کدها.pdf)
+این سایت با همان ابزار R4DS یعنی **bookdown** ساخته می‌شود.
+
+هر push روی `main` با GitHub Actions (`.github/workflows/bookdown.yml`) کتاب را رندر و روی شاخهٔ `gh-pages` منتشر می‌کند.
+
+به‌صورت محلی:
+
+```r
+install.packages(c("bookdown", "rmarkdown", "knitr"))
+# در ریشهٔ ریپو:
+source("scripts/prepare_book.R")
+bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook")
+```
+
+خروجی در پوشهٔ `_book` ساخته می‌شود.
 
 ## اجرا
 
 به [R](https://cran.r-project.org/) و پیشنهاداً RStudio/Posit نیاز دارید.
 
 ```r
-install.packages(c("dplyr", "readr", "readxl", "tibble"))
+install.packages(c("dplyr", "readr", "readxl", "tibble", "data.table"))
 ```
 
 </div>

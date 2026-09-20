@@ -25,6 +25,7 @@ dir: rtl
 
 **کد: تعریف تابع (3-2.Rhistory)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 triple <- function(num) {
   return(num * 3)
@@ -34,16 +35,22 @@ triple(num = 10)
 result <- triple(num = 12)
 result
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 36
 [1] 30
 [1] 36
 [1] 36
 ```
+</div>
+
 
 **کد: آرگومان و default (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 multiply <- function(num1, num2) {
   return(num1 * num2)
@@ -61,7 +68,10 @@ num2pow <- function(num, pow = 1) {
 num2pow(12)
 num2pow(12, 2)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 48
 [1] 4
@@ -71,75 +81,126 @@ num2pow(12, 2)
 [1] 144
 [1] 144
 ```
+</div>
+
 
 **کد: توابع پایه و sample (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 mean(1:5)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 sd(1:5)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1.581139
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 abs(c(-1, 2, 3, -4, 5))
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1 2 3 4 5
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 seq(from = 1, to = 20, by = 2)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1]  1  3  5  7  9 11 13 15 17 19
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 seq(from = 20, to = 1, by = -3)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 20 17 14 11  8  5  2
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 rev(1:10)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 10  9  8  7  6  5  4  3  2  1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 sample(x = 1:10, size = 1)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 9
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 sample(x = 1:10, size = 3, replace = TRUE)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 9 4 7
 ```
+</div>
+
 
 **کد: تمرین تابع تاس (الگو)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 dice <- function(verbose = FALSE) {
   a <- sample(x = 1:6, size = 1)
@@ -149,12 +210,17 @@ dice <- function(verbose = FALSE) {
 }
 dice(verbose = TRUE)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "dice1 = 1 , dice2 = 5"
 [1] 6
 [1] 6
 ```
+</div>
+
 
 تعریف تابع (جعبه سیاه)
 
@@ -194,34 +260,52 @@ Return رو می‌شود گذاشت. می‌شود نگذاشت چون آخری
 
 **کد: library / detach / search (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 .libPaths()
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "C:/Users/alisa/AppData/Local/R/win-library/4.6"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 search()
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] ".GlobalEnv"        "package:stats"     "package:graphics" 
 [4] "package:grDevices" "package:utils"     "package:datasets" 
 [7] "package:methods"   "Autoloads"         "package:base"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 head(installed.packages()[, "Package"], 8)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 A3          abc     abc.data        abcrf        abind      acepack 
         "A3"        "abc"   "abc.data"      "abcrf"      "abind"    "acepack" 
   AICcmodavg     airports 
 "AICcmodavg"   "airports"
 ```
+</div>
+
 
 Package چیه ؟ (همه توابعی که ما به صورت built-in استفاده می‌کنیم عنصری از Package ها متن) .
 
@@ -229,10 +313,13 @@ Package چیه ؟ (همه توابعی که ما به صورت built-in استف
 
 پکیج‌ها معمولاٌ از طریق CRAN نصب میشن. ولی برای اینکه بتونیم از Package ها استفاده کنیم باید آن‌ها را load کنیم که برای اینکار از تابع
 
+<div dir="ltr" class="ltr-block">
 ```r
 وقتی Package‌ها load می‌شوند در واقع به یک لیست قابل جستجویی برای R اضافه میشن. برای اینکه این list رو بتونیم ببینیم. می تونین از تابع search() استفاده کنید.
 یک تابع دیگه هم برای load کردن Package ها داریم به نام require( ) . این تابع یه فرق بزرگ با library( ) داره اونهم اینکه اگر یک Package نصب شده باشه و از library استفاده کنیم به یک error بر می خوریم که باعث توقف برنامه می‌شود ولی با استفاده از require فقط یک warning می گیرم.
 ```
+</div>
+
 
 ## خانواده apply
 

@@ -22,6 +22,7 @@ dir: rtl
 
 **کد: factor nominal و ordinal (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 gender <- c("M", "F", "M", "F", "M", "M")
 factor(x = gender)
@@ -33,7 +34,10 @@ genderFac <- factor(x = gender,
                     labels = c("Male", "Female", "Unisex"))
 genderFac
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] M F M F M M
 Levels: F M
@@ -46,9 +50,12 @@ Levels: Male Female Unisex
 [1] Male   Female Male   Female Male   Male  
 Levels: Male Female Unisex
 ```
+</div>
+
 
 **کد: factor ترتیبی (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 temp <- c("l", "m", "h", "vh", "vh", "h", "l")
 tempFac <- factor(x = temp,
@@ -61,7 +68,10 @@ tempFac[1] > tempFac[3]
 unclass(tempFac)
 summary(tempFac)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] low      mid      high     veryHigh veryHigh high     low     
 Levels: veryLow < low < mid < high < veryHigh
@@ -75,13 +85,19 @@ attr(,"levels")
  veryLow      low      mid     high veryHigh 
        0        2        1        2        2 
 ```
+</div>
+
 
 **کد: ggplot2 و factor(cyl) (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 head(mtcars)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 mpg cyl disp  hp drat    wt  qsec vs am gear carb
 Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
@@ -91,22 +107,36 @@ Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
 Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
 Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 sort(unique(mtcars$cyl))
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 4 6 8
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 library(ggplot2)  # ggplot object on next lines
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 ggplot2 loaded OK
 ```
+</div>
+
 
 فاکتورها چین ؟ - یکی از انواع داده های آماری – برای نگهداری داده های categorical استفاده می‌شود (مثال)
 
@@ -136,6 +166,7 @@ Levels در واقع حالتهایی هست که برای داده ها پیش 
 
 **کد: ساخت data.frame و EDA (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 infoDF <- data.frame(
   name   = c("ali", "hassan", "reza", "mohammad reza"),
@@ -148,7 +179,10 @@ class(infoDF)
 summary(infoDF)
 str(infoDF)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
            name         family age             major
 1           ali sadeghi aghili  38 data architecture
@@ -170,9 +204,12 @@ str(infoDF)
  $ major : chr  "data architecture" "programming" "data engineering" "ML engineering"
 NULL
 ```
+</div>
+
 
 **کد: data.frame سیارات (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 SolarSys <- data.frame(
   Planet   = c("Mercury", "Venus", "Earth", "Mars",
@@ -187,7 +224,10 @@ dim(SolarSys)
 SolarSys$Planet
 SolarSys[SolarSys$Planet == "Mars", ]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
    Planet        Type Diameter Rotation HasRing
 1 Mercury Terrestrial    0.382    58.64   FALSE
@@ -206,9 +246,12 @@ SolarSys[SolarSys$Planet == "Mars", ]
   Planet        Type Diameter Rotation HasRing
 4   Mars Terrestrial    0.532     1.03   FALSE
 ```
+</div>
+
 
 **کد: subset و order (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 subset(x = mtcars, cyl == 4)
 subset(x = mtcars, cyl == 4 & am == 1)
@@ -217,7 +260,10 @@ order(a)
 a[order(a)]
 sort(a, decreasing = TRUE)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 Datsun 710     22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
@@ -245,6 +291,8 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
 [1] 1000  100   10
 [1] 1000  100   10
 ```
+</div>
+
 
 مرور انواع داده – در تمام انواع تا الان فقط مجاز به استفاده از یک نوع داده بودیم. در حالی که در واقعیت با انواع مختلفی از داده در پرسشنامه مواجهیم – data.frame
 
@@ -258,9 +306,12 @@ Land کردن mtcars
 
 یک راه دیگه شناختن مربع داده ها استفاده از تابع str( ) است. که به ما تعداد مشاهدات، تعداد متغیرها، نوع داده، نوع داده متغیرها و..... رومی‌گوید .
 
+<div dir="ltr" class="ltr-block">
 ```r
 حالا بریم یک dataset بسازیم و روی اون پیش بریم. با استفاده از data.frame( )
 ```
+</div>
+
 
 > **تمرین:** می‌خواهیم یک data.frame ایجاد کنیم و اطلاعاتی رو راجع به سیارات داخلش بریزیم اول 5 بردار بسازین و داده ها رو توش وارد کنید و بعد از روش data.frame بسازین.
 
@@ -286,6 +337,7 @@ Subset 3 تا Arguman داره. اولی انتخاب میکنه دیتا رو. 
 
 **کد: list و [[ ]] / $ (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 lst <- list(vec = dollars, fac = genderFac, mat = mat1, df = SolarSys)
 lst$fac
@@ -293,7 +345,10 @@ lst$fac[3]
 lst$df$Planet
 names(lst)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] M F M F M M
 Levels: F M
@@ -303,6 +358,8 @@ Levels: F M
 [1] "vec" "fac" "mat" "df" 
 [1] "vec" "fac" "mat" "df" 
 ```
+</div>
+
 
 لیست ها هم یک نوع از داده ها هستند که نه براشون اندازه مهمه و نه جنس داده. (توی data.frame داده های ستونها می تونستن با هم فرق کنن ولی نوع داده در هر ستون یکسان است) پس توی list می‌تواند تمام تمام فرمت های داده ای که تا الان یاد گرفتیم بعلاوه خود list می تونه قرار بگیره.
 

@@ -43,80 +43,135 @@ dir: rtl
 
 **کد: as.Date / strptime / strftime (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 date <- "2026-09-17"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2026-09-17"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 class(date)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "character"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 dated <- as.Date(date)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2026-09-17"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 class(dated)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "Date"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 unclass(dated)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 20713
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 dated + 1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2026-09-18"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 dated + 365
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2027-09-17"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 Sys.Date()
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2026-09-20"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 Sys.time()
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2026-09-20 15:08:42 +0330"
 ```
+</div>
+
 
 **کد: strptime / strftime (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 timed <- strptime(x = "09/17/2026", format = "%m/%d/%Y")
 timed
@@ -126,7 +181,10 @@ strftime(x = timed, format = "%y, %A/%b, %d")
 dimDate <- data.frame(fullDate = as.Date("2026-09-17") + 0:365)
 head(dimDate)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2026-09-17 +0330"
 [1] "2026"
@@ -147,14 +205,19 @@ head(dimDate)
 5 2026-09-21
 6 2026-09-22
 ```
+</div>
+
 
 متدی R توابع مختلفی برای تاریخ و زمان داریم –
 
 Sys.time( ) مثل خیلی از زبان‌های دیگه زمان را بر حسب ثانیه از ژانویهٔ 1970 نگه می‌دارد هست. و برای Sys.Date همون بعد اولی به روز هست.
 
+<div dir="ltr" class="ltr-block">
 ```r
 برای تبدیل یک عدد یا کاراکتر به تاریخ از تابع as.Date استفاده می‌کنیم. Edate<-13 January1982 e.g با استفاده آرگومان format این تابع می تونیم فرمت دلخواهمون رو از اون استخراج کنیم توی این آرگومان مقادیر مختلفی می‌تواند بشینه.
 ```
+</div>
+
 
 اصولاٌ R اگر as.Date بدون فرمت وارد بشه اونو به‌عنوان یا تبدیل می کنه. بر عکس اینکارم می‌شود با تابع format کرد یعنی وقتی می‌خواهیم یک تاریخ رو به رشته تا فرمت خاص تبدیل کنیم.
 

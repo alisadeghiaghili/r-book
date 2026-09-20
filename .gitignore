@@ -1,0 +1,9 @@
+_book/
+_bookdown/
+_bookdown_files/
+_bookdown_src/
+*.rds
+.Rhistory
+.RData
+.Rproj.user/
+scripts/qa_site*.py

@@ -31,6 +31,7 @@ dir: rtl
 
 **کد: if ساده (3.Rhistory)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 x <- 2
 if (x %% 2 == 0) {
@@ -39,15 +40,21 @@ if (x %% 2 == 0) {
   print("odd")
 }
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "even"
 [1] "odd"
 [1] "odd"
 ```
+</div>
+
 
 **کد: if / else if / else (3)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 x <- 1
 if (x %% 2 == 0) {
@@ -58,14 +65,20 @@ if (x %% 2 == 0) {
   print("neither divisable by 2 nor 3")
 }
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "neither divisable by 2 nor 3"
 [1] "neither divisable by 2 nor 3"
 ```
+</div>
+
 
 **کد: تمرین آپارات/YouTube (الگو)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 aparat <- 5
 youtube <- 9
@@ -77,11 +90,16 @@ if (aparat >= 15 & youtube >= 15) {
   print(aparat + youtube)
 }
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 0.7
 [1] 0.7
 ```
+</div>
+
 
 شرطها (در شرط‌ها یک مقایسهٔ منطقی انجام می‌شود) یک مقایسه منطقی انجام میدن. در صورتی که نتیجه اش TRUE باشه یک سری کارهای کنن و اگر نباشه یکسری کارهای دیگه.
 
@@ -103,6 +121,7 @@ if (aparat >= 15 & youtube >= 15) {
 
 **کد: while و state changer (3)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 x <- 10
 while (x > 0) {
@@ -110,7 +129,10 @@ while (x > 0) {
   x <- x - 1
 }
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 10
 [1] 9
@@ -123,9 +145,12 @@ while (x > 0) {
 [1] 2
 [1] 1
 ```
+</div>
+
 
 **کد: while با break (الگوی تمرین)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 speed <- 48
 while (speed > 30) {
@@ -139,7 +164,10 @@ while (speed > 30) {
 }
 speed
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "slow down"
 [1] "slow down"
@@ -147,6 +175,8 @@ speed
 [1] 30
 [1] 30
 ```
+</div>
+
 
 توضیح while (تا وقتی اجرا می‌شود که شرط برقرار هست)
 
@@ -162,13 +192,17 @@ Break در صورتی استفاده می‌شود که بخوایم بعد از
 
 **کد: for روی بردار (3)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 names <- c("ali", "samin", "arshia", "hooman", "arman", "chamin")
 for (name in names) {
   print(name)
 }
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "ali"
 [1] "samin"
@@ -188,48 +222,80 @@ for (name in names) {
 [1] "arman"
 [1] "chamin"
 ```
+</div>
+
 
 **کد: paste و for روی seq (3)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 paste("ali", "sadeghi")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "ali sadeghi"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 paste("ali", "sadeghi", sep = "")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "alisadeghi"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 paste("ali", "sadeghi", sep = "-")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "ali-sadeghi"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 paste("x", 1:6, sep = "")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "x1" "x2" "x3" "x4" "x5" "x6"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 paste(c("ali", "hassan"), c("sadeghi", "eskandari"))
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "ali sadeghi"      "hassan eskandari"
 ```
+</div>
+
 
 از حلقه for زمانی استفاده می‌کنیم که بخوایم یک اتفاقی به تعداد مشخصی بیفته. مثلا
 

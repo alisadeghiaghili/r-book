@@ -22,64 +22,107 @@ dir: rtl
 
 **کد: عملیات پایه (r1.Rhistory)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 2 + 2
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 4
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 2 - 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] -1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 2 * 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 6
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 7 / 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 2.333333
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 7 %/% 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 2
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 7 %% 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 2 ^ 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 8
 ```
+</div>
+
 
 **میان‌برهای RStudio (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 # Ctrl + L  -> clear console
 # Ctrl + N  -> new file
@@ -88,10 +131,15 @@ dir: rtl
 # Ctrl + 1 / Ctrl + 2 -> focus Source / Console
 # Alt + -    -> assignment <-
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 (no output — comments only)
 ```
+</div>
+
 
 R مثل ماشین حساب است
 
@@ -103,85 +151,142 @@ R مثل ماشین حساب است
 
 **کد: تخصیص متغیر (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 x <- 12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 x
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 x <- 3.14
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 3.14
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 x
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 3.14
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 x = 12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 12
 ```
+</div>
+
 
 > **تمرین:** سیب/پرتقال (الگوی کد)
 
+<div dir="ltr" class="ltr-block">
 ```r
 sib <- 5
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 5
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 porteghal <- 6
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 6
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 mive <- sib + porteghal
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 11
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 mive
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 11
 ```
+</div>
+
 
 چرا متغیر؟
 
+<div dir="ltr" class="ltr-block">
 ```r
 تعریف متغیر – متغیر با استفاده از – تعریف می‌شود و یک مقدار بهش تخصیص داده می‌شود. – e.g. x <- 42
 ```
+</div>
+
 
 بازخوانی – کافیه فقط اسمش زده بشه.
 
@@ -193,71 +298,119 @@ mive
 
 **کد: primitive types و class() (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 class(12)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "numeric"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 class(3.14)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "numeric"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 class("ali")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "character"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 class(TRUE)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "logical"
 ```
+</div>
+
 
 **کد: خطاهای جمع ناسازگار و coercion (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 2 + TRUE
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 2 + FALSE
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 2
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 TRUE + FALSE
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 2 + "ali"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 Error: non-numeric argument to binary operator
 ```
+</div>
+
 
 داده ها 3 نوع هستند
 

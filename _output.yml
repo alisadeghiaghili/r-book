@@ -1,0 +1,22 @@
+bookdown::gitbook:
+  css: assets/style.css
+  split_by: chapter
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li class="toc-title"><a href="./">کتاب R — مقدماتی</a></li>
+    search: yes
+    download: ["pdf"]
+    sharing: null
+    edit: null
+    language:
+      ui:
+        chapter_name: "فصل "
+  includes:
+    in_header: assets/header.html
+
+bookdown::pdf_book:
+  base_format: rmarkdown::pdf_document
+  keep_tex: false
+

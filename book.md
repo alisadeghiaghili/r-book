@@ -104,64 +104,107 @@ R توسط راس ایهاکا (Ross Ihaka) و رابرت جنتلمن (Robert G
 
 **کد: عملیات پایه (r1.Rhistory)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 2 + 2
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 4
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 2 - 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] -1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 2 * 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 6
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 7 / 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 2.333333
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 7 %/% 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 2
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 7 %% 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 2 ^ 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 8
 ```
+</div>
+
 
 **میان‌برهای RStudio (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 # Ctrl + L  -> clear console
 # Ctrl + N  -> new file
@@ -170,10 +213,15 @@ R توسط راس ایهاکا (Ross Ihaka) و رابرت جنتلمن (Robert G
 # Ctrl + 1 / Ctrl + 2 -> focus Source / Console
 # Alt + -    -> assignment <-
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 (no output — comments only)
 ```
+</div>
+
 
 R مثل ماشین حساب است
 
@@ -185,85 +233,142 @@ R مثل ماشین حساب است
 
 **کد: تخصیص متغیر (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 x <- 12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 x
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 x <- 3.14
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 3.14
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 x
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 3.14
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 x = 12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 12
 ```
+</div>
+
 
 > **تمرین:** سیب/پرتقال (الگوی کد)
 
+<div dir="ltr" class="ltr-block">
 ```r
 sib <- 5
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 5
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 porteghal <- 6
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 6
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 mive <- sib + porteghal
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 11
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 mive
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 11
 ```
+</div>
+
 
 چرا متغیر؟
 
+<div dir="ltr" class="ltr-block">
 ```r
 تعریف متغیر – متغیر با استفاده از – تعریف می‌شود و یک مقدار بهش تخصیص داده می‌شود. – e.g. x <- 42
 ```
+</div>
+
 
 بازخوانی – کافیه فقط اسمش زده بشه.
 
@@ -275,71 +380,119 @@ mive
 
 **کد: primitive types و class() (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 class(12)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "numeric"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 class(3.14)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "numeric"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 class("ali")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "character"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 class(TRUE)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "logical"
 ```
+</div>
+
 
 **کد: خطاهای جمع ناسازگار و coercion (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 2 + TRUE
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 2 + FALSE
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 2
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 TRUE + FALSE
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 2 + "ali"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 Error: non-numeric argument to binary operator
 ```
+</div>
+
 
 داده ها 3 نوع هستند
 
@@ -355,98 +508,165 @@ Error: non-numeric argument to binary operator
 
 **کد: ساخت بردار با c() (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 c(1, 2, 3, 4, 5)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1 2 3 4 5
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 vec1 <- c(1, 2, 3, 4, 5)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1 2 3 4 5
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 vec1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1 2 3 4 5
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 vec2 <- c("ali", "sadeghi")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "ali"     "sadeghi"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 vec3 <- c(TRUE, FALSE)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1]  TRUE FALSE
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 vec2
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "ali"     "sadeghi"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 vec3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1]  TRUE FALSE
 ```
+</div>
+
 
 **کد: coercion در بردار (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 c(1, 2, 3, TRUE, FALSE)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1 2 3 1 0
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 c(1, 2, 3, 3.14)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1.00 2.00 3.00 3.14
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 c(1, 2, 3, 3.14, TRUE)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1.00 2.00 3.00 3.14 1.00
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 c(1, 2, 3, 3.14, TRUE, "ali")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "1"    "2"    "3"    "3.14" "TRUE" "ali"
 ```
+</div>
+
 
 **کد: تمرین دلار/یورو (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 days <- c("Mon", "Tue", "Wed", "Thu", "Fri")
 dollars <- c(140, -50, 20, -120, 240)
@@ -461,7 +681,10 @@ sum(euros)
 sum(dollars + euros)
 sum(dollars) + sum(euros)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
  Mon  Tue  Wed  Thu  Fri 
  140  -50   20 -120  240 
@@ -475,176 +698,301 @@ Mon Tue Wed Thu Fri
 [1] 616
 [1] 616
 ```
+</div>
+
 
 **کد: اندیس‌گذاری و names() (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 nums <- c(12, 13, 14, 15, 16)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 12 13 14 15 16
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 nums
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 12 13 14 15 16
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 nums[1]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 nums[3]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 14
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 nums[-1]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 13 14 15 16
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 nums[-c(1, 2)]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 14 15 16
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 nums[-(1:3)]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 15 16
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 info <- c("ali", "sadeghi")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "ali"     "sadeghi"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 names(info)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 names(info) <- c("firstName", "lastName")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "firstName" "lastName"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 info
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 firstName  lastName 
     "ali" "sadeghi"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 info["firstName"]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 firstName 
     "ali"
 ```
+</div>
+
 
 **کد: sequence و شرط روی بردار (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 (12:364)[8]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 19
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 nums2 <- 12:364
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 length(nums2) = 353
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 nums2[9]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 20
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 nums > 14
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] FALSE FALSE FALSE  TRUE  TRUE
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 nums[nums > 14]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 15 16
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 nums[nums < 13 | nums > 16]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 nums[nums >= 13 & nums <= 16]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 13 14 15 16
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 c(1, 2, 3) * c(10, 100)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1]  10 200  30
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 length(nums2)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 353
 ```
+</div>
+
 
 می‌خواهیم ببینیم چه کارایی می‌شود با بردارها کرد.
 
@@ -712,10 +1060,14 @@ length(nums2)
 
 **کد: ساخت ماتریس و dim (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 matrix(data = 1:12)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [,1]
  [1,]    1
@@ -731,106 +1083,169 @@ matrix(data = 1:12)
 [11,]   11
 [12,]   12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 matrix(data = 1:12, nrow = 3)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 matrix(data = 1:12, ncol = 4)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 matrix(data = 1:12, nrow = 3, ncol = 4)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 mat1 <- matrix(data = 1:12, nrow = 3, ncol = 4)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 mat1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 length(mat1)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 nrow(mat1)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 ncol(mat1)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 4
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 dim(mat1)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 3 4
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 matrix(data = 1:12, nrow = 2, ncol = 3, byrow = TRUE)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [,1] [,2] [,3]
 [1,]    1    2    3
 [2,]    4    5    6
 ```
+</div>
+
 
 **کد: آدرس‌دهی ماتریس (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 mat1 <- matrix(data = 1:12, nrow = 3, ncol = 4)
 mat1[2, 2]
@@ -847,7 +1262,10 @@ sum(mat1)
 colSums(mat1)
 rowSums(mat1)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 5
 [1] 10
@@ -871,9 +1289,12 @@ C 30 60 90 120
  A  B  C 
 22 26 30 
 ```
+</div>
+
 
 **کد: rbind / cbind (r1)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 mat2 <- matrix(data = 1:4, nrow = 2, ncol = 2)
 mat3 <- matrix(data = 5:8, nrow = 2, ncol = 2)
@@ -884,7 +1305,10 @@ cbind(mat2, mat3)
 result <- cbind(mat2, mat3)
 result
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
      [,1] [,2]
 [1,]    1    3
@@ -907,6 +1331,8 @@ result
 [1,]    1    3    5    7
 [2,]    2    4    6    8
 ```
+</div>
+
 
 ماتریس چیه ؟
 
@@ -948,6 +1374,7 @@ result
 
 **کد: factor nominal و ordinal (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 gender <- c("M", "F", "M", "F", "M", "M")
 factor(x = gender)
@@ -959,7 +1386,10 @@ genderFac <- factor(x = gender,
                     labels = c("Male", "Female", "Unisex"))
 genderFac
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] M F M F M M
 Levels: F M
@@ -972,9 +1402,12 @@ Levels: Male Female Unisex
 [1] Male   Female Male   Female Male   Male  
 Levels: Male Female Unisex
 ```
+</div>
+
 
 **کد: factor ترتیبی (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 temp <- c("l", "m", "h", "vh", "vh", "h", "l")
 tempFac <- factor(x = temp,
@@ -987,7 +1420,10 @@ tempFac[1] > tempFac[3]
 unclass(tempFac)
 summary(tempFac)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] low      mid      high     veryHigh veryHigh high     low     
 Levels: veryLow < low < mid < high < veryHigh
@@ -1001,13 +1437,19 @@ attr(,"levels")
  veryLow      low      mid     high veryHigh 
        0        2        1        2        2 
 ```
+</div>
+
 
 **کد: ggplot2 و factor(cyl) (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 head(mtcars)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 mpg cyl disp  hp drat    wt  qsec vs am gear carb
 Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
@@ -1017,22 +1459,36 @@ Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
 Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
 Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 sort(unique(mtcars$cyl))
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 4 6 8
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 library(ggplot2)  # ggplot object on next lines
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 ggplot2 loaded OK
 ```
+</div>
+
 
 فاکتورها چین ؟ - یکی از انواع داده های آماری – برای نگهداری داده های categorical استفاده می‌شود (مثال)
 
@@ -1062,6 +1518,7 @@ Levels در واقع حالتهایی هست که برای داده ها پیش 
 
 **کد: ساخت data.frame و EDA (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 infoDF <- data.frame(
   name   = c("ali", "hassan", "reza", "mohammad reza"),
@@ -1074,7 +1531,10 @@ class(infoDF)
 summary(infoDF)
 str(infoDF)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
            name         family age             major
 1           ali sadeghi aghili  38 data architecture
@@ -1096,9 +1556,12 @@ str(infoDF)
  $ major : chr  "data architecture" "programming" "data engineering" "ML engineering"
 NULL
 ```
+</div>
+
 
 **کد: data.frame سیارات (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 SolarSys <- data.frame(
   Planet   = c("Mercury", "Venus", "Earth", "Mars",
@@ -1113,7 +1576,10 @@ dim(SolarSys)
 SolarSys$Planet
 SolarSys[SolarSys$Planet == "Mars", ]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
    Planet        Type Diameter Rotation HasRing
 1 Mercury Terrestrial    0.382    58.64   FALSE
@@ -1132,9 +1598,12 @@ SolarSys[SolarSys$Planet == "Mars", ]
   Planet        Type Diameter Rotation HasRing
 4   Mars Terrestrial    0.532     1.03   FALSE
 ```
+</div>
+
 
 **کد: subset و order (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 subset(x = mtcars, cyl == 4)
 subset(x = mtcars, cyl == 4 & am == 1)
@@ -1143,7 +1612,10 @@ order(a)
 a[order(a)]
 sort(a, decreasing = TRUE)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 Datsun 710     22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
@@ -1171,6 +1643,8 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
 [1] 1000  100   10
 [1] 1000  100   10
 ```
+</div>
+
 
 مرور انواع داده – در تمام انواع تا الان فقط مجاز به استفاده از یک نوع داده بودیم. در حالی که در واقعیت با انواع مختلفی از داده در پرسشنامه مواجهیم – data.frame
 
@@ -1184,9 +1658,12 @@ Land کردن mtcars
 
 یک راه دیگه شناختن مربع داده ها استفاده از تابع str( ) است. که به ما تعداد مشاهدات، تعداد متغیرها، نوع داده، نوع داده متغیرها و..... رومی‌گوید .
 
+<div dir="ltr" class="ltr-block">
 ```r
 حالا بریم یک dataset بسازیم و روی اون پیش بریم. با استفاده از data.frame( )
 ```
+</div>
+
 
 > **تمرین:** می‌خواهیم یک data.frame ایجاد کنیم و اطلاعاتی رو راجع به سیارات داخلش بریزیم اول 5 بردار بسازین و داده ها رو توش وارد کنید و بعد از روش data.frame بسازین.
 
@@ -1212,6 +1689,7 @@ Subset 3 تا Arguman داره. اولی انتخاب میکنه دیتا رو. 
 
 **کد: list و [[ ]] / $ (r2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 lst <- list(vec = dollars, fac = genderFac, mat = mat1, df = SolarSys)
 lst$fac
@@ -1219,7 +1697,10 @@ lst$fac[3]
 lst$df$Planet
 names(lst)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] M F M F M M
 Levels: F M
@@ -1229,6 +1710,8 @@ Levels: F M
 [1] "vec" "fac" "mat" "df" 
 [1] "vec" "fac" "mat" "df" 
 ```
+</div>
+
 
 لیست ها هم یک نوع از داده ها هستند که نه براشون اندازه مهمه و نه جنس داده. (توی data.frame داده های ستونها می تونستن با هم فرق کنن ولی نوع داده در هر ستون یکسان است) پس توی list می‌تواند تمام تمام فرمت های داده ای که تا الان یاد گرفتیم بعلاوه خود list می تونه قرار بگیره.
 
@@ -1260,6 +1743,7 @@ Levels: F M
 
 **کد: if ساده (3.Rhistory)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 x <- 2
 if (x %% 2 == 0) {
@@ -1268,15 +1752,21 @@ if (x %% 2 == 0) {
   print("odd")
 }
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "even"
 [1] "odd"
 [1] "odd"
 ```
+</div>
+
 
 **کد: if / else if / else (3)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 x <- 1
 if (x %% 2 == 0) {
@@ -1287,14 +1777,20 @@ if (x %% 2 == 0) {
   print("neither divisable by 2 nor 3")
 }
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "neither divisable by 2 nor 3"
 [1] "neither divisable by 2 nor 3"
 ```
+</div>
+
 
 **کد: تمرین آپارات/YouTube (الگو)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 aparat <- 5
 youtube <- 9
@@ -1306,11 +1802,16 @@ if (aparat >= 15 & youtube >= 15) {
   print(aparat + youtube)
 }
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 0.7
 [1] 0.7
 ```
+</div>
+
 
 شرطها (در شرط‌ها یک مقایسهٔ منطقی انجام می‌شود) یک مقایسه منطقی انجام میدن. در صورتی که نتیجه اش TRUE باشه یک سری کارهای کنن و اگر نباشه یکسری کارهای دیگه.
 
@@ -1332,6 +1833,7 @@ if (aparat >= 15 & youtube >= 15) {
 
 **کد: while و state changer (3)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 x <- 10
 while (x > 0) {
@@ -1339,7 +1841,10 @@ while (x > 0) {
   x <- x - 1
 }
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 10
 [1] 9
@@ -1352,9 +1857,12 @@ while (x > 0) {
 [1] 2
 [1] 1
 ```
+</div>
+
 
 **کد: while با break (الگوی تمرین)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 speed <- 48
 while (speed > 30) {
@@ -1368,7 +1876,10 @@ while (speed > 30) {
 }
 speed
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "slow down"
 [1] "slow down"
@@ -1376,6 +1887,8 @@ speed
 [1] 30
 [1] 30
 ```
+</div>
+
 
 توضیح while (تا وقتی اجرا می‌شود که شرط برقرار هست)
 
@@ -1391,13 +1904,17 @@ Break در صورتی استفاده می‌شود که بخوایم بعد از
 
 **کد: for روی بردار (3)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 names <- c("ali", "samin", "arshia", "hooman", "arman", "chamin")
 for (name in names) {
   print(name)
 }
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "ali"
 [1] "samin"
@@ -1417,48 +1934,80 @@ for (name in names) {
 [1] "arman"
 [1] "chamin"
 ```
+</div>
+
 
 **کد: paste و for روی seq (3)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 paste("ali", "sadeghi")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "ali sadeghi"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 paste("ali", "sadeghi", sep = "")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "alisadeghi"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 paste("ali", "sadeghi", sep = "-")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "ali-sadeghi"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 paste("x", 1:6, sep = "")
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "x1" "x2" "x3" "x4" "x5" "x6"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 paste(c("ali", "hassan"), c("sadeghi", "eskandari"))
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "ali sadeghi"      "hassan eskandari"
 ```
+</div>
+
 
 از حلقه for زمانی استفاده می‌کنیم که بخوایم یک اتفاقی به تعداد مشخصی بیفته. مثلا
 
@@ -1486,6 +2035,7 @@ paste(c("ali", "hassan"), c("sadeghi", "eskandari"))
 
 **کد: تعریف تابع (3-2.Rhistory)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 triple <- function(num) {
   return(num * 3)
@@ -1495,16 +2045,22 @@ triple(num = 10)
 result <- triple(num = 12)
 result
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 36
 [1] 30
 [1] 36
 [1] 36
 ```
+</div>
+
 
 **کد: آرگومان و default (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 multiply <- function(num1, num2) {
   return(num1 * num2)
@@ -1522,7 +2078,10 @@ num2pow <- function(num, pow = 1) {
 num2pow(12)
 num2pow(12, 2)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 48
 [1] 4
@@ -1532,75 +2091,126 @@ num2pow(12, 2)
 [1] 144
 [1] 144
 ```
+</div>
+
 
 **کد: توابع پایه و sample (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 mean(1:5)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 3
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 sd(1:5)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1.581139
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 abs(c(-1, 2, 3, -4, 5))
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 1 2 3 4 5
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 seq(from = 1, to = 20, by = 2)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1]  1  3  5  7  9 11 13 15 17 19
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 seq(from = 20, to = 1, by = -3)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 20 17 14 11  8  5  2
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 rev(1:10)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 10  9  8  7  6  5  4  3  2  1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 sample(x = 1:10, size = 1)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 9
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 sample(x = 1:10, size = 3, replace = TRUE)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 9 4 7
 ```
+</div>
+
 
 **کد: تمرین تابع تاس (الگو)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 dice <- function(verbose = FALSE) {
   a <- sample(x = 1:6, size = 1)
@@ -1610,12 +2220,17 @@ dice <- function(verbose = FALSE) {
 }
 dice(verbose = TRUE)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "dice1 = 1 , dice2 = 5"
 [1] 6
 [1] 6
 ```
+</div>
+
 
 تعریف تابع (جعبه سیاه)
 
@@ -1655,34 +2270,52 @@ Return رو می‌شود گذاشت. می‌شود نگذاشت چون آخری
 
 **کد: library / detach / search (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 .libPaths()
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "C:/Users/alisa/AppData/Local/R/win-library/4.6"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 search()
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] ".GlobalEnv"        "package:stats"     "package:graphics" 
 [4] "package:grDevices" "package:utils"     "package:datasets" 
 [7] "package:methods"   "Autoloads"         "package:base"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 head(installed.packages()[, "Package"], 8)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 A3          abc     abc.data        abcrf        abind      acepack 
         "A3"        "abc"   "abc.data"      "abcrf"      "abind"    "acepack" 
   AICcmodavg     airports 
 "AICcmodavg"   "airports"
 ```
+</div>
+
 
 Package چیه ؟ (همه توابعی که ما به صورت built-in استفاده می‌کنیم عنصری از Package ها متن) .
 
@@ -1690,10 +2323,13 @@ Package چیه ؟ (همه توابعی که ما به صورت built-in استف
 
 پکیج‌ها معمولاٌ از طریق CRAN نصب میشن. ولی برای اینکه بتونیم از Package ها استفاده کنیم باید آن‌ها را load کنیم که برای اینکار از تابع
 
+<div dir="ltr" class="ltr-block">
 ```r
 وقتی Package‌ها load می‌شوند در واقع به یک لیست قابل جستجویی برای R اضافه میشن. برای اینکه این list رو بتونیم ببینیم. می تونین از تابع search() استفاده کنید.
 یک تابع دیگه هم برای load کردن Package ها داریم به نام require( ) . این تابع یه فرق بزرگ با library( ) داره اونهم اینکه اگر یک Package نصب شده باشه و از library استفاده کنیم به یک error بر می خوریم که باعث توقف برنامه می‌شود ولی با استفاده از require فقط یک warning می گیرم.
 ```
+</div>
+
 
 ## خانواده apply
 
@@ -1727,9 +2363,12 @@ lapply همیشه list باز می‌گرداند . برای خارج کردنش
 
 تابع identical به جای ---- e.g ----- و identical( 2,2)
 
+<div dir="ltr" class="ltr-block">
 ```r
 تابع cat مثل paste هست e.g (ali,saleghi ) cat (ali,sadghi )cat<-cat وcat و str,cat
 ```
+</div>
+
 
 sapply همیشه قابل اعتماد نیست مخصوصاٌ در برخورد با توابعی که ممکنه NULL برگردانند e.g
 
@@ -1753,57 +2392,94 @@ sapply همیشه قابل اعتماد نیست مخصوصاٌ در برخور�
 
 **کد: grep / grepl (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 words <- c("book", "nook", "back", "black", "pick", "peak", ...)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 14
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 grep(pattern = "b", x = words)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1]  1  3  4 10 12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 words[grep(pattern = "b", x = words)]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "book"  "back"  "black" "bomb"  "amber"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 grepl(pattern = "b", x = words)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1]  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
 [13] FALSE FALSE
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 words[grepl(pattern = "^b", x = words)]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "book"  "back"  "black" "bomb"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 words[grepl(pattern = "b$", x = words)]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "bomb"
 ```
+</div>
+
 
 **کد: تمرین email با grepl (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 emails <- c("javad.rasooli@bpmn.edu", "education@world.gov",
             "babak.pirooz@peace.org", "@invalid.edu",
@@ -1812,10 +2488,15 @@ emails
 emails[grepl(pattern = "@", x = emails)]
 emails[grepl(pattern = "\\.edu$", x = emails)]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 Error: '\.' is an unrecognized escape in character string (<input>:7:32) 
 ```
+</div>
+
 
 از دو تا تابع grepl( ) که مقدار منطقی باز می‌گرداند و grep() که اندیس باز می‌گرداند استفاده می‌کنیم هر دو دنبال یک pattern توی داده های گردن. e.g
 
@@ -1831,21 +2512,33 @@ Error: '\.' is an unrecognized escape in character string (<input>:7:32)
 
 **کد: sub / gsub (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 sub(pattern = "oo", replacement = "*", x = words)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "b*k"   "n*k"   "back"  "black"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 gsub(pattern = "o", replacement = "*", x = words)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "b**k"  "n**k"  "back"  "black"
 ```
+</div>
+
 
 تابع grepl,grep برامون جای یک فرمت رو پیدا می کردن و توابع gsub, sub می تونن اون بخش از داده رو جایگزین کنن.
 
@@ -1865,80 +2558,135 @@ Groupig( )
 
 **کد: as.Date / strptime / strftime (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 date <- "2026-09-17"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2026-09-17"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 class(date)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "character"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 dated <- as.Date(date)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2026-09-17"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 class(dated)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "Date"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 unclass(dated)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 20713
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 dated + 1
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2026-09-18"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 dated + 365
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2027-09-17"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 Sys.Date()
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2026-09-20"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 Sys.time()
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2026-09-20 15:08:42 +0330"
 ```
+</div>
+
 
 **کد: strptime / strftime (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 timed <- strptime(x = "09/17/2026", format = "%m/%d/%Y")
 timed
@@ -1948,7 +2696,10 @@ strftime(x = timed, format = "%y, %A/%b, %d")
 dimDate <- data.frame(fullDate = as.Date("2026-09-17") + 0:365)
 head(dimDate)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "2026-09-17 +0330"
 [1] "2026"
@@ -1969,14 +2720,19 @@ head(dimDate)
 5 2026-09-21
 6 2026-09-22
 ```
+</div>
+
 
 متدی R توابع مختلفی برای تاریخ و زمان داریم –
 
 Sys.time( ) مثل خیلی از زبان‌های دیگه زمان را بر حسب ثانیه از ژانویهٔ 1970 نگه می‌دارد هست. و برای Sys.Date همون بعد اولی به روز هست.
 
+<div dir="ltr" class="ltr-block">
 ```r
 برای تبدیل یک عدد یا کاراکتر به تاریخ از تابع as.Date استفاده می‌کنیم. Edate<-13 January1982 e.g با استفاده آرگومان format این تابع می تونیم فرمت دلخواهمون رو از اون استخراج کنیم توی این آرگومان مقادیر مختلفی می‌تواند بشینه.
 ```
+</div>
+
 
 اصولاٌ R اگر as.Date بدون فرمت وارد بشه اونو به‌عنوان یا تبدیل می کنه. بر عکس اینکارم می‌شود با تابع format کرد یعنی وقتی می‌خواهیم یک تاریخ رو به رشته تا فرمت خاص تبدیل کنیم.
 
@@ -2088,29 +2844,45 @@ Xlconnect
 
 **کد: data.frame vs tibble lazy (4)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 data.frame(a = 1:3, b = c(10, 100, 1000))
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 a    b
 1 1   10
 2 2  100
 3 3 1000
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 data.frame(a = 1:3, b = c(10, 100, 1000), c = a * b)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 Error: object 'b' not found
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 tibble(a = 1:3, b = c(10, 100, 1000), c = a * b)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 # A tibble: 3 × 3
       a     b     c
@@ -2119,55 +2891,91 @@ tibble(a = 1:3, b = c(10, 100, 1000), c = a * b)
 2     2   100   200
 3     3  1000  3000
 ```
+</div>
+
 
 **کد: typeof vs class (4)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 class(12)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "numeric"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 typeof(12)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "double"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 typeof(12L)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "integer"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 class(12L)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "integer"
 ```
+</div>
+
 
 **کد: getwd / dir (4)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 getwd()
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "C:/Users/alisa/Desktop/Projects/.mimo-sessions/2026-09-19/این رو با دقت بخون و تایپش رو کامل و درس"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 dir()
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "~$اب R - اصلاح‌شده با کدها.docx"                      
  [2] "~$اب R - نهایی RTL و کدها.docx"                      
@@ -2196,9 +3004,12 @@ dir()
 [25] "make_capture_r.py"                                   
 ...
 ```
+</div>
+
 
 **کد: read_csv نمونه موقت (4)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 library(readr)
 tmp <- tempfile(fileext = ".csv")
@@ -2207,7 +3018,10 @@ read_csv(file = tmp, show_col_types = FALSE)
 read_csv(file = tmp, n_max = 2, show_col_types = FALSE)
 unlink(tmp)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 # A tibble: 3 × 3
     mpg   cyl  disp
@@ -2222,6 +3036,8 @@ unlink(tmp)
 2    21     6   160
 [1] 0
 ```
+</div>
+
 
 تا حالا یاد گرفتیم یکسری کارهایی رو با R انجام بدیم و حالا می‌خواهیم یاد بگیریم که چطور داده ها رو از منابع داده بخونیم. منابع داده ای که مد نظر ما هستند فایل های flat ، فایل های Excel ، Db ها داده های وب و داده های سایر نرم‌افزارهای آماری هست که حالا یکی یکی برسینشون می
 
@@ -2987,6 +3803,7 @@ Regea نویسی را بسیار ساده می‌کند.
 
 **کد: pipe و dplyr verbs (4)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 library(dplyr)
 1:10 %>% sum()
@@ -2997,7 +3814,10 @@ mtcars |>
   arrange(mpg, desc(disp)) |>
   head()
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 55
                mpg cyl  disp  hp vs am       user mpg10
@@ -3015,6 +3835,8 @@ Fiat X1-9     27.3   4  79.0  66  1  1 alisadeghi   273
 Lotus Europa  30.4   4  95.1 113  1  1 alisadeghi   304
 Honda Civic   30.4   4  75.7  52  1  1 alisadeghi   304
 ```
+</div>
+
 
 انتخاب میکنه کدام ستونها در نتیجه حضور داشته باشند.
 
@@ -3106,18 +3928,24 @@ Honda Civic   30.4   4  75.7  52  1  1 alisadeghi   304
 
 می‌گوید در هر سطرها مقدار خالی داریم یا نداریم.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > complete.cases(NAData)
 [1] TRUE FALSE TRUE FALSE
 ```
+</div>
+
 
 ## تابع na.omit
 
 سطرهای دارای NA را از داده حذف می‌کند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > na.omit(NAData)
 ```
+</div>
+
 
 A B C
 
@@ -3129,12 +3957,15 @@ A B C
 
 می‌تواند با یک شرط به کار گرفته بشه و در صورت اولین وقوع TRUE برگرداند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > any(is.na(NAData))
 [1] TRUE
 > all(!is.na(NAData))
 [1] FALSE
 ```
+</div>
+
 
 > **تمرین:** داده های دیتاست Coal رو پس از آشنا شدن با دیتاست به صورت تمیز در بیارین.
 
@@ -3142,11 +3973,14 @@ A B C
 
 > **تمرین:** در دیتاست hflights یک متغیر جدید اضافه کنید که اختلاف بین زمان ورود و خروج تاکسی ها را نشان دهد. پس بدست آورید.
 
+<div dir="ltr" class="ltr-block">
 ```r
 >library(hflights)
 >library(dplyrr)
 > hflights %>% mutate(diff = TaxiOut - TaxiIn) %>% select(diff) %>% filter(!is.na(diff)) %>% summarize(avg = mean(diff))
 ```
+</div>
+
 
 avg
 
@@ -3168,13 +4002,19 @@ avg
 
 یک متغیر از یک مجموعه داده دیگه رو به مجموعه داده فعلی اضافه می‌کند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 inner_join(x, y, by = NULL, copy = FALSE, suffix = c(".x", ".y"), ...)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 left_join(x, y, by = NULL, copy = FALSE, suffix = c(".x", ".y"), ...)
 ```
+</div>
+
 
 right_join(x, y, by = NULL, copy = FALSE, suffix = c(".x", ".y"), ...)
 
@@ -3184,12 +4024,15 @@ full_join(x, y, by = NULL, copy = FALSE, suffix = c(".x", ".y"), ...)
 
 به‌عنوان مثال می‌خواهیم داده های bands و artists را به هم متصل نماییم.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bands <- readRDS("C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/bands.rds")
 > artists <- readRDS("C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/artists.rds")
 > bands
 # A tibblele: 13 x 3
 ```
+</div>
+
 
 first last band
 
@@ -3221,10 +4064,13 @@ first last band
 
 13 Ronnie Wood The Rolling Stones
 
+<div dir="ltr" class="ltr-block">
 ```r
 > artists
 # A tibblele: 16 x 3
 ```
+</div>
+
 
 first last instrument
 
@@ -3264,17 +4110,23 @@ first last instrument
 
 همانطور که ملاحظه می‌شود در این جداول ستون های first و last یکسان هستند. بنابرین نیازی به مشخص کردن ستون ها برای اتصال نیست و در زمان اجرا خود R هم به ما پیغامی مبنی بر انتخاب این ستون ها به منظور اتصال می‌دهد.
 
+<div dir="ltr" class="ltr-block">
 ```r
 < left_join(x = bands, y = artists)
 Joining, by = c("first", "last")
 # A tibblele: 13 x 4
 ```
+</div>
+
 
 first last band instrument
 
+<div dir="ltr" class="ltr-block">
 ```r
 > chr> <chr> <chr> <chr>
 ```
+</div>
+
 
 1 John Bonham Led Zeppelin NA
 
@@ -3304,10 +4156,13 @@ first last band instrument
 
 همچنین برای اطمینان می شد که ستون های اتصال را مشخص نمود.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > left_join(x = bands, y = artists, by = c("first", "last"))
 # A tibblele: 13 x 4
 ```
+</div>
+
 
 first last band instrument
 
@@ -3341,10 +4196,13 @@ first last band instrument
 
 در صورت نا هم نام بودن نیست می‌بایست ستون ها به صورت زیر نوشته می شدند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > left_join(x = bands, y = artists, by = c("first" = "first", "last" = "last"))
 # A tibblele: 13 x 4
 ```
+</div>
+
 
 first last band instrument
 
@@ -3382,6 +4240,7 @@ first last band instrument
 
 نام دو مجموعه داده را می‌گیرد و یک logical بر می گردادند که آیا مقادیر این دو مجموعه برابراند یا خیر. و در صورت برابر نبودن دلیل نابرابر نبودن دلیل نا برابری هم می‌گوید
 
+<div dir="ltr" class="ltr-block">
 ```r
 > set1 <- left_join(x = bands, y = artists)
 Joining, by = c("first", "last")
@@ -3389,11 +4248,14 @@ Joining, by = c("first", "last")
 Joining, by = c("first", "last")
 > setequal(x = set1, y = set2)
 ```
+</div>
+
 
 FALSE: Different number of rows
 
 > **تمرین:** join ها رو برای دیتاست های albums, stage songs انجام بدهید و بعد با setequal مقایسشون کنید.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > albums <- readRDS("C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/albums.rds")
 > stage_songs <- readRDS("C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/stage_songs.rds")
@@ -3403,16 +4265,21 @@ Joining, by = "year"
 Joining, by = "year"
 > setequal(x = set1, set2)
 ```
+</div>
+
 
 FALSE: Different number of rows
 
 > **تمرین:** با استفاده از پایپ (% < %) دیتاست bands را به‌عنوان دیتاست مرجع در نظر بگیرید (left join ) و با دیتاست artists ، join کنید و بعد اسم، فامیل و گروه گیتاریست ها رو نمایش بدید.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bands %>% left_join(y = artists) %>% filter(instrument == "Guitar") %>% select(first, last, band)
 Joining, by = c("first", "last")
 # A tibblele: 5 x 3
 ```
+</div>
+
 
 first last band
 
@@ -3430,11 +4297,14 @@ first last band
 
 > **تمرین:** منزل: با استفاده از join ها و دیتاستهای artists,songs,bands ، دیتاستی مانند goal بسازید.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > goal <- readRDS("C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/goal.rds")
 > goal
 # A tibblele: 3 x 6
 ```
+</div>
+
 
 first last instrument band song album
 
@@ -3446,11 +4316,14 @@ first last instrument band song album
 
 3 Paul McCartney Bass The Beatles Hello, Goodbye Magical Mystery Tour
 
+<div dir="ltr" class="ltr-block">
 ```r
 > songs <- readRDS("C:/Users/Ali Sadeghi Aghili/Dropbox/References/R/Examples/3-Cleansing/songs.rds")
 > songs
 # A tibblele: 4 x 4
 ```
+</div>
+
 
 song album first last
 
@@ -3464,10 +4337,13 @@ song album first last
 
 4 It's Not Unusual Along Came Jones Tom Jones
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bands
 # A tibblele: 13 x 3
 ```
+</div>
+
 
 first last band
 
@@ -3499,10 +4375,13 @@ first last band
 
 13 Ronnie Wood The Rolling Stones
 
+<div dir="ltr" class="ltr-block">
 ```r
 > artists
 # A tibblele: 16 x 3
 ```
+</div>
+
 
 first last instrument
 
@@ -3540,12 +4419,15 @@ first last instrument
 
 16 Nancy Wilson Vocals
 
+<div dir="ltr" class="ltr-block">
 ```r
 > (goal2 <- full_join(x = bands, y = artists) %>% inner_join(y = songs))
 Joining, by = c("first", "last")
 Joining, by = c("first", "last")
 # A tibblele: 3 x 6
 ```
+</div>
+
 
 first last band instrument song album
 
@@ -3557,9 +4439,12 @@ first last band instrument song album
 
 3 Tom Jones NA Vocals It's Not Unusual Along Came Jones
 
+<div dir="ltr" class="ltr-block">
 ```r
 > setequal(x = goal, y = goal2)
 ```
+</div>
+
 
 TRUE
 
@@ -3571,10 +4456,13 @@ TRUE
 
 دیتا را در جدول اول بر اساس جدول دوم فیلتر می‌کند. مثلا می‌خواهیم از دیتای موجود در جدول artists آن هایی را ببینیم که اطلاعات مرتبطی در جدول songs دارند
 
+<div dir="ltr" class="ltr-block">
 ```r
 > semi_join(x = artists, y = songs, by = c("first", "last"))
 # A tibblele: 3 x 3
 ```
+</div>
+
 
 first last instrument
 
@@ -3588,10 +4476,13 @@ first last instrument
 
 > **تمرین:** این مثال رو بدون استفاده از semi- join حل کنید.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > artists %>% right_join(y = songs, by = c("first", "last")) %>% filter(!is.na(instrument)) %>% select(first, last, instrument)
 # A tibblele: 3 x 3
 ```
+</div>
+
 
 first last instrument
 
@@ -3607,28 +4498,37 @@ first last instrument
 
 این تابع تعداد سطرهای خروجی را به ما می‌دهد.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > nrow(bands)
 [1] 13
 ```
+</div>
+
 
 > **تمرین:** با استفاده از semi-join بگویید چه تعداد آلبوم توسط بندهای موجود در جدول bands تولید شده اند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > albums %>% semi_join(y = bands) %>% nrow()
 Joining, by = "band"
 [1] 5
 ```
+</div>
+
 
 ## Anti- join
 
 دیتاهایی که در دیتاست اول هستند ولی دیتای مرتبطی در دیتا ست دوم ندارند را مشخص می‌کند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > artists %>% anti_join(y = bands)
 Joining, by = c("first", "last")
 # A tibblele: 8 x 3
 ```
+</div>
+
 
 first last instrument
 
@@ -3666,6 +4566,7 @@ setdiff(x, y, ...)
 
 تمام داده های دو مجموعه را بر می گرداند ( اگر تکراری وجود داشته باشد یکبار بر می گرداند).
 
+<div dir="ltr" class="ltr-block">
 ```r
 > library(babynames)
 > set1 <- babynames[1:100, ]
@@ -3673,6 +4574,8 @@ setdiff(x, y, ...)
 > union(x = set1, y = set2)
 # A tibblele: 150 x 5
 ```
+</div>
+
 
 year sex name n prop
 
@@ -3698,18 +4601,24 @@ year sex name n prop
 
 10 1880 F Mae 344 0.00352
 
+<div dir="ltr" class="ltr-block">
 ```r
 # ... with 140 more rows
 ```
+</div>
+
 
 ## تابع intersect
 
 اشتراک دو مجموعه را بر می گرداند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > intersect(x = set1, y = set2)
 # A tibblele: 50 x 5
 ```
+</div>
+
 
 year sex name n prop
 
@@ -3735,18 +4644,24 @@ year sex name n prop
 
 10 1880 F Stella 414 0.00424
 
+<div dir="ltr" class="ltr-block">
 ```r
 # ... with 40 more rows
 ```
+</div>
+
 
 ## تابع setdiff
 
 داده هایی را بر می گرداند که در مجموعه اولی هستند ولی در مجموعه دوم نیستند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > setdiff(x = set1, y = set2)
 # A tibblele: 50 x 5
 ```
+</div>
+
 
 year sex name n prop
 
@@ -3772,14 +4687,20 @@ year sex name n prop
 
 10 1880 F Sarah 1288 0.0132
 
+<div dir="ltr" class="ltr-block">
 ```r
 # ... with 40 more rows
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 > setdiff(x = set2, y = set1)
 # A tibblele: 50 x 5
 ```
+</div>
+
 
 year sex name n prop
 
@@ -3805,9 +4726,12 @@ year sex name n prop
 
 10 1880 F Sara 165 0.00169
 
+<div dir="ltr" class="ltr-block">
 ```r
 # ... with 40 more rows
 ```
+</div>
+
 
 ## bind در dplyrr
 
@@ -3821,11 +4745,14 @@ year sex name n prop
 
 ستونها را به هم می چسباند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > df1 <- mtcars[, 5:dim(mtcars)[2]]
 > df2 <- mtcars[, 1:4]
 > bind_cols(df1, arrange(df2, desc(mpg)))
 ```
+</div>
+
 
 drat wt qsec vs am gear carb mpg cyl disp hp
 
@@ -3897,12 +4824,15 @@ drat wt qsec vs am gear carb mpg cyl disp hp
 
 سطرها را با هم تلفیق می‌کند به شرطی که تعداد ستونها برابر باشند. در عین حال یک آرگومان بسیار کاربردی .id را دارد که از ان طریق می‌تواند داده های هر دسته را مشخص کند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > ali <- data_frame(point = 18, year = 1396, major = "Automation")
 > babak <- data_frame(point = 19, year = 1396, major = "Programming")
 > bind_rows(ali, babak)
 # A tibblele: 2 x 3
 ```
+</div>
+
 
 point year major
 
@@ -3912,10 +4842,13 @@ point year major
 
 2 19 1396 Programming
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bind_rows(ali, babak, .id = "id")
 # A tibblele: 2 x 4
 ```
+</div>
+
 
 id point year major
 
@@ -3925,16 +4858,22 @@ id point year major
 
 2 2 19 1396 Programming
 
+<div dir="ltr" class="ltr-block">
 ```r
 > list <- list(ali = ali, babak = babak)
 > list
 ```
+</div>
+
 
 $`ali`
 
+<div dir="ltr" class="ltr-block">
 ```r
 # A tibblele: 1 x 3
 ```
+</div>
+
 
 point year major
 
@@ -3944,9 +4883,12 @@ point year major
 
 $babak
 
+<div dir="ltr" class="ltr-block">
 ```r
 # A tibblele: 1 x 3
 ```
+</div>
+
 
 point year major
 
@@ -3954,10 +4896,13 @@ point year major
 
 1 19 1396 Programming
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bind_rows(list,.id = "name")
 # A tibblele: 2 x 4
 ```
+</div>
+
 
 name point year major
 
@@ -3969,11 +4914,14 @@ name point year major
 
 > **تمرین:** با استفاده از دیتاست های discography و jimi یک data.frame از تمام داده ها به همراه داده های سال های مربوطه بسازید.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > jimi %>% bind_rows(.id = "album") %>% left_join(y = discography)
 Joining, by = "album"
 # A tibblele: 39 x 4
 ```
+</div>
+
 
 album song length year
 
@@ -3999,9 +4947,12 @@ album song length year
 
 10 Are You Experienced Are You Experienced? 14100 secs 1967
 
+<div dir="ltr" class="ltr-block">
 ```r
 # ... with 29 more rows
 ```
+</div>
+
 
 ## data_ frame
 
@@ -4009,6 +4960,7 @@ data. Frame است ولی string ها را به factor تبدیل نمی‌کن�
 
 همچنین امکان ایجاد lazy Argamet (آرگومانی که از آرگومانهای قبلی خودش استفاده کند) را به ما داده و خروجی اش tibblele است.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > name <- c("Ali", "Babak", "Parviz")
 > family <- c("Sadeghi Aghili", "Pirooz", "Agha Sadeghi")
@@ -4017,6 +4969,8 @@ data. Frame است ولی string ها را به factor تبدیل نمی‌کن�
 > df1 <- data.frame(name, family, age, major)
 > glimpse(df1)
 ```
+</div>
+
 
 Observations: 3
 
@@ -4030,10 +4984,13 @@ $ age <dbl> 30, 35, 50
 
 $ major <fct> DS, BI, DB
 
+<div dir="ltr" class="ltr-block">
 ```r
 > df2 <- data_frame(name, family, age, major)
 > glimpse(df2)
 ```
+</div>
+
 
 Observations: 3
 
@@ -4047,10 +5004,13 @@ $ age <dbl> 30, 35, 50
 
 $ major <chr> "DS", "BI", "DB"
 
+<div dir="ltr" class="ltr-block">
 ```r
 > data_frame(nums = 1:5, nums2 = nums^2)
 # A tibblele: 5 x 2
 ```
+</div>
+
 
 nums nums2
 
@@ -4066,10 +5026,13 @@ nums nums2
 
 5 5 25
 
+<div dir="ltr" class="ltr-block">
 ```r
 > data.frame(nums = 1:5, nums2 = nums^2)
 Error in data.frame(nums = 1:5, nums2 = nums^2) : object 'nums' not found
 ```
+</div>
+
 
 ## Coercion rules
 
@@ -4077,42 +5040,60 @@ R در نهایت می‌بایست مقادیر هر بردار رو به صو�
 
 R به این جنسها atomic vector می گه عبارتند از
 
+<div dir="ltr" class="ltr-block">
 ```r
 > #logical
 > typeof(TRUE)
 [1] "logical"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 > #characterer
 > typeof("Hello")
 [1] "characterer"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 > #double
 > typeof(3.14)
 [1] "double"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 > #integer
 > typeof(3L)
 [1] "integer"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 > #complex
 > typeof(1 + 2i)
 [1] "complex"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 > #raw
 > typeof(raw(1))
 [1] "raw"
 این جنسها با typeof( ) مشخص می شن.
 ```
+</div>
+
 
 دقت کنید که typeof از class متفاوت است. Class جنس شی رو به ما می‌گوید و typeof جنس محتوای شی رو. R اگر با انواع مختلف داده توی یک بردار روبرو بشه مجبوره همرو به یکی از این atomic ها برگردونه.
 
@@ -4120,51 +5101,69 @@ R به این جنسها atomic vector می گه عبارتند از
 
 ولی در مورد factor ها موضوع پیچیده تره. تبدیل فاکتور به عدد یا کاراکتر باید دقت کرد که فاکتور ها یک عدد دارند و یک لیبل دارند که به ان مرتبط است.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > fac <- as.factor(c("A", "B", "C", "B"))
 > fac
 [1] A B C B
 ```
+</div>
+
 
 Levels: A B C
 
+<div dir="ltr" class="ltr-block">
 ```r
 > as.characterer(fac)
 [1] "A" "B" "C" "B"
 > as.numeric(fac)
 [1] 1 2 3 2
 ```
+</div>
+
 
 در مورد فاکتور های رشته ای مشکلی وجود ندارد ولی فاکتور های عددی می‌توانند موجب سردرگمی‌شوند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > fac2 <- as.factor(c(4, 5, 6, 5))
 > fac2
 [1] 4 5 6 5
 ```
+</div>
+
 
 Levels: 4 5 6
 
+<div dir="ltr" class="ltr-block">
 ```r
 > as.characterer(fac2)
 [1] "4" "5" "6" "5"
 > as.numeric(fac2)
 [1] 1 2 3 2
 ```
+</div>
+
 
 برای جلوگیری از بروز این مشکل می‌بایست ابتدا فاکتور های عددی حتما به رشته و سپس به عدد تبدیل شوند.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > as.numeric(as.characterer(fac2))
 [1] 4 5 6 5
 ```
+</div>
+
 
 > **تمرین:** دیتاست های seventies و eighties را با هم bind قبل از bird، جنس ستونها رو چک کنید و ببینید که چه اتفاقی می افتد.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > seventies
 # A tibblele: 10 x 3
 ```
+</div>
+
 
 year album band
 
@@ -4190,10 +5189,13 @@ year album band
 
 10 1979 Billy Joel 52nd Street
 
+<div dir="ltr" class="ltr-block">
 ```r
 > eighties
 # A tibblele: 10 x 3
 ```
+</div>
+
 
 year album band
 
@@ -4219,10 +5221,13 @@ year album band
 
 10 1989 Don't Be Cruel Bobby Brown
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bind_rows(seventies, eighties)
 # A tibblele: 20 x 3
 ```
+</div>
+
 
 year album band
 
@@ -4268,25 +5273,34 @@ year album band
 
 20 1989 Don't Be Cruel Bobby Brown
 
+<div dir="ltr" class="ltr-block">
 ```r
 Warning messages:
 1: In bind_rows_(x, .id) :
 ```
+</div>
+
 
 binding factor and characterer vector, coercing into characterer vector
 
+<div dir="ltr" class="ltr-block">
 ```r
 2: In bind_rows_(x, .id) :
 ```
+</div>
+
 
 binding characterer and factor vector, coercing into characterer vector
 
 > **تمرین:** دیتاست های sixties و sevent را با هم bind کنید.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > sixties
 # A tibblele: 10 x 3
 ```
+</div>
+
 
 year album band
 
@@ -4312,10 +5326,13 @@ year album band
 
 10 1969 In-A-Gadda-Da-Vida Iron Butterfly
 
+<div dir="ltr" class="ltr-block">
 ```r
 > seventies
 # A tibblele: 10 x 3
 ```
+</div>
+
 
 year album band
 
@@ -4341,17 +5358,23 @@ year album band
 
 10 1979 Billy Joel 52nd Street
 
+<div dir="ltr" class="ltr-block">
 ```r
 > bind_rows(sixties, seventies)
 Error in bind_rows_(x, .id) :
 ```
+</div>
+
 
 Column `year` can't be converted from integer to factor
 
+<div dir="ltr" class="ltr-block">
 ```r
 > seventies %>% mutate(year = as.numeric(as.characterer(year))) %>% bind_rows(sixties)
 # A tibblele: 20 x 3
 ```
+</div>
+
 
 year album band
 
@@ -4401,9 +5424,12 @@ year album band
 
 از توابع پکیج tibblele هست که به ما کمک می‌کند به راحتی عناوین سطرها را در قالب یک ستون به dataset اضافه کنیم .
 
+<div dir="ltr" class="ltr-block">
 ```r
 > rownames_to_column(df = mtcars[1:3,])
 ```
+</div>
+
 
 rowname mpg cyl disp hp drat wt qsec vs am gear carb
 
@@ -4413,9 +5439,12 @@ rowname mpg cyl disp hp drat wt qsec vs am gear carb
 
 3 Datsun 710 22.8 4 108 93 3.85 2.320 18.61 1 1 4 1
 
+<div dir="ltr" class="ltr-block">
 ```r
 > rownames_to_column(df = mtcars[1:3,], var = "carname")
 ```
+</div>
+
 
 carname mpg cyl disp hp drat wt qsec vs am gear carb
 
@@ -4429,10 +5458,13 @@ carname mpg cyl disp hp drat wt qsec vs am gear carb
 
 از توابع پکیج tibblele هست که تنها مشخص می‌کند که دیتاست label دارد یا خیر.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > has_rownames(mtcars)
 [1] TRUE
 ```
+</div>
+
 
 ## مشکلاتی که در join ها به وجود می آیند.
 
@@ -4446,10 +5478,13 @@ carname mpg cyl disp hp drat wt qsec vs am gear carb
 
 کلید تکراری
 
+<div dir="ltr" class="ltr-block">
 ```r
 > shows
 # A tibblele: 6 x 2
 ```
+</div>
+
 
 musical year
 
@@ -4467,10 +5502,13 @@ musical year
 
 6 Phantom of the Opera 1986
 
+<div dir="ltr" class="ltr-block">
 ```r
 > composers
 # A tibblele: 8 x 2
 ```
+</div>
+
 
 musical composer
 
@@ -4492,11 +5530,14 @@ musical composer
 
 8 West Side Story Leonard Bernstein
 
+<div dir="ltr" class="ltr-block">
 ```r
 > shows %>% left_join(composers)
 Joining, by = "musical"
 # A tibblele: 8 x 3
 ```
+</div>
+
 
 musical year composer
 
@@ -4530,6 +5571,7 @@ dplyrr با کلید تکراری مشکلی ندارد و هر دو رو در �
 
 در صورتی که ستونهای غیر کلید تکراری در dataset ها وجود داشته باشند dplyrr به صورت اتواتیک به آنها پیوندی دهد مگر آنکه پسوند به صورت دستی مشخص شود.
 
+<div dir="ltr" class="ltr-block">
 ```r
 > inner_join(work, study)
 Joining, by = c("name", "major")
@@ -4538,6 +5580,8 @@ Joining, by = c("name", "major")
 > inner_join(work, study, by = "name")
 # A tibblele: 3 x 3
 ```
+</div>
+
 
 name major.x major.y
 
@@ -4549,10 +5593,13 @@ name major.x major.y
 
 3 parviz Database Administration Chemical Engineering
 
+<div dir="ltr" class="ltr-block">
 ```r
 > inner_join(work, study, by = "name", suffix= c("work", "study"))
 # A tibblele: 3 x 3
 ```
+</div>
+
 
 name majorwork majorstudy
 
@@ -4808,9 +5855,12 @@ Bg می‌تواند فرمول هم بگیرد
 
 SD . به صورت پیش‌فرض تمام مقادیر تمام ستونها به غیر از ستونهایی که در by آمده اند را در خود نگه می دارد و تنها در بخش j قابل استفاده است.
 
+<div dir="ltr" class="ltr-block">
 ```r
 اگر از .SD استفاده می کنید برای انتخاب برخی ستونها باید از .SDcols استفاده کرده و ستونهای مورد نظر رو برابر یا اندیشیدن آن قرار دهید.
 ```
+</div>
+
 
 ## IS
 
@@ -4854,6 +5904,7 @@ SD . به صورت پیش‌فرض تمام مقادیر تمام ستونها �
 
 **کد: summarize / group_by (4)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 iris |>
   group_by(Species) |>
@@ -4861,7 +5912,10 @@ iris |>
             stdtl = sd(Sepal.Length),
             count = n())
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 # A tibble: 3 × 4
   Species      msl stdtl count
@@ -4876,27 +5930,44 @@ iris |>
 2 versicolor  5.94 0.516    50
 3 virginica   6.59 0.636    50
 ```
+</div>
+
 
 پیوست: منابع کد
 
+<div dir="ltr" class="ltr-block">
 ```r
 r1.Rhistory      -> مبانی، متغیر، بردار، ماتریس
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 r2.Rhistory      -> factor, data.frame, list, ggplot2
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 3.Rhistory       -> if / while / for / paste
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 3-2.Rhistory     -> function, package, regex, date/time
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 4.Rhistory       -> import, Excel, DB, dplyr pipe
 ```
+</div>
+
 
 </div>

@@ -206,57 +206,94 @@ Digits در امداد ملی تعداد اعداد بعد از ممیز را ن
 
 **کد: grep / grepl (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 words <- c("book", "nook", "back", "black", "pick", "peak", ...)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] 14
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 grep(pattern = "b", x = words)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1]  1  3  4 10 12
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 words[grep(pattern = "b", x = words)]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "book"  "back"  "black" "bomb"  "amber"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 grepl(pattern = "b", x = words)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1]  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
 [13] FALSE FALSE
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 words[grepl(pattern = "^b", x = words)]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "book"  "back"  "black" "bomb"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 words[grepl(pattern = "b$", x = words)]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "bomb"
 ```
+</div>
+
 
 **کد: تمرین email با grepl (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 emails <- c("javad.rasooli@bpmn.edu", "education@world.gov",
             "babak.pirooz@peace.org", "@invalid.edu",
@@ -265,10 +302,15 @@ emails
 emails[grepl(pattern = "@", x = emails)]
 emails[grepl(pattern = "\\.edu$", x = emails)]
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 Error: '\.' is an unrecognized escape in character string (<input>:7:32) 
 ```
+</div>
+
 
 از دو تا تابع grepl( ) که مقدار منطقی باز می‌گرداند و grep() که اندیس باز می‌گرداند استفاده می‌کنیم هر دو دنبال یک pattern توی داده های گردن. e.g
 
@@ -284,21 +326,33 @@ Error: '\.' is an unrecognized escape in character string (<input>:7:32)
 
 **کد: sub / gsub (3-2)**
 
+<div dir="ltr" class="ltr-block">
 ```r
 sub(pattern = "oo", replacement = "*", x = words)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "b*k"   "n*k"   "back"  "black"
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```r
 gsub(pattern = "o", replacement = "*", x = words)
 ```
+</div>
 
+
+<div dir="ltr" class="ltr-block">
 ```text
 [1] "b**k"  "n**k"  "back"  "black"
 ```
+</div>
+
 
 تابع grepl,grep برامون جای یک فرمت رو پیدا می کردن و توابع gsub, sub می تونن اون بخش از داده رو جایگزین کنن.
 

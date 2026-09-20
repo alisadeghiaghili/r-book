@@ -1,0 +1,40 @@
+---
+title: "کتاب R — مقدماتی"
+subtitle: "آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS"
+site: bookdown::bookdown_site
+documentclass: book
+classoption: openany
+bibliography: []
+link-citations: true
+lang: fa
+dir: rtl
+---
+
+# پیشگفتار {-}
+
+<div dir="rtl" lang="fa">
+
+این کتاب یادداشت‌های آموزشی **زبان برنامه‌نویسی R** به فارسی است.
+
+ساختار سایت مانند [R for Data Science](https://r4ds.had.co.nz/) است:
+**بخش‌ها و فصل‌های شماره‌دار**، با فهرست کنار صفحه، پیوند قبلی/بعدی و قابلیت جست‌وجو در gitbook.
+
+**قرارداد خواندن**
+
+- نوشته‌های فارسی **راست‌به‌چپ** هستند.
+- بلوک‌های کد R و خروجی‌ها **چپ‌به‌چپ** و در کد-باکس‌ها.
+- برای کدهای تک‌خطی، خروجی بلافاصله بعد از همان خط آمده است؛ برای مسائل چندخطی ابتدا کد کامل، سپس نتیجه.
+
+**اجرا**
+
+به [R](https://cran.r-project.org/) و پیشنهاداً RStudio/Posit نیاز دارید.
+
+```r
+install.packages(c("dplyr", "readr", "readxl", "tibble", "data.table"))
+```
+
+**انتشار این سایت**
+
+با فشردن هر push روی `main`، GitHub Actions کتاب را با **bookdown** رندر می‌کند و خروجی را روی شاخهٔ `gh-pages` منتشر می‌کند.
+
+</div>
