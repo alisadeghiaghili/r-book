@@ -1,8 +1,4 @@
----
-title: فصل 12 — دادهٔ تمیز و tidyverse
-lang: fa
-dir: rtl
----
+
 
 # فصل 12 — دادهٔ تمیز و tidyverse
 

@@ -1,8 +1,4 @@
----
-title: فصل 13 — رشته‌ها و Regular Expression
-lang: fa
-dir: rtl
----
+
 
 # فصل 13 — رشته‌ها و Regular Expression
 

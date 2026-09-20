@@ -1,8 +1,4 @@
----
-title: فصل 5 — فاکتور، data.frame و list
-lang: fa
-dir: rtl
----
+
 
 # فصل 5 — فاکتور، data.frame و list
 

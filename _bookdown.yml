@@ -1,28 +1,28 @@
 book_filename: "r-book"
 output_dir: "_book"
-delete_merged_file: true
+delete_merged_file: false
 language:
   ui:
     chapter_name: "فصل "
     appendix_name: "پیوست "
 rmd_files:
   - index.Rmd
-  - _bookdown_src/01-introduction.md
-  - _bookdown_src/02-rstudio.md
-  - _bookdown_src/03-basics-variables.md
-  - _bookdown_src/04-vectors-matrices.md
-  - _bookdown_src/05-data-structures.md
-  - _bookdown_src/06-control-flow.md
-  - _bookdown_src/07-functions-packages.md
-  - _bookdown_src/08-import-flat.md
-  - _bookdown_src/09-import-excel.md
-  - _bookdown_src/10-import-db.md
-  - _bookdown_src/11-import-web.md
-  - _bookdown_src/12-tidy-data.md
-  - _bookdown_src/13-strings-regex.md
-  - _bookdown_src/14-dplyr.md
-  - _bookdown_src/15-joins.md
-  - _bookdown_src/16-datetime.md
-  - _bookdown_src/17-data-table.md
-  - _bookdown_src/18-outliers-plots.md
-  - _bookdown_src/19-appendix.md
+  - 01-introduction.md
+  - 02-rstudio.md
+  - 03-basics-variables.md
+  - 04-vectors-matrices.md
+  - 05-data-structures.md
+  - 06-control-flow.md
+  - 07-functions-packages.md
+  - 08-import-flat.md
+  - 09-import-excel.md
+  - 10-import-db.md
+  - 11-import-web.md
+  - 12-tidy-data.md
+  - 13-strings-regex.md
+  - 14-dplyr.md
+  - 15-joins.md
+  - 16-datetime.md
+  - 17-data-table.md
+  - 18-outliers-plots.md
+  - 19-appendix.md

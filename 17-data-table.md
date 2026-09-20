@@ -1,8 +1,4 @@
----
-title: فصل 17 — data.table و داده‌های حجیم
-lang: fa
-dir: rtl
----
+
 
 # فصل 17 — data.table و داده‌های حجیم
 

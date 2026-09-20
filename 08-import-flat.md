@@ -1,8 +1,4 @@
----
-title: فصل 8 — Importing: فایل‌های flat
-lang: fa
-dir: rtl
----
+
 
 # فصل 8 — Importing: فایل‌های flat
 

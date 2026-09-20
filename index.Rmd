@@ -1,13 +1,14 @@
 ---
 title: "کتاب R — مقدماتی"
 subtitle: "آموزش زبان R به فارسی · ساختار فصل‌بندی R4DS"
+author: "Ali Sadeghi Aghili"
 site: bookdown::bookdown_site
 documentclass: book
 classoption: openany
 bibliography: []
 link-citations: true
 lang: fa
-dir: rtl
+description: "کتاب فارسی آموزش مقدماتی زبان R با ساختار فصل‌بندی R for Data Science."
 ---
 
 # پیشگفتار {-}
@@ -17,7 +18,7 @@ dir: rtl
 این کتاب یادداشت‌های آموزشی **زبان برنامه‌نویسی R** به فارسی است.
 
 ساختار سایت مانند [R for Data Science](https://r4ds.had.co.nz/) است:
-**بخش‌ها و فصل‌های شماره‌دار**، با فهرست کنار صفحه، پیوند قبلی/بعدی و قابلیت جست‌وجو در gitbook.
+**بخش‌ها و فصل‌های شماره‌دار**، با فهرست کنار صفحه، پیوند قبلی/بعدی و جست‌وجو.
 
 **قرارداد خواندن**
 
@@ -33,8 +34,8 @@ dir: rtl
 install.packages(c("dplyr", "readr", "readxl", "tibble", "data.table"))
 ```
 
-**انتشار این سایت**
+**انتشار**
 
-با فشردن هر push روی `main`، GitHub Actions کتاب را با **bookdown** رندر می‌کند و خروجی را روی شاخهٔ `gh-pages` منتشر می‌کند.
+هر push روی `main` با GitHub Actions کتاب را با **bookdown** رندر و روی `gh-pages` منتشر می‌کند.
 
 </div>

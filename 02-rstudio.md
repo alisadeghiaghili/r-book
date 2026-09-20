@@ -1,8 +1,4 @@
----
-title: فصل 2 — آشنایی با RStudio
-lang: fa
-dir: rtl
----
+
 
 # فصل 2 — آشنایی با RStudio
 

@@ -1,11 +1,7 @@
-# Prepare bookdown sources from chapters/*.md
-# Strips YAML front matter and outer RTL wrappers.
-# Keeps </div> so LTR code/output wrappers stay valid.
+# Prepare bookdown sources at repo root from chapters/*.md
+# Writes 01-*.md ... 19-*.md next to index.Rmd (standard bookdown layout)
 
 src_dir <- "chapters"
-out_dir <- "_bookdown_src"
-dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
-
 order <- c(
   "introduction.md",
   "rstudio.md",
@@ -40,6 +36,10 @@ strip_front_matter <- function(lines) {
   lines
 }
 
+# remove previous numbered chapter files at root
+old <- list.files(".", pattern = "^[0-9][0-9]-.*\\.md$", full.names = TRUE)
+if (length(old)) file.remove(old)
+
 for (i in seq_along(order)) {
   f <- order[i]
   path <- file.path(src_dir, f)
@@ -49,10 +49,9 @@ for (i in seq_along(order)) {
   }
   lines <- readLines(path, encoding = "UTF-8", warn = FALSE)
   lines <- strip_front_matter(lines)
-  # Remove only outer RTL wrappers (not LTR block closers)
-  drop <- grepl('^<div dir="rtl"', lines)
-  lines <- lines[!drop]
-  out <- file.path(out_dir, sprintf("%02d-%s", i, f))
+  # drop outer RTL wrappers only
+  lines <- lines[!grepl('^<div dir="rtl"', lines)]
+  out <- sprintf("%02d-%s", i, f)
   writeLines(lines, out, useBytes = FALSE)
   message("wrote ", out, " (", length(lines), " lines)")
 }
