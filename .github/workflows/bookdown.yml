@@ -31,7 +31,7 @@ jobs:
 
       - name: Install bookdown
         run: |
-          install.packages(c("bookdown", "rmarkdown", "knitr"))
+          install.packages(c("bookdown", "rmarkdown", "knitr", "downlit", "xml2", "bslib", "sass", "jsonlite"))
         shell: Rscript {0}
 
       - name: Prepare chapter sources
@@ -40,7 +40,7 @@ jobs:
 
       - name: Render book
         run: |
-          Rscript -e 'bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook", output_dir = "_book", quiet = TRUE)'
+          Rscript -e 'bookdown::render_book("index.Rmd", output_format = "bookdown::bs4_book", output_dir = "_book", quiet = TRUE)'
 
       - name: Deploy to GitHub Pages (gh-pages)
         if: github.ref == 'refs/heads/main'

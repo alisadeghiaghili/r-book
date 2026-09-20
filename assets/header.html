@@ -1,3 +1,4 @@
+
 <script>
   (function () {
     var r = document.documentElement;
@@ -6,8 +7,9 @@
   })();
 </script>
 <style>
+  /* critical RTL + LTR-code before CSS file loads */
   html, body { direction: rtl; text-align: right; }
-  pre, code, .sourceCode,
+  pre, code, div.sourceCode,
   pre *, code *,
   .ltr-block, .ltr-block pre, .ltr-block code {
     direction: ltr !important;
@@ -15,4 +17,3 @@
     text-align: left !important;
   }
 </style>
-

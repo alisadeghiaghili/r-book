@@ -1,22 +1,16 @@
-bookdown::gitbook:
+bookdown::bs4_book:
   css: assets/style.css
   split_by: chapter
+  repo: https://github.com/alisadeghiaghili/r-book
+  theme:
+    primary: "#0054AD"
+    fg: "#222222"
+    bg: "#FFFFFF"
+  includes:
+    in_header: assets/header.html
   config:
     toc:
       collapse: section
       before: |
-        <li class="toc-title"><a href="./">کتاب R — مقدماتی</a></li>
-    search: yes
-    download: ["pdf"]
-    sharing: null
-    edit: null
-    language:
-      ui:
-        chapter_name: "فصل "
-  includes:
-    in_header: assets/header.html
-
-bookdown::pdf_book:
-  base_format: rmarkdown::pdf_document
-  keep_tex: false
-
+        <li class="book-title-toc"><a href="./">کتاب R — مقدماتی</a></li>
+  # download not fully supported the same way on bs4_book
